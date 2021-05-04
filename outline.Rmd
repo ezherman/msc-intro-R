@@ -2,8 +2,8 @@
 title: "Intro To R - Overview"
 author: "Ezra Herman"
 output:
-  pdf_document: default
   html_document: default
+  pdf_document: default
 ---
 
 ```{r setup, include=FALSE}
@@ -18,13 +18,12 @@ Questions:
 1. What are the four panels in RStudio?  
 2. How is a project set up in RStudio?  
 3. Where do we save files for RStudio to use?  
-4. How and why do we install packages?
+
 
 Objectives:  
 1. Navigate the RStudio environment.   
 2. Set up an RStudio project for the workshop.  
 3. Save the workshop files from the vle into the project working directory.  
-4. Install the `dplyr`, `readr` and `ggplot2` packages using the packages tab.
 
 # Writing code in a script
 
@@ -32,28 +31,32 @@ Questions:
 1. What are the common terms used to describe R code?  
 2. How can data be entered into RStudio manually?  
 3. How are notes written alongside code?  
-4. What is the structure of commands in R?
+4. What is the structure of commands in R?  
+5. How and why do we install packages?
 
 
 Objectives:  
 1. Define the following R terminology: object, assign, call, function, arguments and options.   
 2. Assign values to a named vector using the `c()` function.   
 3. Write comments to make a script easier to interpret.  
-4. Use built-in functions and control their working with arguments and options. 
+4. Use built-in functions and control their working with arguments and options.  
+5. Install and load the `readr` package.
 
 # Importing and viewing data
 
 Questions:  
 1. How is data from a .csv file imported into R?  
-2. How is a summary view of a `tibble` viewed in R?  
-3. What is a factor variable in R?  
-4. How are string variables converted to factor variables?
+2. What are the differences between a `tibble` and a `data.frame`?  
+3. How is a summary view of a `tibble` viewed in R?  
+4. What is a factor variable in R? [*if there is time*]  
+5. How are string variables converted to factor variables? [*if there is time*]  
 
 Objectives:  
 1. Use `read_csv()` to import data from a .csv file as a `tibble`.  
-2. Use `head()`, `str()` and `summary()` to inspect a `tibble`.  
-3. Describe the difference between a string variable and a factor variable.  
-4. Use `factor()` to convert a string variable to a character variable. 
+2. Describe the differences between a `tibble` and a `data.frame`.  
+3. Use `head()`, `str()` and `summary()` to inspect a `tibble`.  
+4. Describe the difference between a string variable and a factor variable. [*if there is time*]  
+5. Use `factor()` to convert a string variable to a character variable. [*if there is time*]  
 
 # Data wrangling
 
@@ -85,6 +88,6 @@ Questions:
 Objectives:  
 1. Describe the core components of a `ggplot()` command.  
 2. Create scatterplots and boxplots with using the `ggplot2` package.  
-3. Adjust `ggplot2` objects, for example by adding a title.  
+3. Adjust `ggplot2` objects, for example by adding a title, with the help of Google.  
 4. Use the `patchwork` package to group multiple `ggplot()` graphs together.  
 5. Use `ggsave()` to export a ggplot plot. 
