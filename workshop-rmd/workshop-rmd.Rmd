@@ -1,0 +1,44 @@
+---
+title: "Intro To R"
+author: "Maths Skills Centre"
+output:
+  html_document: default
+  pdf_document: default
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+This document contains all the materials covered in the Introduction to R workshop of the Maths Skills Centre.
+
+# Overview of RStudio
+
+> Questions:  
+> 1. What are the four panels in RStudio?  
+> 2. How is a project set up in RStudio?  
+> 3. Where do we save files for RStudio to use?  
+> 
+> 
+> Objectives:  
+> 1. Navigate the RStudio environment.   
+> 2. Set up an RStudio project for the workshop.  
+> 3. Save the workshop files from the vle into the project working directory.
+
+## Navigating the RStudio environment
+RStudio has four panels. When RStudio is opened for the first time, only three are visible:
+
+```{r, echo=FALSE, fig.cap="When RStudio is first started, three panels are visible."}
+knitr::include_graphics("../img/three-panel-RStudio.png")
+```
+
+The fourth panel appears after we open a new *script*. Do so by pressing on the icons highlighted below:
+
+```{r, echo=FALSE, fig.cap='Open a script by pressing the "New File" button, followed by "R Script".'}
+knitr::include_graphics("../img/open-script.png")
+```
+
+Now you should see four panels, as shown below:
+```{r, echo=FALSE, fig.cap="After opening a new script, RStudio has four panels."}
+knitr::include_graphics("../img/four-panel-RStudio.png")
+```
