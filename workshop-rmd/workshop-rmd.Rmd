@@ -109,3 +109,26 @@ inside our project directory.
 
 
 
+
+
+# Writing code in a script
+
+> Questions:  
+> 1. What are the common terms used to describe R code?  
+> 2. How can data be entered into RStudio manually?  
+> 3. How are notes written alongside code?  
+> 4. What is the structure of commands in R?  
+> 5. How and why do we install packages?
+> 
+> 
+> Objectives:  
+> 1. Define the following R terminology: `object`, 
+> `assign`, `call`, `function`, `arguments` and `options`.   
+> 2. Assign values to a named `vector` 
+> using the `c()` function.  
+> 3. Write `comments` to make a script easier to interpret.  
+> 4. Use built-in functions and control their working 
+> with `arguments` and `options`.  
+> 5. Install and load the `readr` package.  
+
+
