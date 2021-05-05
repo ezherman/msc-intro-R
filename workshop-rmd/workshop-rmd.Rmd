@@ -89,6 +89,20 @@ the `Save` icon to the right of the `New File` button. Give the
 file a convenient name, such as `msc-intro-R`. It will then 
 appear in the bottom right of RStudio as `msc-intro-R.R`. 
 
+## Saving data files in our working directory
+As mentioned above, one of the features of the RStudio project
+is that it allows us to have all relevant files in one folder.
+We will download the data files for this workshop and save them
+inside our project directory. 
+
+*Complete once it's clear where and how the files are stored*.
+
+
+
+
+
+
+
 
 
 
