@@ -42,3 +42,31 @@ Now you should see four panels, as shown below:
 ```{r, echo=FALSE, fig.cap="After opening a new script, RStudio has four panels."}
 knitr::include_graphics("../img/four-panel-RStudio.png")
 ```
+
+What is the purpose of these panels?
+
+* *Top left*: this area is for the ***script**. A script is
+a text file in which we write R code. The script can be saved, 
+such that we can return to coding and use our code at a later
+date. Saving a script also allows us to share our analysis
+with colleagues.  
+* *Bottom left*: this is the **console** area. Here we can also
+write code, however this is not saved when we close R. It is
+therefore better practice to code from the script. Additionally,
+RStudio returns output to us in the console. For example, a 
+response to the command `4 + 4` will appear in the console.    
+* *Top right*: this is the *environment* area. Here the names of
+everything we import into or create in RStudio will appear. For 
+example, when we import a spreadsheet into RStudio, it appears
+in the environment.  
+* *Bottom right*: this is a multifunctional area, including our
+file directories and plots. 
+
+
+
+
+
+
+
+
+
