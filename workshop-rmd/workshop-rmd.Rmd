@@ -131,4 +131,84 @@ inside our project directory.
 > with `arguments` and `options`.  
 > 5. Install and load the `readr` package.  
 
+## Common R terminology
+
+### `Assign` a value to an `object`
+In R, everything that we create or import is saved as an `object`. 
+An `object` has a name, with which we can refer to it. 
+When we save something as an `object`, this is referred to as `assigning` something
+to that object. 
+`Assigning` is done using the `<-` syntax, as exemplified below. If we wanted to
+save the number 6 under the name `Six`, we would run:
+
+```{r assign value to object example}
+Four <- 4
+```
+
+After running this code, we see `Four` has appeared in the environment window. 
+This confirms that we have successfully `assigned` a value to an `object`. 
+
+### `Calling` a `function` with one `argument`
+Most commands in R involve `functions`. 
+A `function` is an in-built piece of code that performs a specific task.
+This saves us from having to write the code required for the task ourselves.
+When a `function` is used in R, this is referred to as `calling` the `function`.
+Usually, a `function` is `called` with one or more inputs - 
+these are called `arguments`.
+
+Let us take the `round`()` function as an example. 
+This function rounds a supplied value. 
+For example, we `call` the `round()` `function` on the value 3.14. 
+The value 3.14 is an `argument` in our `call`:
+
+```{r, eval = FALSE}
+round(3.14)
+```
+
+R then returns in the console:
+
+```{r, echo = FALSE}
+round(3.14)
+```
+
+An argument can also be an object, as you will see in the challenge at the end of this section.
+
+### Including an `argument` with an `option` in a `function` call
+Often the behaviour of a `function` can be manipulated using 
+`arguments` which take `options`. 
+These `options` have defaults, 
+which are assumed if we do not specify an alternative.
+
+For example, the `round()` function takes the `digits` argument, for which
+the default is `digits = 0`. That is why so far, `round()` has returned
+values with 0 digits behind the decimal.
+
+We can specify an alternative `option` for the `digits` `argument`, for example
+for a single digit behind the decimal:
+
+```{r}
+round(3.14, digits = 1)
+```
+
+<details>
+<summary>**Challenge**: assign the value 6.667 to an object named `number`. Then, call the `round()` function on the object `number`. Ensure that `round()` returns two digits behind the decimal. Find the solution in the drop-down.</summary>
+<br>
+```{r}
+number <- 6.667
+round(number, digits = 2)
+```
+</details>
+
+
+
+
+
+
+
+
+
+
+
+
+
 
