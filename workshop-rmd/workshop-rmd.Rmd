@@ -310,3 +310,21 @@ You will get a chance to further practice installing and loading then.
 
 
 
+
+# Importing and viewing data
+
+> Questions:  
+> 1. How is data from a .csv file imported into R?  
+> 2. What are the differences between a `tibble` and a `data.frame`?  
+> 3. How is a summary view of a `tibble` viewed in R?  
+> 4. What is a factor variable in R? [*if there is time*]  
+> 5. How are string variables converted to factor variables? [*if there is time*]  
+> 
+> Objectives:  
+> 1. Use `read_csv()` to import data from a .csv file as a `tibble`.  
+> 2. Describe the differences between a `tibble` and a `data.frame`.  
+> 3. Use `head()`, `str()` and `summary()` to inspect a `tibble`.  
+> 4. Describe the difference between a string variable and a factor variable. 
+> [*if there is time*]  
+> 5. Use `factor()` to convert a string variable to a character variable. 
+> [*if there is time*]  
