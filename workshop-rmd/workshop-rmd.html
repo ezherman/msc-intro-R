@@ -239,15 +239,15 @@ After opening a new script, RStudio has four panels.
 <blockquote>
 <p>Questions:<br />
 1. What are the common terms used to describe R code?<br />
-2. How can data be entered into RStudio manually?<br />
-3. How are notes written alongside code?<br />
-4. What is the structure of commands in R?<br />
+2. What is the structure of commands in R?<br />
+3. How can data be entered into RStudio manually?<br />
+4. How are notes written alongside code?<br />
 5. How and why do we install packages?</p>
 <p>Objectives:<br />
 1. Define the following R terminology: <code>object</code>, <code>assign</code>, <code>call</code>, <code>function</code>, <code>arguments</code> and <code>options</code>.<br />
-2. Assign values to a named <code>vector</code> using the <code>c()</code> function.<br />
-3. Write <code>comments</code> to make a script easier to interpret.<br />
-4. Use built-in functions and control their working with <code>arguments</code> and <code>options</code>.<br />
+2. Use a built-in <code>function</code> and control its working with an <code>argument</code> and an <code>option</code>.<br />
+3. Assign values to a named <code>vector</code> using the <code>c()</code> function.<br />
+4. Write <code>comments</code> to make a script easier to interpret.<br />
 5. Install and load the <code>readr</code> package.</p>
 </blockquote>
 <div id="common-r-terminology" class="section level2">
@@ -258,8 +258,8 @@ After opening a new script, RStudio has four panels.
 <pre class="r"><code>Four &lt;- 4</code></pre>
 <p>After running this code, we see <code>Four</code> has appeared in the environment window. This confirms that we have successfully <code>assigned</code> a value to an <code>object</code>.</p>
 </div>
-<div id="calling-a-function-with-one-argument" class="section level3">
-<h3><code>Calling</code> a <code>function</code> with one <code>argument</code></h3>
+<div id="calling-a-built-in-function-with-one-argument" class="section level3">
+<h3><code>Calling</code> a built-in <code>function</code> with one <code>argument</code></h3>
 <p>Most commands in R involve <code>functions</code>. A <code>function</code> is an in-built piece of code that performs a specific task. This saves us from having to write the code required for the task ourselves. When a <code>function</code> is used in R, this is referred to as <code>calling</code> the <code>function</code>. Usually, a <code>function</code> is <code>called</code> with one or more inputs - these are called <code>arguments</code>.</p>
 <p>Let us take the <code>round</code>()<code>function as an example.  This function rounds a supplied value.  For example, we</code>call<code>the</code>round()<code></code>function<code>on the value 3.14.  The value 3.14 is an</code>argument<code>in our</code>call`:</p>
 <pre class="r"><code>round(3.14)</code></pre>
@@ -283,6 +283,44 @@ After opening a new script, RStudio has four panels.
 round(number, digits = 2)</code></pre>
 <pre><code>## [1] 6.67</code></pre>
 </details>
+</div>
+<div id="vectors-using-the-c-function" class="section level3">
+<h3><code>Vectors</code> using the <code>c()</code> <code>function</code></h3>
+<p>So far, we have worked with <code>objects</code> that contained a single value. Often we are working with multiple data points. In R, multiple data points can be saved inside one <code>object</code> as a <code>vector</code>. A <code>vector</code> is a collection of data points of the <em>same type</em> (e.g. numbers of words). <code>Vectors</code> are formed by calling the <code>c()</code> function, with data provided between the brackets, separated by commas. For example:</p>
+<pre class="r"><code>numbers &lt;- c(1,2,3,4,5,6)</code></pre>
+<p><code>Vectors</code> can also contain words, which we call <code>strings</code> in R. Ensure that <code>strings</code> are always wrapped in quotes:</p>
+<pre class="r"><code>colours &lt;- c(&quot;red&quot;, &quot;blue&quot;, &quot;green&quot;)</code></pre>
+<p>Later in this workshop we will learn how to import data without needing to manually type data into <code>c()</code>.</p>
+</div>
+<div id="writing-comments-to-enhance-script-readability" class="section level3">
+<h3>Writing <code>comments</code> to enhance script readability</h3>
+<p>As we progress through this workshop, our script will fill up with many lines of code. To enhance readability for ourselves and for colleagues who may use our script at a later date, we include comments.</p>
+<p>Any text in R that is preceded by a <code>#</code> is ignored by R and treated as a comment. For example, if we were to comment when creating our vector <code>numbers</code>:</p>
+<pre class="r"><code># create a vector of the numbers 1 to 6
+numbers &lt;- c(1,2,3,4,5,6)</code></pre>
+<details>
+<summary>
+<strong>Challenge</strong>: assign the city names London, Manchester and Newcastle to an object named <code>cities</code>. Include a comment to increase the interpretability of your code. Find the solution in the drop-down.
+</summary>
+<p><br></p>
+<pre class="r"><code># a vector of city names
+cities &lt;- c(&quot;London&quot;, &quot;Manchester&quot;, &quot;Newcastle&quot;)</code></pre>
+</details>
+</div>
+<div id="installing-and-loading-packages" class="section level3">
+<h3>Installing and loading packages</h3>
+<p>So far, we have used the built-in functions <code>round()</code> and <code>c()</code>. R has many useful functions, some of which do not come built-in. Rather than releasing individual functions, collections of functions are released together in packages. Therefore, to use an external function, we need to install and load the appropriate package.</p>
+<p>Working with packages is analogous to using a new light bulb: 1. First, we install the package in R using the <code>install.packages()</code> function. This is analogous to screwing a new light bulb into the socket - we only need to do this <strong>once</strong>.<br />
+2. Then, every time we open RStudio and want to use the package, we need to load it using the <code>library()</code> function. This is analogous to using a light bulb - every time we enter the room, we need to turn on the light again.</p>
+<p>Let us take the <code>readr</code> package as an example. In the next section, we will use a function from this package. First, we install the package. You can run the following line from the console rather than the script, as we do not want the package to install again every time we run the script:</p>
+<pre class="r"><code># install the readr package
+install.packages(&quot;readr&quot;)</code></pre>
+<p>Then we load the package. It is good practice to load all packages at the top of our script. This way, it is easy for another user to identify whether they need to install any packages before running our script. Therefore, paste the following code at or near the top of your script:</p>
+<pre class="r"><code># loading a package
+library(&quot;readr&quot;)</code></pre>
+<pre><code>## Warning: package &#39;readr&#39; was built under R version 4.0.5</code></pre>
+<p>You may receive a warning similar to the one above. This warning is usually not something to worry about.</p>
+<p>As we progress through the workshop, we will encounter other packages. You will get a chance to further practice installing and loading then.</p>
 </div>
 </div>
 </div>

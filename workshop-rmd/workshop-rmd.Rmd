@@ -115,20 +115,20 @@ inside our project directory.
 
 > Questions:  
 > 1. What are the common terms used to describe R code?  
-> 2. How can data be entered into RStudio manually?  
-> 3. How are notes written alongside code?  
-> 4. What is the structure of commands in R?  
+> 2. What is the structure of commands in R?  
+> 3. How can data be entered into RStudio manually?  
+> 4. How are notes written alongside code?  
 > 5. How and why do we install packages?
 > 
 > 
 > Objectives:  
 > 1. Define the following R terminology: `object`, 
 > `assign`, `call`, `function`, `arguments` and `options`.   
-> 2. Assign values to a named `vector` 
+> 2. Use a built-in `function` and control its working 
+> with an `argument` and an `option`.  
+> 3. Assign values to a named `vector` 
 > using the `c()` function.  
-> 3. Write `comments` to make a script easier to interpret.  
-> 4. Use built-in functions and control their working 
-> with `arguments` and `options`.  
+> 4. Write `comments` to make a script easier to interpret.  
 > 5. Install and load the `readr` package.  
 
 ## Common R terminology
@@ -148,7 +148,7 @@ Four <- 4
 After running this code, we see `Four` has appeared in the environment window. 
 This confirms that we have successfully `assigned` a value to an `object`. 
 
-### `Calling` a `function` with one `argument`
+### `Calling` a built-in `function` with one `argument`
 Most commands in R involve `functions`. 
 A `function` is an in-built piece of code that performs a specific task.
 This saves us from having to write the code required for the task ourselves.
@@ -198,6 +198,104 @@ number <- 6.667
 round(number, digits = 2)
 ```
 </details>
+
+### `Vectors` using the `c()` `function`
+So far, we have worked with `objects` that contained a single value.
+Often we are working with multiple data points. 
+In R, multiple data points can be saved inside one `object` as a `vector`. 
+A `vector` is a collection of data points of the *same type* 
+(e.g. numbers of words). 
+`Vectors` are formed by calling the `c()` function, with data provided between
+the brackets, separated by commas. For example:
+
+```{r}
+numbers <- c(1,2,3,4,5,6)
+```
+
+`Vectors` can also contain words, which we call `strings` in R. Ensure that 
+`strings` are always wrapped in quotes:
+
+```{r}
+colours <- c("red", "blue", "green")
+```
+
+Later in this workshop we will learn how to import data without 
+needing to manually type data into `c()`.
+
+### Writing `comments` to enhance script readability
+As we progress through this workshop, our script will fill up with many
+lines of code. To enhance readability for ourselves and for colleagues 
+who may use our script at a later date, we include comments.
+
+Any text in R that is preceded by a `#` is ignored by R and treated as a comment.
+For example, if we were to comment when creating our vector `numbers`:
+
+```{r}
+# create a vector of the numbers 1 to 6
+numbers <- c(1,2,3,4,5,6)
+```
+
+<details>
+<summary>**Challenge**: assign the city names London, Manchester and Newcastle to an object named `cities`. Include a comment to increase the interpretability of your code. Find the solution in the drop-down.</summary>
+<br>
+```{r}
+# a vector of city names
+cities <- c("London", "Manchester", "Newcastle")
+```
+</details>
+
+### Installing and loading packages
+So far, we have used the built-in functions `round()` and `c()`. 
+R has many useful functions, some of which do not come built-in.
+Rather than releasing individual functions, collections of functions are
+released together in packages.
+Therefore, to use an external function, we need to install and load the
+appropriate package. 
+
+Working with packages is analogous to using a new light bulb:
+1. First, we install the package in R using the `install.packages()` function.
+This is analogous to screwing a new light bulb into the socket - we only
+need to do this **once**.  
+2. Then, every time we open RStudio and want to use the package, we need to load it 
+using the `library()` function. This is analogous to using a light bulb - every 
+time we enter the room, we need to turn on the light again.
+
+Let us take the `readr` package as an example. In the next section, we will use
+a function from this package. First, we install the package. You can run the 
+following line from the console rather than the script, as we do not want the
+package to install again every time we run the script: 
+
+```{r install readr, eval = FALSE}
+# install the readr package
+install.packages("readr")
+```
+
+Then we load the package. It is good practice to load all packages at the top
+of our script. This way, it is easy for another user to identify whether they
+need to install any packages before running our script. Therefore, paste the
+following code at or near the top of your script:
+
+```{r load readr}
+# loading a package
+library("readr")
+```
+
+You may receive a warning similar to the one above. This warning is usually not 
+something to worry about. 
+
+As we progress through the workshop, we will encounter other packages.
+You will get a chance to further practice installing and loading then. 
+
+
+
+
+
+
+
+
+
+
+
 
 
 
