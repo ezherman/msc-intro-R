@@ -340,6 +340,13 @@ library(&quot;readr&quot;)</code></pre>
 4. Describe the difference between a string variable and a factor variable. [<em>if there is time</em>]<br />
 5. Use <code>factor()</code> to convert a string variable to a character variable. [<em>if there is time</em>]</p>
 </blockquote>
+<div id="importing-.csv-data-into-rstudio" class="section level2">
+<h2>Importing <code>.csv</code> data into RStudio</h2>
+<p>In the previous section we learned how to type data into RStudio using the <code>c()</code> function. More commonly, we directly import data from a <code>.csv</code> spreadsheet. We will use the <code>read_csv()</code> function from the <code>readr</code> package, which we loaded in the previous section.</p>
+<p>We will use a subset from the NHANES data, which is a public health survey in the US. This data should be located inside the <code>data</code> folder of your working directory. We import the data as follows:</p>
+<pre class="r"><code>healthData &lt;- read_csv(&quot;data/NHANES.csv&quot;)</code></pre>
+<p>We can see that <code>healthData</code> has appeared in the environment panel. This <code>object</code> is a <code>tibble</code>, which you can think of as the RStudio equivalent of a spreadsheet. The main difference is that in <code>tibbles</code>, each column is a <code>vector</code>. Recall that within a <code>vector</code>, data must be of the same type. Therefore, individual columns in a <code>tibble</code> are always of one data type.</p>
+</div>
 </div>
 
 

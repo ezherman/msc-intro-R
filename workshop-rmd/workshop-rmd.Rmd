@@ -328,3 +328,31 @@ You will get a chance to further practice installing and loading then.
 > [*if there is time*]  
 > 5. Use `factor()` to convert a string variable to a character variable. 
 > [*if there is time*]  
+
+## Importing `.csv` data into RStudio
+In the previous section we learned how to type data into RStudio using 
+the `c()` function. More commonly, we directly import data from 
+a `.csv` spreadsheet. We will use the `read_csv()` function from 
+the `readr` package, which we loaded in the previous section.
+
+We will use a subset from the NHANES data, which is a public health 
+survey in the US. This data should be located inside the `data` folder
+of your working directory. We import the data as follows:
+
+```{r import NHANES data for learners, eval = FALSE}
+healthData <- read_csv("data/NHANES.csv")
+```
+
+```{r import NHANES data for developer, include = FALSE}
+healthData <- read_csv("../data/NHANES.csv")
+```
+
+We can see that `healthData` has appeared in the environment panel. 
+This `object` is a `tibble`, which you can think of as the RStudio 
+equivalent of a spreadsheet. 
+The main difference is that in `tibbles`, each column is a `vector`. 
+Recall that within a `vector`, data must be of the same type.
+Therefore, individual columns in a `tibble` are always of one data type. 
+
+
+
