@@ -329,13 +329,13 @@ library(&quot;readr&quot;)</code></pre>
 <blockquote>
 <p>Questions:<br />
 1. How is data from a .csv file imported into R?<br />
-2. What are the differences between a <code>tibble</code> and a <code>data.frame</code>?<br />
+2. What is a <code>data frame</code>?<br />
 3. How is a summary view of a <code>tibble</code> viewed in R?<br />
 4. What is a factor variable in R? [<em>if there is time</em>]<br />
 5. How are string variables converted to factor variables? [<em>if there is time</em>]</p>
 <p>Objectives:<br />
 1. Use <code>read_csv()</code> to import data from a .csv file as a <code>tibble</code>.<br />
-2. Describe the differences between a <code>tibble</code> and a <code>data.frame</code>.<br />
+2. Be aware of differences between a <code>tibble</code> and a <code>data.frame</code>.<br />
 3. Use <code>head()</code>, <code>str()</code> and <code>summary()</code> to inspect a <code>tibble</code>.<br />
 4. Describe the difference between a string variable and a factor variable. [<em>if there is time</em>]<br />
 5. Use <code>factor()</code> to convert a string variable to a character variable. [<em>if there is time</em>]</p>
@@ -346,6 +346,10 @@ library(&quot;readr&quot;)</code></pre>
 <p>We will use a subset from the NHANES data, which is a public health survey in the US. This data should be located inside the <code>data</code> folder of your working directory. We import the data as follows:</p>
 <pre class="r"><code>healthData &lt;- read_csv(&quot;data/NHANES.csv&quot;)</code></pre>
 <p>We can see that <code>healthData</code> has appeared in the environment panel. This <code>object</code> is a <code>tibble</code>, which you can think of as the RStudio equivalent of a spreadsheet. The main difference is that in <code>tibbles</code>, each column is a <code>vector</code>. Recall that within a <code>vector</code>, data must be of the same type. Therefore, individual columns in a <code>tibble</code> are always of one data type.</p>
+</div>
+<div id="a-note-on-tibble-vs-data-frame" class="section level2">
+<h2>A note on <code>tibble</code> vs <code>data frame</code></h2>
+<p>In the previous section we created the <code>tibble</code> <code>healthData</code>. As you come to using RStudio independently, you are likely to come across the <code>data frame</code>. The <code>tibble</code> and the <code>data frame</code> are very similar - in fact, <code>tibble</code> is a type of <code>data frame</code>. In this workshop we limit ourselves to <code>tibble</code>, as its an updated version of the <code>data frame</code>. However, in many online tutorials, <code>data frame</code> is used as the tutorials are a few years old. To find out more about the difference between <code>tibble</code> and <code>data frame</code>, see <a href="https://www.jumpingrivers.com/blog/the-trouble-with-tibbles/">this blog</a>.</p>
 </div>
 </div>
 

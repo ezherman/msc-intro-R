@@ -315,14 +315,14 @@ You will get a chance to further practice installing and loading then.
 
 > Questions:  
 > 1. How is data from a .csv file imported into R?  
-> 2. What are the differences between a `tibble` and a `data.frame`?  
+> 2. What is a `data frame`?  
 > 3. How is a summary view of a `tibble` viewed in R?  
 > 4. What is a factor variable in R? [*if there is time*]  
 > 5. How are string variables converted to factor variables? [*if there is time*]  
 > 
 > Objectives:  
 > 1. Use `read_csv()` to import data from a .csv file as a `tibble`.  
-> 2. Describe the differences between a `tibble` and a `data.frame`.  
+> 2. Be aware of differences between a `tibble` and a `data.frame`.  
 > 3. Use `head()`, `str()` and `summary()` to inspect a `tibble`.  
 > 4. Describe the difference between a string variable and a factor variable. 
 > [*if there is time*]  
@@ -353,6 +353,21 @@ equivalent of a spreadsheet.
 The main difference is that in `tibbles`, each column is a `vector`. 
 Recall that within a `vector`, data must be of the same type.
 Therefore, individual columns in a `tibble` are always of one data type. 
+
+## A note on `tibble` vs `data frame`
+In the previous section we created the `tibble` `healthData`. 
+As you come to using RStudio independently, you are likely to come 
+across the `data frame`. 
+The `tibble` and the `data frame` are very similar - in fact, `tibble` is a 
+type of `data frame`.
+In this workshop we limit ourselves to `tibble`, as its an updated version of
+the `data frame`. 
+However, in many online tutorials, `data frame` is used as the tutorials 
+are a few years old.
+To find out more about the difference between `tibble` and `data frame`,
+see [this blog](https://www.jumpingrivers.com/blog/the-trouble-with-tibbles/).
+
+
 
 
 
