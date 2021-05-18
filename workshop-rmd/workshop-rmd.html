@@ -349,7 +349,7 @@ library(&quot;readr&quot;)</code></pre>
 </div>
 <div id="viewing-a-tibble" class="section level2">
 <h2>Viewing a <code>tibble</code></h2>
-<p>We will cover three ways to quickly inspect the <code>tibble</code> that we have just created. Firstly, we can view <code>healthData</code> as a whole, analogous to the view that Excel would provide us with. We can do this using the <code>View()</code> function (note the capital <code>V</code>). The code below will open a new tab in RStudio, allowing us to scroll through the data:</p>
+<p>We will cover four ways to quickly inspect the <code>tibble</code> that we have just created. Firstly, we can view <code>healthData</code> as a whole, analogous to the view that Excel would provide us with. We can do this using the <code>View()</code> function (note the capital <code>V</code>). The code below will open a new tab in RStudio, allowing us to scroll through the data:</p>
 <pre class="r"><code>View(healthData)</code></pre>
 <p>Alternatively, we can ask RStudio to display the first six rows of <code>healthData</code> using the <code>head()</code> function:</p>
 <pre class="r"><code>head(healthData)</code></pre>
@@ -368,6 +368,11 @@ library(&quot;readr&quot;)</code></pre>
 <li>Have columns been imported as the correct types? Below the column names, we see data types. In our case, <code>&lt;dbl&gt;</code> and <code>&lt;chr&gt;</code>, which stand for double and character, respectively. A double column that has been imported as a character column, for example, could give us trouble in downstream analyses.</li>
 <li>Do the first few rows of data look as we expect them to look?</li>
 </ul>
+<p>We may also want to check that the <code>tibble</code> has the same number of rows and columns as we expect. We can do so using the functions <code>nrow()</code> and <code>ncol()</code>, respectively:</p>
+<pre class="r"><code>nrow(healthData)</code></pre>
+<pre><code>## [1] 10000</code></pre>
+<pre class="r"><code>ncol(healthData)</code></pre>
+<pre><code>## [1] 5</code></pre>
 <p>Finally, we may want to have a look at the spread of our continuous data. We can obtain a view of this using the <code>summary()</code> function:</p>
 <pre class="r"><code>summary(healthData)</code></pre>
 <pre><code>##        ID            Sex                 Age            Height     

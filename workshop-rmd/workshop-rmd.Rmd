@@ -362,7 +362,7 @@ To find out more about the difference between `tibble` and `data frame`,
 see [this blog](https://www.jumpingrivers.com/blog/the-trouble-with-tibbles/).
 
 ## Viewing a `tibble`
-We will cover three ways to quickly inspect the `tibble` that we have just created. 
+We will cover four ways to quickly inspect the `tibble` that we have just created. 
 Firstly, we can view `healthData` as a whole, analogous to the view that Excel
 would provide us with. 
 We can do this using the `View()` function (note the capital `V`). 
@@ -386,6 +386,16 @@ This output is useful for a few checks:
 * Have columns been imported as the correct types? Below the column names, we see data types. In our case, `<dbl>` and `<chr>`, which stand for double and character, respectively. A double column that has been imported as a character column, for example, could give us trouble in downstream analyses.
 * Do the first few rows of data look as we expect them to look?
 
+We may also want to check that the `tibble` has the same number of 
+rows and columns as we expect. We can do so using the functions `nrow()` 
+and `ncol()`, respectively:
+
+```{r nrow and ncol healthData}
+nrow(healthData)
+ncol(healthData)
+```
+
+
 Finally, we may want to have a look at the spread of our continuous data.
 We can obtain a view of this using the `summary()` function:
 
@@ -401,6 +411,7 @@ In addition, the number of `NA's` are displayed. An empty cell in RStudio
 is denoted by `NA`. For example, our `Weight` column has 431 `NA's`, i.e. 431 
 missing values. If we were not expecting missing values in our data, we would 
 need to investigate where these `NA's` came from.
+
 
 # Data wrangling
 
