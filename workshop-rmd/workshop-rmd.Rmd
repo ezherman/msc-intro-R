@@ -418,10 +418,10 @@ need to investigate where these `NA's` came from.
 > 1. Use `filter()` to select rows from a `tibble`.   
 > 2. Use `select()` to select columns from a `tibble`.   
 > 3. Use the pipe operator, `%>%`, to link commands together.  
-> 4. Use `mutate()` to create new columns based on existing columns.
-> 5. Describe the difference between a string variable and a factor variable. 
+> 4. Use `mutate()` to create new columns based on existing columns.  
+> 5. Describe the difference between a character variable and a factor variable. 
 > [*if there is time*]  
-> 6. Use `factor()` to convert a string variable to a character variable. 
+> 6. Use `as_factor()` to convert a character variable to a factor variable. 
 > [*if there is time*]  
 > 7. Use `group_by()`, `summarise()`, `count()` and `mean()` to obtain 
 > group-specific summary statistics.   
