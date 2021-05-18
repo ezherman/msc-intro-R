@@ -336,7 +336,7 @@ library(&quot;readr&quot;)</code></pre>
 <p>Objectives:<br />
 1. Use <code>read_csv()</code> to import data from a .csv file as a <code>tibble</code>.<br />
 2. Be aware of differences between a <code>tibble</code> and a <code>data frame</code>.<br />
-3. Use `<code>view()</code>, <code>head()</code>, and <code>summary()</code> to inspect a <code>tibble</code>.<br />
+3. Use <code>view()</code>, <code>head()</code>, and <code>summary()</code> to inspect a <code>tibble</code>.<br />
 4. Describe the difference between a string variable and a factor variable. [<em>if there is time</em>]<br />
 5. Use <code>factor()</code> to convert a string variable to a character variable. [<em>if there is time</em>]</p>
 </blockquote>
@@ -393,6 +393,25 @@ library(&quot;readr&quot;)</code></pre>
 <p>This output shows us for each column with continuous data the smallest and largest values (<code>Min.</code> and <code>Max.</code>), the 1st and 3rd quantiles, the median and the mean.</p>
 <p>In addition, the number of <code>NA&#39;s</code> are displayed. An empty cell in RStudio is denoted by <code>NA</code>. For example, our <code>Weight</code> column has 431 <code>NA&#39;s</code>, i.e. 431 missing values. If we were not expecting missing values in our data, we would need to investigate where these <code>NA&#39;s</code> came from.</p>
 </div>
+</div>
+<div id="data-wrangling" class="section level1">
+<h1>Data wrangling</h1>
+<blockquote>
+<p>Questions:<br />
+1. How can rows from a <code>tibble</code> be selected?<br />
+2. How can columns from a <code>tibble</code> be selected?<br />
+3. How can multiple data wrangling steps be combined into one command?<br />
+4. How can new columns be created based on existing columns?<br />
+5. How can group-specific summary statistics be obtained?<br />
+6. How can a <code>tibble</code> be saved as a .csv file?</p>
+<p>Objectives:<br />
+1. Use <code>filter()</code> to select rows from a <code>tibble</code>.<br />
+2. Use <code>select()</code> to select columns from a <code>tibble</code>.<br />
+3. Use the pipe operator, <code>%&gt;%</code>, to link commands together.<br />
+4. Use <code>mutate()</code> to create new columns based on existing columns.<br />
+5. Use <code>group_by()</code>, <code>summarise()</code>, <code>count()</code> and <code>mean()</code> to obtain group-specific summary statistics.<br />
+6. Use <code>write_csv()</code> to save a <code>tibble</code> as a .csv file.</p>
+</blockquote>
 </div>
 
 

@@ -323,7 +323,7 @@ You will get a chance to further practice installing and loading then.
 > Objectives:  
 > 1. Use `read_csv()` to import data from a .csv file as a `tibble`.  
 > 2. Be aware of differences between a `tibble` and a `data frame`.  
-> 3. Use ``view()`, `head()`, and `summary()` to inspect a `tibble`.  
+> 3. Use `view()`, `head()`, and `summary()` to inspect a `tibble`.  
 > 4. Describe the difference between a string variable and a factor variable. 
 > [*if there is time*]  
 > 5. Use `factor()` to convert a string variable to a character variable. 
@@ -408,4 +408,21 @@ is denoted by `NA`. For example, our `Weight` column has 431 `NA's`, i.e. 431
 missing values. If we were not expecting missing values in our data, we would 
 need to investigate where these `NA's` came from.
 
+# Data wrangling
 
+> Questions:  
+> 1. How can rows from a `tibble` be selected?  
+> 2. How can columns from a `tibble` be selected?  
+> 3. How can multiple data wrangling steps be combined into one command?  
+> 4. How can new columns be created based on existing columns?  
+> 5. How can group-specific summary statistics be obtained?  
+> 6. How can a `tibble` be saved as a .csv file?
+> 
+> Objectives:  
+> 1. Use `filter()` to select rows from a `tibble`.   
+> 2. Use `select()` to select columns from a `tibble`.   
+> 3. Use the pipe operator, `%>%`, to link commands together.  
+> 4. Use `mutate()` to create new columns based on existing columns.  
+> 5. Use `group_by()`, `summarise()`, `count()` and `mean()` to obtain 
+> group-specific summary statistics.   
+> 6. Use `write_csv()` to save a `tibble` as a .csv file. 
