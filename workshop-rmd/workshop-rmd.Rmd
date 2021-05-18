@@ -317,17 +317,11 @@ You will get a chance to further practice installing and loading then.
 > 1. How is data from a .csv file imported into R?  
 > 2. What is the difference between a `tibble` and a `data frame`?  
 > 3. How is a summary view of a `tibble` viewed in R?  
-> 4. What is a factor variable in R? [*if there is time*]  
-> 5. How are string variables converted to factor variables? [*if there is time*]  
 > 
 > Objectives:  
 > 1. Use `read_csv()` to import data from a .csv file as a `tibble`.  
 > 2. Be aware of differences between a `tibble` and a `data frame`.  
 > 3. Use `view()`, `head()`, and `summary()` to inspect a `tibble`.  
-> 4. Describe the difference between a string variable and a factor variable. 
-> [*if there is time*]  
-> 5. Use `factor()` to convert a string variable to a character variable. 
-> [*if there is time*]  
 
 ## Importing `.csv` data into RStudio
 In the previous section we learned how to type data into RStudio using 
@@ -415,14 +409,20 @@ need to investigate where these `NA's` came from.
 > 2. How can columns from a `tibble` be selected?  
 > 3. How can multiple data wrangling steps be combined into one command?  
 > 4. How can new columns be created based on existing columns?  
-> 5. How can group-specific summary statistics be obtained?  
-> 6. How can a `tibble` be saved as a .csv file?
+> 5. What is a factor variable in R? [*if there is time*]   
+> 6. How are string variables converted to factor variables? [*if there is time*]   
+> 7. How can group-specific summary statistics be obtained?  
+> 8. How can a `tibble` be saved as a .csv file?
 > 
 > Objectives:  
 > 1. Use `filter()` to select rows from a `tibble`.   
 > 2. Use `select()` to select columns from a `tibble`.   
 > 3. Use the pipe operator, `%>%`, to link commands together.  
-> 4. Use `mutate()` to create new columns based on existing columns.  
-> 5. Use `group_by()`, `summarise()`, `count()` and `mean()` to obtain 
+> 4. Use `mutate()` to create new columns based on existing columns.
+> 5. Describe the difference between a string variable and a factor variable. 
+> [*if there is time*]  
+> 6. Use `factor()` to convert a string variable to a character variable. 
+> [*if there is time*]  
+> 7. Use `group_by()`, `summarise()`, `count()` and `mean()` to obtain 
 > group-specific summary statistics.   
-> 6. Use `write_csv()` to save a `tibble` as a .csv file. 
+> 8. Use `write_csv()` to save a `tibble` as a .csv file. 
