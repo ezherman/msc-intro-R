@@ -315,15 +315,15 @@ You will get a chance to further practice installing and loading then.
 
 > Questions:  
 > 1. How is data from a .csv file imported into R?  
-> 2. What is a `data frame`?  
+> 2. What is the difference between a `tibble` and a `data frame`?  
 > 3. How is a summary view of a `tibble` viewed in R?  
 > 4. What is a factor variable in R? [*if there is time*]  
 > 5. How are string variables converted to factor variables? [*if there is time*]  
 > 
 > Objectives:  
 > 1. Use `read_csv()` to import data from a .csv file as a `tibble`.  
-> 2. Be aware of differences between a `tibble` and a `data.frame`.  
-> 3. Use `head()`, `str()` and `summary()` to inspect a `tibble`.  
+> 2. Be aware of differences between a `tibble` and a `data frame`.  
+> 3. Use ``view()`, `head()`, and `summary()` to inspect a `tibble`.  
 > 4. Describe the difference between a string variable and a factor variable. 
 > [*if there is time*]  
 > 5. Use `factor()` to convert a string variable to a character variable. 
@@ -367,7 +367,45 @@ are a few years old.
 To find out more about the difference between `tibble` and `data frame`,
 see [this blog](https://www.jumpingrivers.com/blog/the-trouble-with-tibbles/).
 
+## Viewing a `tibble`
+We will cover three ways to quickly inspect the `tibble` that we have just created. 
+Firstly, we can view `healthData` as a whole, analogous to the view that Excel
+would provide us with. 
+We can do this using the `View()` function (note the capital `V`). 
+The code below will open a new tab in RStudio, allowing us to scroll through
+the data:
 
+```{r view healthData, eval=FALSE}
+View(healthData)
+```
 
+Alternatively, we can ask RStudio to display the first six rows of `healthData`
+using the `head()` function:
+
+```{r head healthData}
+head(healthData)
+```
+
+This output is useful for a few checks:
+
+* Have the column names imported properly?
+* Have columns been imported as the correct types? Below the column names, we see data types. In our case, `<dbl>` and `<chr>`, which stand for double and character, respectively. A double column that has been imported as a character column, for example, could give us trouble in downstream analyses.
+* Do the first few rows of data look as we expect them to look?
+
+Finally, we may want to have a look at the spread of our continuous data.
+We can obtain a view of this using the `summary()` function:
+
+```{r summary healthData}
+summary(healthData)
+```
+
+This output shows us for each column with continuous data the smallest and 
+largest values (`Min.` and `Max.`), the 1st and 3rd quantiles, the median and the 
+mean. 
+
+In addition, the number of `NA's` are displayed. An empty cell in RStudio
+is denoted by `NA`. For example, our `Weight` column has 431 `NA's`, i.e. 431 
+missing values. If we were not expecting missing values in our data, we would 
+need to investigate where these `NA's` came from.
 
 

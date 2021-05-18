@@ -329,14 +329,14 @@ library(&quot;readr&quot;)</code></pre>
 <blockquote>
 <p>Questions:<br />
 1. How is data from a .csv file imported into R?<br />
-2. What is a <code>data frame</code>?<br />
+2. What is the difference between a <code>tibble</code> and a <code>data frame</code>?<br />
 3. How is a summary view of a <code>tibble</code> viewed in R?<br />
 4. What is a factor variable in R? [<em>if there is time</em>]<br />
 5. How are string variables converted to factor variables? [<em>if there is time</em>]</p>
 <p>Objectives:<br />
 1. Use <code>read_csv()</code> to import data from a .csv file as a <code>tibble</code>.<br />
-2. Be aware of differences between a <code>tibble</code> and a <code>data.frame</code>.<br />
-3. Use <code>head()</code>, <code>str()</code> and <code>summary()</code> to inspect a <code>tibble</code>.<br />
+2. Be aware of differences between a <code>tibble</code> and a <code>data frame</code>.<br />
+3. Use `<code>view()</code>, <code>head()</code>, and <code>summary()</code> to inspect a <code>tibble</code>.<br />
 4. Describe the difference between a string variable and a factor variable. [<em>if there is time</em>]<br />
 5. Use <code>factor()</code> to convert a string variable to a character variable. [<em>if there is time</em>]</p>
 </blockquote>
@@ -350,6 +350,48 @@ library(&quot;readr&quot;)</code></pre>
 <div id="a-note-on-tibble-vs-data-frame" class="section level2">
 <h2>A note on <code>tibble</code> vs <code>data frame</code></h2>
 <p>In the previous section we created the <code>tibble</code> <code>healthData</code>. As you come to using RStudio independently, you are likely to come across the <code>data frame</code>. The <code>tibble</code> and the <code>data frame</code> are very similar - in fact, <code>tibble</code> is a type of <code>data frame</code>. In this workshop we limit ourselves to <code>tibble</code>, as its an updated version of the <code>data frame</code>. However, in many online tutorials, <code>data frame</code> is used as the tutorials are a few years old. To find out more about the difference between <code>tibble</code> and <code>data frame</code>, see <a href="https://www.jumpingrivers.com/blog/the-trouble-with-tibbles/">this blog</a>.</p>
+</div>
+<div id="viewing-a-tibble" class="section level2">
+<h2>Viewing a <code>tibble</code></h2>
+<p>We will cover three ways to quickly inspect the <code>tibble</code> that we have just created. Firstly, we can view <code>healthData</code> as a whole, analogous to the view that Excel would provide us with. We can do this using the <code>View()</code> function (note the capital <code>V</code>). The code below will open a new tab in RStudio, allowing us to scroll through the data:</p>
+<pre class="r"><code>View(healthData)</code></pre>
+<p>Alternatively, we can ask RStudio to display the first six rows of <code>healthData</code> using the <code>head()</code> function:</p>
+<pre class="r"><code>head(healthData)</code></pre>
+<pre><code>## # A tibble: 6 x 5
+##      ID Sex      Age Height Weight
+##   &lt;dbl&gt; &lt;chr&gt;  &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt;
+## 1 71892 male       0    NA     7.7
+## 2 71460 female    47   148.   62.3
+## 3 58929 male      78   178.   63.4
+## 4 64041 male       9   151.   62.9
+## 5 69722 male       7   116.   21.4
+## 6 59289 male      30   165.   50.1</code></pre>
+<p>This output is useful for a few checks:</p>
+<ul>
+<li>Have the column names imported properly?</li>
+<li>Have columns been imported as the correct types? Below the column names, we see data types. In our case, <code>&lt;dbl&gt;</code> and <code>&lt;chr&gt;</code>, which stand for double and character, respectively. A double column that has been imported as a character column, for example, could give us trouble in downstream analyses.</li>
+<li>Do the first few rows of data look as we expect them to look?</li>
+</ul>
+<p>Finally, we may want to have a look at the spread of our continuous data. We can obtain a view of this using the <code>summary()</code> function:</p>
+<pre class="r"><code>summary(healthData)</code></pre>
+<pre><code>##        ID            Sex                 Age            Height     
+##  Min.   :51624   Length:10000       Min.   : 0.00   Min.   : 79.1  
+##  1st Qu.:56439   Class :character   1st Qu.:11.00   1st Qu.:152.6  
+##  Median :61233   Mode  :character   Median :32.00   Median :163.9  
+##  Mean   :61443                      Mean   :34.68   Mean   :157.9  
+##  3rd Qu.:66490                      3rd Qu.:56.00   3rd Qu.:173.1  
+##  Max.   :71916                      Max.   :80.00   Max.   :201.7  
+##                                                     NA&#39;s   :1022   
+##      Weight      
+##  Min.   :  2.70  
+##  1st Qu.: 43.90  
+##  Median : 67.50  
+##  Mean   : 64.56  
+##  3rd Qu.: 85.10  
+##  Max.   :239.40  
+##  NA&#39;s   :431</code></pre>
+<p>This output shows us for each column with continuous data the smallest and largest values (<code>Min.</code> and <code>Max.</code>), the 1st and 3rd quantiles, the median and the mean.</p>
+<p>In addition, the number of <code>NA&#39;s</code> are displayed. An empty cell in RStudio is denoted by <code>NA</code>. For example, our <code>Weight</code> column has 431 <code>NA&#39;s</code>, i.e. 431 missing values. If we were not expecting missing values in our data, we would need to investigate where these <code>NA&#39;s</code> came from.</p>
 </div>
 </div>
 
