@@ -393,6 +393,25 @@ library(&quot;readr&quot;)</code></pre>
 ##  NA&#39;s   :431</code></pre>
 <p>This output shows us for each column with continuous data the smallest and largest values (<code>Min.</code> and <code>Max.</code>), the 1st and 3rd quantiles, the median and the mean.</p>
 <p>In addition, the number of <code>NA&#39;s</code> are displayed. An empty cell in RStudio is denoted by <code>NA</code>. For example, our <code>Weight</code> column has 431 <code>NA&#39;s</code>, i.e. 431 missing values. If we were not expecting missing values in our data, we would need to investigate where these <code>NA&#39;s</code> came from.</p>
+<details>
+<summary>
+<strong>Challenge</strong>: Import the csv file <code>iris.csv</code> as a <code>tibble</code> named <code>flowerData</code>. This file contains data on the length and width of sepals and petals of three species of iris. Then, find out the following about the <code>tibble</code>:
+<ul>
+<li>
+Coffee
+</li>
+<li>
+Tea
+</li>
+<li>
+Milk
+</li>
+</ul>
+Find the solution in the drop-down.
+</summary>
+<p><br></p>
+<pre class="r"><code>flowerData &lt;- read_csv(&quot;data/iris.csv&quot;)</code></pre>
+</details>
 </div>
 </div>
 <div id="data-wrangling" class="section level1">
