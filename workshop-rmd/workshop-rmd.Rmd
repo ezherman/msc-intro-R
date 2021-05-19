@@ -419,16 +419,25 @@ flowerData <- read_csv("../data/iris.csv")
 <details>
 <summary>**Challenge**: Import the csv file `iris.csv` as a `tibble` named `flowerData`. This file contains data on the length and width of sepals and petals of three species of iris. Then, find out the following about the `tibble`:
 <ul>
-  <li>Coffee</li>
-  <li>Tea</li>
-  <li>Milk</li>
+  <li>What are the column names?</li>
+  <li>How many rows and columns does the data contain?</li>
+  <li>What is the mean of sepal length?</li>
+  <li>How many NAs does sepal width contain?</li>
 </ul> 
 Find the solution in the drop-down.
 </summary>
 <br>
 ```{r import iris for learners, eval = FALSE}
-flowerData <- read_csv("data/iris.csv")
+flowerData <- read_csv("data/iris.csv") # import the data
 ```
+
+```{r iris import results}
+head(flowerData) # find the column names in head() output
+nrow(flowerData) # number of rows
+ncol(flowerData) # number of columns
+summary(flowerData) # mean of sepal length is 5.843 and sepal width has no NAs
+```
+
 </details>
 
 # Data wrangling
