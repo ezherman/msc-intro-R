@@ -468,6 +468,86 @@ Find the solution in the drop-down.
 7. Use <code>group_by()</code>, <code>summarise()</code>, <code>count()</code> and <code>mean()</code> to obtain group-specific summary statistics.<br />
 8. Use <code>write_csv()</code> to save a <code>tibble</code> as a .csv file.</p>
 </blockquote>
+<p>Now that our data has been loaded in RStudio as a <code>tibble</code>, we proceed to the stage of “data wrangling”: manipulating the data such that it is ready for downstream analyses.</p>
+<div id="selecting-rows-and-columns" class="section level2">
+<h2>Selecting rows and columns</h2>
+<p>We may be interested in particular rows and/or columns of our data in downstream analyses. We can select rows using the <code>filter()</code> function and columns using the <code>select()</code> function. Both of these functions are part of the <code>dplyr</code> package. We will first ensure that these functions are loaded in RStudio. Then we will learn how to use them to filter rows and columns.</p>
+<details>
+<summary>
+<p><strong>Challenge</strong>: Install and load the <code>dplyr</code> package, such that you can use <code>filter()</code> and <code>select()</code> in this workshop.</p>
+Find the solution in the drop-down.
+</summary>
+<p><br> Recall that in order to use <code>read_csv()</code> from the <code>readr</code> package, we needed to install <code>readr</code> using <code>install.packages()</code>, followed by loading the package using <code>library()</code>.</p>
+<pre class="r"><code>install.packages(&quot;dplyr&quot;) # install dplyr, only needs to be done once</code></pre>
+<pre class="r"><code>library(dplyr) # load dplyr, needs to be done every time RStudio is started up</code></pre>
+</details>
+<p>To select particular rows, we use the <code>filter()</code> function. This function takes our <code>tibble</code> of interest (<code>healthData</code>) and a criterion for filtering. For example, to select rows with participants of the female sex from <code>healthData</code>, then the criterion is <code>Sex == &quot;female&quot;</code> (note the use of the double <code>=</code>):</p>
+<pre class="r"><code>filter(healthData, Sex == &quot;female&quot;)</code></pre>
+<pre><code>## # A tibble: 4,963 x 5
+##       ID Sex      Age Height Weight
+##    &lt;dbl&gt; &lt;chr&gt;  &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt;
+##  1 71460 female    47   148.   62.3
+##  2 65251 female    10   154.   42.7
+##  3 59520 female    14   158.   79.1
+##  4 51782 female    23   157.   85.6
+##  5 71104 female    78   151.   84.5
+##  6 68471 female    15   167.  131. 
+##  7 64653 female     1    NA    11.4
+##  8 64055 female    59   155.   93.7
+##  9 57092 female     6    NA    NA  
+## 10 66541 female    70   170.   66.5
+## # ... with 4,953 more rows</code></pre>
+<p>We could also filter based on a column with continuous data. For example, if we wanted to retain the data on participants below 170 cm:</p>
+<pre class="r"><code>filter(healthData, Height &lt; 170)</code></pre>
+<pre><code>## # A tibble: 6,023 x 5
+##       ID Sex      Age Height Weight
+##    &lt;dbl&gt; &lt;chr&gt;  &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt;
+##  1 71460 female    47   148.   62.3
+##  2 64041 male       9   151.   62.9
+##  3 69722 male       7   116.   21.4
+##  4 59289 male      30   165.   50.1
+##  5 71034 male      11   144.   42.6
+##  6 65251 female    10   154.   42.7
+##  7 59520 female    14   158.   79.1
+##  8 56541 male       8   137.   36.6
+##  9 63316 male      10   145.   56.2
+## 10 51782 female    23   157.   85.6
+## # ... with 6,013 more rows</code></pre>
+<p>The function for selecting columns is <code>select()</code>. The names of the columns that we want to keep are included inside <code>select()</code> as a vector. For example, to retain the <code>ID</code> and <code>Height</code> columns:</p>
+<pre class="r"><code>select(healthData, c(ID, Height))</code></pre>
+<pre><code>## # A tibble: 10,000 x 2
+##       ID Height
+##    &lt;dbl&gt;  &lt;dbl&gt;
+##  1 71892    NA 
+##  2 71460   148.
+##  3 58929   178.
+##  4 64041   151.
+##  5 69722   116.
+##  6 59289   165.
+##  7 66142   174.
+##  8 71034   144.
+##  9 65251   154.
+## 10 59520   158.
+## # ... with 9,990 more rows</code></pre>
+<p>We could also specify columns to exclude using <code>-c()</code>. For example, to exclude the <code>Weight</code> column:</p>
+<pre class="r"><code>select(healthData, -c(Weight))</code></pre>
+<pre><code>## # A tibble: 10,000 x 4
+##       ID Sex      Age Height
+##    &lt;dbl&gt; &lt;chr&gt;  &lt;dbl&gt;  &lt;dbl&gt;
+##  1 71892 male       0    NA 
+##  2 71460 female    47   148.
+##  3 58929 male      78   178.
+##  4 64041 male       9   151.
+##  5 69722 male       7   116.
+##  6 59289 male      30   165.
+##  7 66142 male      21   174.
+##  8 71034 male      11   144.
+##  9 65251 female    10   154.
+## 10 59520 female    14   158.
+## # ... with 9,990 more rows</code></pre>
+<p>Note that the output from each of these commands can be saved as an object. For example, to save <code>healthData</code> with the <code>Weight</code> column excluded:</p>
+<pre class="r"><code>noWeight &lt;- select(healthData, -c(Weight))</code></pre>
+</div>
 </div>
 
 

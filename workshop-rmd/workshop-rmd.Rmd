@@ -464,3 +464,75 @@ summary(flowerData) # mean of sepal length is 5.843 and sepal width has no NAs
 > 7. Use `group_by()`, `summarise()`, `count()` and `mean()` to obtain 
 > group-specific summary statistics.   
 > 8. Use `write_csv()` to save a `tibble` as a .csv file. 
+
+Now that our data has been loaded in RStudio as a `tibble`, we proceed
+to the stage of "data wrangling": manipulating the data such that it
+is ready for downstream analyses. 
+
+## Selecting rows and columns
+We may be interested in particular rows and/or columns of our data in downstream
+analyses. We can select rows using the `filter()` function and columns
+using the `select()` function. Both of these functions are part of the `dplyr`
+package. We will first ensure that these functions are loaded in RStudio.
+Then we will learn how to use them to filter rows and columns.
+
+<details>
+<summary>**Challenge**: Install and load the `dplyr` package, such that you can use `filter()` and `select()` in this workshop.
+
+Find the solution in the drop-down.
+</summary>
+<br>
+Recall that in order to use `read_csv()` from the `readr` package, we needed to 
+install `readr` using `install.packages()`, followed by loading the package
+using `library()`.
+
+```{r install dplyr for learners, eval = FALSE}
+install.packages("dplyr") # install dplyr, only needs to be done once
+```
+
+```{r load dplyr, message=FALSE, warning = FALSE}
+library(dplyr) # load dplyr, needs to be done every time RStudio is started up
+```
+
+</details>
+  
+To select particular rows, we use the `filter()` function.
+This function takes our `tibble` of interest (`healthData`)
+and a criterion for filtering. For example, to 
+select rows with participants of the female sex from `healthData`,
+then the criterion is `Sex == "female"` (note the use of the double `=`):
+
+```{r filter female data}
+filter(healthData, Sex == "female")
+```
+
+We could also filter based on a column with continuous data. For example, if
+we wanted to retain the data on participants below 170 cm:
+
+```{r filter height data}
+filter(healthData, Height < 170)
+```
+
+The function for selecting columns is `select()`. The names of the columns
+that we want to keep are included inside `select()` as a vector. For example,
+to retain the `ID` and `Height` columns:
+
+```{r select ID and Height data}
+select(healthData, c(ID, Height))
+```
+
+We could also specify columns to exclude using `-c()`. For example, to exclude
+the `Weight` column:
+
+```{r select all but Weight data}
+select(healthData, -c(Weight))
+```
+
+Note that the output from each of these commands can be saved as an object.
+For example, to save `healthData` with the `Weight` column excluded:
+
+```{r save noWeight, eval = FALSE}
+noWeight <- select(healthData, -c(Weight))
+```
+
+
