@@ -548,6 +548,17 @@ Find the solution in the drop-down.
 <p>Note that the output from each of these commands can be saved as an object. For example, to save <code>healthData</code> with the <code>Weight</code> column excluded:</p>
 <pre class="r"><code>noWeight &lt;- select(healthData, -c(Weight))</code></pre>
 </div>
+<div id="linking-data-wrangling-commands-using" class="section level2">
+<h2>Linking data wrangling commands using <code>%&gt;%</code></h2>
+<p>Often when data is wrangled, multiple steps need to be combined. For example, we might want to exclude the <code>Weight</code> column from <code>healthData</code> and only retain data on participants of the female <code>Sex</code>. The long way to do this would be to create a new object at each step of the data wrangling:</p>
+<pre class="r"><code>noWeight &lt;- select(healthData, -c(Weight))
+noWeightFemale &lt;- filter(noWeight, Sex == &quot;female&quot;) </code></pre>
+<p>Note that in the <code>filter()</code> step, we specify <code>noWeight</code> as the data, rather than <code>healthData</code>. So here we <code>select()</code> for columns and then <code>filter()</code> for rows on the reduced data from <code>select()</code>.</p>
+<p>This operation would be easier if we could link the <code>select()</code> and <code>filter()</code> steps together. This can be done using the pipe operator, <code>%&gt;%</code>. When reading the pipe operator in code, think of it as saying “then”. In the example below, we select all but the <code>Weight</code> column, <strong>then</strong> we filter for participants of the female <code>Sex</code>:</p>
+<pre class="r"><code>noWeightFemale &lt;- select(healthData, -c(Weight)) %&gt;%
+  filter(Sex == &quot;female&quot;)</code></pre>
+<p>Notice that in the <code>filter()</code> step, we no longer specify the data. This is because the pipe operator passes on the data from the <code>select()</code> step.</p>
+</div>
 </div>
 
 

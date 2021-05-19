@@ -535,4 +535,31 @@ For example, to save `healthData` with the `Weight` column excluded:
 noWeight <- select(healthData, -c(Weight))
 ```
 
+## Linking data wrangling commands using `%>%`
+Often when data is wrangled, multiple steps need to be combined. For example, we
+might want to exclude the `Weight` column from `healthData` and only retain
+data on participants of the female `Sex`. The long way to do this would be 
+to create a new object at each step of the data wrangling:
 
+```{r long way select and filter, eval = FALSE}
+noWeight <- select(healthData, -c(Weight))
+noWeightFemale <- filter(noWeight, Sex == "female") 
+```
+
+Note that in the `filter()` step, we specify `noWeight` as the data, rather
+than `healthData`. So here we `select()` for columns and then `filter()` for 
+rows on the reduced data from `select()`.
+
+This operation would be easier if we could link the `select()` and `filter()` steps 
+together. This can be done using the pipe operator, `%>%`. When reading the 
+pipe operator in code, think of it as saying "then". In the example below, we
+select all but the `Weight` column, **then** we filter for participants of the 
+female `Sex`:
+
+```{r select then filter healthData}
+noWeightFemale <- select(healthData, -c(Weight)) %>%
+  filter(Sex == "female")
+```
+
+Notice that in the `filter()` step, we no longer specify the data. This is 
+because the pipe operator passes on the data from the `select()` step. 
