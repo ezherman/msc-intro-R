@@ -588,3 +588,26 @@ setosaSepal <- flowerData %>%
 ```
 
 </details>
+
+
+## Creating new columns using `mutate()`
+Often we want to add new columns to our `tibble`, based on existing columns. 
+For example, we may want to add a `BMI` column to our `healthData` object, 
+based on the `Height` and `Weight` columns. 
+The BMI is calculated by dividing `Weight` by `Height` squared. 
+Since `Height` in `healthData` is in cm, we divide `Height` by 100.
+We create the `BMI` column using `mutate()`:
+
+```{r create healthDataBMI}
+healthDataBMI <- healthData %>%
+  mutate(BMI = Weight/(Height/100)^2)
+```
+
+Using `head()` we can see our new column:
+
+```{r head healthDataBMI}
+head(healthDataBMI)
+```
+
+
+

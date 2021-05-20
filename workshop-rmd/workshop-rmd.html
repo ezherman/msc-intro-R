@@ -581,6 +581,23 @@ Find the solution in the drop-down.
   select(c(sepal.length, sepal.width))</code></pre>
 </details>
 </div>
+<div id="creating-new-columns-using-mutate" class="section level2">
+<h2>Creating new columns using <code>mutate()</code></h2>
+<p>Often we want to add new columns to our <code>tibble</code>, based on existing columns. For example, we may want to add a <code>BMI</code> column to our <code>healthData</code> object, based on the <code>Height</code> and <code>Weight</code> columns. The BMI is calculated by dividing <code>Weight</code> by <code>Height</code> squared. Since <code>Height</code> in <code>healthData</code> is in cm, we divide <code>Height</code> by 100. We create the <code>BMI</code> column using <code>mutate()</code>:</p>
+<pre class="r"><code>healthDataBMI &lt;- healthData %&gt;%
+  mutate(BMI = Weight/(Height/100)^2)</code></pre>
+<p>Using <code>head()</code> we can see our new column:</p>
+<pre class="r"><code>head(healthDataBMI)</code></pre>
+<pre><code>## # A tibble: 6 x 6
+##      ID Sex      Age Height Weight   BMI
+##   &lt;dbl&gt; &lt;chr&gt;  &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt; &lt;dbl&gt;
+## 1 71892 male       0    NA     7.7  NA  
+## 2 71460 female    47   148.   62.3  28.3
+## 3 58929 male      78   178.   63.4  20.1
+## 4 64041 male       9   151.   62.9  27.7
+## 5 69722 male       7   116.   21.4  15.8
+## 6 59289 male      30   165.   50.1  18.4</code></pre>
+</div>
 </div>
 
 
