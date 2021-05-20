@@ -609,5 +609,30 @@ Using `head()` we can see our new column:
 head(healthDataBMI)
 ```
 
+## Using `as_factor()` for categorical variables
+When we import categorical variables as part of a `tibble`, they appear
+as a `character` column. See for example the `Sex` column in healthData:
+
+```{r head healthData 2}
+head(healthData)
+```
+
+A `character` column in RStudio is a column with words (also known as "strings"). 
+For downstream analyses, it is often useful to convert a categorical `character`
+column into a `factor` column. This has the following advatnages:
+
+* A character column is prone to typos which can go unseen. In a factor column, there is a limited set of categories (known as levels), such that typos can be spotted easily.
+* A character column does not specify an order for the categories, which can comlicate downstream analyses. In a factor column, the levels can be ordered in a specific way, such that plots and models treat the column as we would like them to (e.g. plot the 12 months of the year in the correct order, rather than alphabetically). 
+
+We can convert a character column into a factor using the `as_factor()` function
+from the `forcats` package. We do this inside `mutate()`. Ensure that you have the 
+`forcats` package installed before you run the code below.
+
+```{r sex factor healthData, warning = FALSE}
+library(forcats) # load the required package
+
+healthDataFactor <- healthData %>%
+  mutate(Sex = as_factor(Sex))
+```
 
 
