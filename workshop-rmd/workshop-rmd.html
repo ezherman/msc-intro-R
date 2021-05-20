@@ -558,6 +558,28 @@ noWeightFemale &lt;- filter(noWeight, Sex == &quot;female&quot;) </code></pre>
 <pre class="r"><code>noWeightFemale &lt;- select(healthData, -c(Weight)) %&gt;%
   filter(Sex == &quot;female&quot;)</code></pre>
 <p>Notice that in the <code>filter()</code> step, we no longer specify the data. This is because the pipe operator passes on the data from the <code>select()</code> step.</p>
+<p>It is common to provude the <code>tibble</code> by itself in the first command, such that the chain becomes:</p>
+<pre class="r"><code>noWeightFemale &lt;- healthData %&gt;%
+  select(-c(Weight)) %&gt;%
+  filter(Sex == &quot;female&quot;)</code></pre>
+<details>
+<summary>
+<strong>Challenge</strong>: Create an object named <code>setosaSepal</code>, a subset of <code>flowerData</code>, with:
+<ul>
+<li>
+Only flowers of the <code>Setosa</code> variety.
+</li>
+<li>
+Only the sepal length and sepal width columns.
+</li>
+</ul>
+Find the solution in the drop-down.
+</summary>
+<p><br></p>
+<pre class="r"><code>setosaSepal &lt;- flowerData %&gt;%
+  filter(variety == &quot;Setosa&quot;) %&gt;%
+  select(c(sepal.length, sepal.width))</code></pre>
+</details>
 </div>
 </div>
 

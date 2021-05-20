@@ -563,3 +563,28 @@ noWeightFemale <- select(healthData, -c(Weight)) %>%
 
 Notice that in the `filter()` step, we no longer specify the data. This is 
 because the pipe operator passes on the data from the `select()` step. 
+
+It is common to provude the `tibble` by itself in the first command, such that the chain becomes:
+
+```{r select then filter healthData 2}
+noWeightFemale <- healthData %>%
+  select(-c(Weight)) %>%
+  filter(Sex == "female")
+```
+
+<details>
+<summary>**Challenge**: Create an object named `setosaSepal`, a subset of `flowerData`, with:
+<ul>
+  <li>Only flowers of the `Setosa` variety.</li>
+  <li>Only the sepal length and sepal width columns.</li>
+</ul> 
+Find the solution in the drop-down.
+</summary>
+<br>
+```{r make smallSetosa}
+setosaSepal <- flowerData %>%
+  filter(variety == "Setosa") %>%
+  select(c(sepal.length, sepal.width))
+```
+
+</details>
