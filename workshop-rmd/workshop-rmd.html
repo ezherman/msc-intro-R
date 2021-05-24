@@ -611,16 +611,42 @@ Find the solution in the drop-down.
 ## 4 64041 male       9   151.   62.9
 ## 5 69722 male       7   116.   21.4
 ## 6 59289 male      30   165.   50.1</code></pre>
-<p>A <code>character</code> column in RStudio is a column with words (also known as “strings”). For downstream analyses, it is often useful to convert a categorical <code>character</code> column into a <code>factor</code> column. This has the following advatnages:</p>
+<p>A <code>character</code> column in RStudio is a column with words (also known as “strings”). For downstream analyses, it is often useful to convert a categorical <code>character</code> column into a <code>factor</code> column. This has the following advantages:</p>
 <ul>
 <li>A character column is prone to typos which can go unseen. In a factor column, there is a limited set of categories (known as levels), such that typos can be spotted easily.</li>
-<li>A character column does not specify an order for the categories, which can comlicate downstream analyses. In a factor column, the levels can be ordered in a specific way, such that plots and models treat the column as we would like them to (e.g. plot the 12 months of the year in the correct order, rather than alphabetically).</li>
+<li>A character column does not specify an order for the categories, which can complicate downstream analyses. In a factor column, the levels can be ordered in a specific way, such that plots and models treat the column as we would like them to (e.g. plot the 12 months of the year in the correct order, rather than alphabetically).</li>
 </ul>
 <p>We can convert a character column into a factor using the <code>as_factor()</code> function from the <code>forcats</code> package. We do this inside <code>mutate()</code>. Ensure that you have the <code>forcats</code> package installed before you run the code below.</p>
 <pre class="r"><code>library(forcats) # load the required package
 
 healthDataFactor &lt;- healthData %&gt;%
   mutate(Sex = as_factor(Sex))</code></pre>
+<p>Using <code>head()</code>, we can see that <code>Sex</code> has become a factor. See the <code>&lt;fct&gt;</code> under <code>Sex</code>:</p>
+<pre class="r"><code>head(healthDataFactor)</code></pre>
+<pre><code>## # A tibble: 6 x 5
+##      ID Sex      Age Height Weight
+##   &lt;dbl&gt; &lt;fct&gt;  &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt;
+## 1 71892 male       0    NA     7.7
+## 2 71460 female    47   148.   62.3
+## 3 58929 male      78   178.   63.4
+## 4 64041 male       9   151.   62.9
+## 5 69722 male       7   116.   21.4
+## 6 59289 male      30   165.   50.1</code></pre>
+<p>We can check that our variable is free of typos by checking the levels (i.e. categories) inside our variable using the <code>pull()</code> and <code>levels()</code> functions:</p>
+<pre class="r"><code>healthDataFactor %&gt;%
+  pull(Sex) %&gt;%
+  levels()</code></pre>
+<pre><code>## [1] &quot;male&quot;   &quot;female&quot;</code></pre>
+<p>This shows us that our factor variable is free of typos, since we have only two levels with spelling as expected.</p>
+<p>We can change the order of the levels using <code>fct_relevel()</code> inside <code>mutate()</code>:</p>
+<pre class="r"><code>healthDataFactorRelevel &lt;- healthDataFactor %&gt;%
+  mutate(Sex = fct_relevel(Sex, c(&quot;female&quot;, &quot;male&quot;)))</code></pre>
+<p>We then see that the levels have been reordered:</p>
+<pre class="r"><code>healthDataFactorRelevel %&gt;%
+  pull(Sex) %&gt;%
+  levels()</code></pre>
+<pre><code>## [1] &quot;female&quot; &quot;male&quot;</code></pre>
+<p>Reordering factor levels will come in handy later on when we learn how to plot.</p>
 </div>
 </div>
 
