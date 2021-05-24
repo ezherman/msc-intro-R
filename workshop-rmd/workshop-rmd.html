@@ -647,6 +647,22 @@ healthDataFactor &lt;- healthData %&gt;%
   levels()</code></pre>
 <pre><code>## [1] &quot;female&quot; &quot;male&quot;</code></pre>
 <p>Reordering factor levels will come in handy later on when we learn how to plot.</p>
+<details>
+<summary>
+<strong>Challenge</strong>: Create an object named <code>flowerDataFactor</code>, with the <code>variety</code> column as a factor. Ensure that the levels are ordered as “Versicolor”, “Virginica”, “Setosa”. Find the solution in the drop-down.
+</summary>
+<p><br></p>
+<pre class="r"><code>flowerDataFactor &lt;- flowerData %&gt;%
+  mutate(variety = as_factor(variety)) %&gt;%
+  mutate(variety = fct_relevel(variety,
+                               levels = c(&quot;Versicolor&quot;, &quot;Virginica&quot;, &quot;Setosa&quot;)))</code></pre>
+<pre><code>## Warning: Outer names are only allowed for unnamed scalar atomic inputs</code></pre>
+<pre class="r"><code>#check that reordering the factor levels worked
+flowerDataFactor %&gt;%
+  pull(variety) %&gt;%
+  levels()</code></pre>
+<pre><code>## [1] &quot;Versicolor&quot; &quot;Virginica&quot;  &quot;Setosa&quot;</code></pre>
+</details>
 </div>
 </div>
 

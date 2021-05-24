@@ -14,6 +14,10 @@ knitr::opts_chunk$set(echo = TRUE)
 healthData <- readr::read_csv("../data/NHANES.csv")
 ```
 
+```{r import iris data for developer, include = FALSE}
+flowerData <- readr::read_csv("../data/iris.csv")
+```
+
 This document contains all the materials covered in the Introduction to R workshop of the Maths Skills Centre.
 
 # Overview of RStudio
@@ -412,10 +416,6 @@ is denoted by `NA`. For example, our `Weight` column has 431 `NA's`, i.e. 431
 missing values. If we were not expecting missing values in our data, we would 
 need to investigate where these `NA's` came from.
 
-```{r import iris data for developer, include = FALSE}
-flowerData <- read_csv("../data/iris.csv")
-```
-
 <details>
 <summary>**Challenge**: Import the csv file `iris.csv` as a `tibble` named `flowerData`. This file contains data on the length and width of sepals and petals of three species of iris. Then, find out the following about the `tibble`:
 <ul>
@@ -670,3 +670,22 @@ healthDataFactorRelevel %>%
 ```
 
 Reordering factor levels will come in handy later on when we learn how to plot. 
+
+<details>
+<summary>**Challenge**: Create an object named `flowerDataFactor`, with the `variety` column as a factor. Ensure that the levels are ordered as "Versicolor", "Virginica", "Setosa".
+Find the solution in the drop-down.
+</summary>
+<br>
+```{r flowerDataFactor}
+flowerDataFactor <- flowerData %>%
+  mutate(variety = as_factor(variety)) %>%
+  mutate(variety = fct_relevel(variety,
+                               levels = c("Versicolor", "Virginica", "Setosa")))
+
+#check that reordering the factor levels worked
+flowerDataFactor %>%
+  pull(variety) %>%
+  levels()
+```
+
+</details>
