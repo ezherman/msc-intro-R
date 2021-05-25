@@ -640,7 +640,7 @@ healthDataFactor &lt;- healthData %&gt;%
 <p>This shows us that our factor variable is free of typos, since we have only two levels with spelling as expected.</p>
 <p>We can change the order of the levels using <code>fct_relevel()</code> inside <code>mutate()</code>:</p>
 <pre class="r"><code>healthDataFactorRelevel &lt;- healthDataFactor %&gt;%
-  mutate(Sex = fct_relevel(Sex, c(&quot;female&quot;, &quot;male&quot;)))</code></pre>
+  mutate(Sex = fct_relevel(Sex, &quot;female&quot;, &quot;male&quot;))</code></pre>
 <p>We then see that the levels have been reordered:</p>
 <pre class="r"><code>healthDataFactorRelevel %&gt;%
   pull(Sex) %&gt;%
@@ -655,9 +655,9 @@ healthDataFactor &lt;- healthData %&gt;%
 <pre class="r"><code>flowerDataFactor &lt;- flowerData %&gt;%
   mutate(variety = as_factor(variety)) %&gt;%
   mutate(variety = fct_relevel(variety,
-                               levels = c(&quot;Versicolor&quot;, &quot;Virginica&quot;, &quot;Setosa&quot;)))</code></pre>
-<pre><code>## Warning: Outer names are only allowed for unnamed scalar atomic inputs</code></pre>
-<pre class="r"><code>#check that reordering the factor levels worked
+                               &quot;Versicolor&quot;, &quot;Virginica&quot;, &quot;Setosa&quot;))
+
+#check that reordering the factor levels worked
 flowerDataFactor %&gt;%
   pull(variety) %&gt;%
   levels()</code></pre>

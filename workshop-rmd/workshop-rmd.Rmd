@@ -658,7 +658,7 @@ We can change the order of the levels using `fct_relevel()` inside `mutate()`:
 
 ```{r relevel healthDataFactor}
 healthDataFactorRelevel <- healthDataFactor %>%
-  mutate(Sex = fct_relevel(Sex, c("female", "male")))
+  mutate(Sex = fct_relevel(Sex, "female", "male"))
 ```
 
 We then see that the levels have been reordered:
@@ -680,7 +680,7 @@ Find the solution in the drop-down.
 flowerDataFactor <- flowerData %>%
   mutate(variety = as_factor(variety)) %>%
   mutate(variety = fct_relevel(variety,
-                               levels = c("Versicolor", "Virginica", "Setosa")))
+                               "Versicolor", "Virginica", "Setosa"))
 
 #check that reordering the factor levels worked
 flowerDataFactor %>%
