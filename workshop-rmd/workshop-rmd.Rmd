@@ -689,3 +689,43 @@ flowerDataFactor %>%
 ```
 
 </details>
+
+## Obtaining group-specific summary statistics
+Earlier in this workshop we used `summary()` to obtain summary statistics for 
+each column in our `tibble`. Alternatively, we may want to obtain group-specific summary statistics. For example, we may want summary statistics for `Height`, 
+grouped by `Sex`, from our `healthData`. 
+
+In this example we will ask RStudio to return the mean, standard deviation and 
+number of observations for `Height`, grouped by `Sex`. First, we group the data by `Sex` using 
+`group_by()`. We then calculate summary statistics using `summarise()`. Inside `summarise()` 
+we specify the values that we want. We request the number of observations per group using
+`n()`, the mean height using `mean()` and the standard deviation of height using `sd()`. 
+Each of these values is given a name, which we specify ahead of the `=` signs.
+
+```{r summarise height by Sex with NAs}
+healthData %>%
+  group_by(Sex) %>%
+  summarise(n = n(),
+            mean = mean(Height),
+            sd = sd(Height))
+```
+
+While `n()` resulted in an output, `mean()` and `sd()` resulted in NAs. 
+These functions return NA when there is at least one NA in the column of interest 
+(i.e. an empty cell).
+We can circumvent this by dropping the NAs from `Height` using `drop_na()` from the `tidyr` package.
+Make sure that you install the `tidyr` package before running the code below. 
+
+```{r summarise height by Sex without NAs, warning = FALSE}
+library(tidyr) #load package for drop_na()
+
+healthData %>%
+  drop_na(Height) %>% #remove NAs in Height
+  group_by(Sex) %>%
+  summarise(n = n(),
+            mean = mean(Height),
+            sd = sd(Height))
+```
+
+Note that we now have less observations (lower number under `n`), since we have dropped the 
+empty rows. 

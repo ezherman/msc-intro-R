@@ -664,6 +664,36 @@ flowerDataFactor %&gt;%
 <pre><code>## [1] &quot;Versicolor&quot; &quot;Virginica&quot;  &quot;Setosa&quot;</code></pre>
 </details>
 </div>
+<div id="obtaining-group-specific-summary-statistics" class="section level2">
+<h2>Obtaining group-specific summary statistics</h2>
+<p>Earlier in this workshop we used <code>summary()</code> to obtain summary statistics for each column in our <code>tibble</code>. Alternatively, we may want to obtain group-specific summary statistics. For example, we may want summary statistics for <code>Height</code>, grouped by <code>Sex</code>, from our <code>healthData</code>.</p>
+<p>In this example we will ask RStudio to return the mean, standard deviation and number of observations for <code>Height</code>, grouped by <code>Sex</code>. First, we group the data by <code>Sex</code> using <code>group_by()</code>. We then calculate summary statistics using <code>summarise()</code>. Inside <code>summarise()</code> we specify the values that we want. We request the number of observations per group using <code>n()</code>, the mean height using <code>mean()</code> and the standard deviation of height using <code>sd()</code>. Each of these values is given a name, which we specify ahead of the <code>=</code> signs.</p>
+<pre class="r"><code>healthData %&gt;%
+  group_by(Sex) %&gt;%
+  summarise(n = n(),
+            mean = mean(Height),
+            sd = sd(Height))</code></pre>
+<pre><code>## # A tibble: 2 x 4
+##   Sex        n  mean    sd
+##   &lt;chr&gt;  &lt;int&gt; &lt;dbl&gt; &lt;dbl&gt;
+## 1 female  4963    NA    NA
+## 2 male    5037    NA    NA</code></pre>
+<p>While <code>n()</code> resulted in an output, <code>mean()</code> and <code>sd()</code> resulted in NAs. These functions return NA when there is at least one NA in the column of interest (i.e. an empty cell). We can circumvent this by dropping the NAs from <code>Height</code> using <code>drop_na()</code> from the <code>tidyr</code> package. Make sure that you install the <code>tidyr</code> package before running the code below.</p>
+<pre class="r"><code>library(tidyr) #load package for drop_na()
+
+healthData %&gt;%
+  drop_na(Height) %&gt;% #remove NAs in Height
+  group_by(Sex) %&gt;%
+  summarise(n = n(),
+            mean = mean(Height),
+            sd = sd(Height))</code></pre>
+<pre><code>## # A tibble: 2 x 4
+##   Sex        n  mean    sd
+##   &lt;chr&gt;  &lt;int&gt; &lt;dbl&gt; &lt;dbl&gt;
+## 1 female  4453  153.  19.7
+## 2 male    4525  163.  25.1</code></pre>
+<p>Note that we now have less observations (lower number under <code>n</code>), since we have dropped the empty rows.</p>
+</div>
 </div>
 
 
