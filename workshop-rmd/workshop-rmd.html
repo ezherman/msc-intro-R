@@ -707,6 +707,20 @@ healthData %&gt;%
 
 write_csv(summaryHeight, &quot;summaryHeight.csv&quot;)</code></pre>
 <p>After running this code, check in your working directory that the file has indeed been created.</p>
+<details>
+<summary>
+<strong>Challenge</strong>: Create a <code>tibble</code> with the number of observations, mean and standard deviation of sepal width, grouped by variety. Name this object <code>summarySepalWidth</code> and save it as a <code>.csv</code> file in your working directory. Find the solution in the drop-down.
+</summary>
+<p><br></p>
+<pre class="r"><code>summarySepalWidth &lt;- flowerData %&gt;% 
+  group_by(variety) %&gt;%
+  summarise(n = n(),
+            mean = mean(sepal.width),
+            sd = sd(sepal.width))
+
+write_csv(summarySepalWidth, &quot;summarySepalWidth.csv&quot;)</code></pre>
+<p>Notice that no <code>drop_na()</code> is not required, since <code>sepal.width</code> is free of NAs.</p>
+</details>
 </div>
 </div>
 

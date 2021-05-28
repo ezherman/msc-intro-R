@@ -752,3 +752,22 @@ write_csv(summaryHeight, "summaryHeight.csv")
 
 After running this code, check in your working directory that the file has indeed been created. 
 
+<details>
+<summary>**Challenge**: Create a `tibble` with the number of observations, mean and standard deviation of sepal width, grouped by variety. Name this object `summarySepalWidth` and save it as a `.csv` file in your working directory. 
+Find the solution in the drop-down.
+</summary>
+<br>
+```{r summarySepalWidth}
+summarySepalWidth <- flowerData %>% 
+  group_by(variety) %>%
+  summarise(n = n(),
+            mean = mean(sepal.width),
+            sd = sd(sepal.width))
+
+write_csv(summarySepalWidth, "summarySepalWidth.csv")
+```
+
+Notice that no `drop_na()` is not required, since `sepal.width` is free of NAs. 
+
+</details>
+
