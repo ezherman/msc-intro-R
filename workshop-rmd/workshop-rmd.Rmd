@@ -771,3 +771,22 @@ Notice that no `drop_na()` is not required, since `sepal.width` is free of NAs.
 
 </details>
 
+
+
+
+# Plotting data with ggplot2
+
+> Questions:  
+> 1. What is the general format of a `ggplot()` command?  
+> 2. How can this format be adapted for scatterplots and boxplots?  
+> 3. How are additional elements added to the plot, such as a title?  
+> 4. How are multiple ggplot graphs grouped into one plotting region?  
+> 5. How are ggplot objects exported from R?
+> 
+> Objectives:  
+> 1. Describe the core components of a `ggplot()` command.  
+> 2. Create scatterplots and boxplots with using the `ggplot2` package.  
+> 3. Adjust `ggplot2` objects, for example by adding a title, with the help of Google.  
+> 4. Use the `patchwork` package to group multiple `ggplot()` graphs together.  
+> 5. Use `ggsave()` to export a ggplot plot.
+
