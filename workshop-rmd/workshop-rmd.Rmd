@@ -461,7 +461,7 @@ summary(flowerData) # mean of sepal length is 5.843 and sepal width has no NAs
 > [*if there is time*]  
 > 6. Use `as_factor()` to convert a character variable to a factor variable. 
 > [*if there is time*]  
-> 7. Use `group_by()`, `summarise()`, `count()` and `mean()` to obtain 
+> 7. Use `drop_na()`, `group_by()`, `summarise()`, `n()`, `mean()` and `sd()` to obtain 
 > group-specific summary statistics.   
 > 8. Use `write_csv()` to save a `tibble` as a .csv file. 
 
