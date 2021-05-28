@@ -694,6 +694,20 @@ healthData %&gt;%
 ## 2 male    4525  163.  25.1</code></pre>
 <p>Note that we now have less observations (lower number under <code>n</code>), since we have dropped the empty rows.</p>
 </div>
+<div id="exporting-a-tibble-as-a-.csv-file" class="section level2">
+<h2>Exporting a <code>tibble</code> as a <code>.csv</code> file</h2>
+<p>Once data wrangling is completed, we may want to export our <code>tibble</code> as a <code>.csv</code> file. This allows us to easily share the data with others. For example, we may want to export our summary table from the last subsection.</p>
+<p>To do this, we create an object for the sumamry table. Then we export the <code>tibble</code> using the <code>write_csv()</code> function from the <code>readr</code> package. We provide a name for the file inside <code>write_csv()</code> within quotes. By default, the file is saved in our working directory.</p>
+<pre class="r"><code>summaryHeight &lt;- healthData %&gt;% #give the summary table a name
+  drop_na(Height) %&gt;% 
+  group_by(Sex) %&gt;%
+  summarise(n = n(),
+            mean = mean(Height),
+            sd = sd(Height))
+
+write_csv(summaryHeight, &quot;summaryHeight.csv&quot;)</code></pre>
+<p>After running this code, check in your working directory that the file has indeed been created.</p>
+</div>
 </div>
 
 

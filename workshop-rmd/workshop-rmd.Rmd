@@ -729,3 +729,26 @@ healthData %>%
 
 Note that we now have less observations (lower number under `n`), since we have dropped the 
 empty rows. 
+
+## Exporting a `tibble` as a `.csv` file
+Once data wrangling is completed, we may want to export our `tibble` as a `.csv` file. This
+allows us to easily share the data with others. For example, we may want to export our summary 
+table from the last subsection.
+
+To do this, we create an object for the sumamry table. Then we export the `tibble` using 
+the `write_csv()` function from the `readr` package. We provide a name for the file inside
+`write_csv()` within quotes. By default, the file is saved in our working directory. 
+
+```{r export healthData summary table, warning = FALSE}
+summaryHeight <- healthData %>% #give the summary table a name
+  drop_na(Height) %>% 
+  group_by(Sex) %>%
+  summarise(n = n(),
+            mean = mean(Height),
+            sd = sd(Height))
+
+write_csv(summaryHeight, "summaryHeight.csv")
+```
+
+After running this code, check in your working directory that the file has indeed been created. 
+
