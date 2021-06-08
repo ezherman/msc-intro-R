@@ -815,3 +815,39 @@ Notice that `ggplot()` and `<GEOM_FUNCTION>()` are connected through a `+`.
 In general, a `+` is used to connect `ggplot2` functions 
 that together build one plot. 
 
+## Creating `ggplot()` plots
+Here we will adapt the general format presented above to create scatterplots 
+and boxplots. Make sure you have the `ggplot2` package installed and 
+loaded before proceeding. 
+
+To create a scatterplot of `Height` vs `Weight` in our `healthData`, we:
+
+1. Use the `ggplot()` function;
+2. Include `healthData` as out `<DATA>`;
+3. Specify the mappings `y = Height` and `x = Weight` inside `aes()`;
+4. Use the scatterplot function as `<GEOM_FUNCTION>`, which is `geom_point()`.
+
+The code and output therefore become:
+
+```{r ggplot height weight scatter, warning = FALSE}
+ggplot(healthData, aes(y = Height, x = Weight)) +
+    geom_point()
+```
+
+Note: you may receive a warning message about missing values being removed. 
+You can ignore that message for the purpose of this workshop. 
+
+In the challenge below you can try to create a boxplot. Rather than `geom_point()`,
+which is used for scatterplots, you will use `geom_boxplot()`.
+
+<details>
+<summary>**Challenge**: Create a boxplot of `sepal.length` across `variety` from the `flowerData`. Think closely about which variables should be denoted as `y` and `x` as the mappings inside `aes()`. 
+Find the solution in the drop-down.
+</summary>
+<br>
+```{r boxplot sepal length}
+ggplot(flowerData, aes(y = sepal.length, x = variety)) +
+    geom_boxplot()
+```
+
+</details>
