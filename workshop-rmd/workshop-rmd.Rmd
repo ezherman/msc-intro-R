@@ -8,6 +8,7 @@ output:
 
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
+library(ggplot2)
 ```
 
 ```{r import NHANES data for developer, include = FALSE}
@@ -789,4 +790,28 @@ Notice that no `drop_na()` is not required, since `sepal.width` is free of NAs.
 > 3. Adjust `ggplot2` objects, for example by adding a title, with the help of Google.  
 > 4. Use the `patchwork` package to group multiple `ggplot()` graphs together.  
 > 5. Use `ggsave()` to export a ggplot plot.
+
+Once our data is in an appropriate format, we can proceed to visualisation.
+The `ggplot2` package provides functions with which data can be plotted.
+Here we will introduce this package.
+
+## The general format of the `ggplot()` command
+Every visualisation using `ggplot2` includes the `ggplot()` function. 
+The general format of the command is:
+
+```{r ggplot general format, eval = FALSE}
+ggplot(<DATA>, aes(<MAPPINGS>)) +
+    <GEOM_FUNCTION>()
+```
+
+The above command has four components:
+
+1. The `ggplot()` function;
+2. Data (denoted by `<DATA>`);
+3. Aesthetic mapping, i.e. what variables to include in the plot and how they should be treated (denoted by `aes(<MAPPINGS>)`);
+4. A plot-specific function, denoting what type of graphic we want (e.g. a scatterplot; denoted by `<GEOM_FUNCTION>()`).
+
+Notice that `ggplot()` and `<GEOM_FUNCTION>()` are connected through a `+`. 
+In general, a `+` is used to connect `ggplot2` functions 
+that together build one plot. 
 
