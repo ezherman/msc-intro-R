@@ -851,3 +851,10 @@ ggplot(flowerData, aes(y = sepal.length, x = variety)) +
 ```
 
 </details>
+
+## Adding additional elements to a plot
+`ggplot2` offers a lot more beyond selecting variables in the `<MAPPING>` 
+and selecting a plot type through the `<GEOM_FUNCTION()>`. Often the best
+way to learn how to perform a specific operation with `ggplot2` is to 
+consult Google. In this section we will exemplify this through the addition
+of a title to our plot. 
