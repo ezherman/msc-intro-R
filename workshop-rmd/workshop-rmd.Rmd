@@ -62,13 +62,13 @@ knitr::include_graphics("../img/open-script.png")
 
 Now you should see four panels, as shown below:
 
-```{r, echo=FALSE, fig.cap="*After opening a new script, RStudio has four panels*m."}
+```{r, echo=FALSE, fig.cap="*After opening a new script, RStudio has four panels*."}
 knitr::include_graphics("../img/four-panel-RStudio.png")
 ```
 
 What is the purpose of these panels?
 
--   *Top left*: this area is for the \***script**. A script is a text
+-   *Top left*: this area is for the **script**. A script is a text
     file in which we write R code. The script can be saved, such that we
     can return to coding and use our code at a later date. Saving a
     script also allows us to share our analysis with colleagues.\
@@ -95,18 +95,18 @@ A convenient way to set and save a working directory is through the
 RStudio *projects* functionality. Here we will set up an RStudio project
 for this workshop:
 
--   Under the `File` menu in the top left of RStudio, press
-    `New Project`, then `New Directory`, then `New Project`.
--   Provide a `Directory name` - this will be the name of the newly
+-   Under the *File* menu in the top left of RStudio, press
+    *New Project*, then *New Directory*, then *New Project*.
+-   Provide a *Directory name* - this will be the name of the newly
     created folder. For example, you could name it `msc-intro-R`.
--   Under `Create project as subdirectory of`, select a convenient
+-   Under *Create project as subdirectory of*, select a convenient
     location for this new folder. For example, this could be your
     desktop or your `Documents` folder.
 
 RStudio should now have refreshed, showing us our project environment.
 Open a new script, as we did in the previous section, such that the
-four-panel view is restored. Then press on the `Save` icon to the right
-of the `New File` button. Give the file a convenient name, such as
+four-panel view is restored. Then press on the *Save* icon to the right
+of the *New File* button. Give the file a convenient name, such as
 `msc-intro-R`. It will then appear in the bottom right of RStudio as
 `msc-intro-R.R`.
 
