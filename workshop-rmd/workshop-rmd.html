@@ -324,39 +324,40 @@ div.tocify {
 4. How are notes written alongside code?<br />
 5. How and why do we install packages?</p>
 <p>Objectives:<br />
-1. Define the following R terminology: <code>object</code>, <code>assign</code>, <code>call</code>, <code>function</code>, <code>arguments</code> and <code>options</code>.<br />
-2. Use a built-in <code>function</code> and control its working with an <code>argument</code> and an <code>option</code>.<br />
-3. Assign values to a named <code>vector</code> using the <code>c()</code> function.<br />
-4. Write <code>comments</code> to make a script easier to interpret.<br />
+1. Define the following R terminology: <em>object</em>, <em>assign</em>, <em>call</em>, <em>function</em>, <em>arguments</em> and <em>options</em>.<br />
+2. Use a built-in <em>function</em> and control its working with an <em>argument</em> and an <em>option</em>.<br />
+3. Assign values to a named <em>vector</em> using the <code>c()</code> function.<br />
+4. Write <em>comments</em> to make a script easier to interpret.<br />
 5. Install and load the <code>readr</code> package.</p>
 </blockquote>
 <div id="common-r-terminology" class="section level2" number="2.1">
 <h2 number="2.1"><span class="header-section-number">2.1</span> Common R terminology</h2>
 <div id="assign-a-value-to-an-object" class="section level3" number="2.1.1">
-<h3 number="2.1.1"><span class="header-section-number">2.1.1</span> <code>Assign</code> a value to an <code>object</code></h3>
-<p>In R, everything that we create or import is saved as an <code>object</code>. An <code>object</code> has a name, with which we can refer to it. When we save something as an <code>object</code>, this is referred to as <code>assigning</code> something to that object. <code>Assigning</code> is done using the <code>&lt;-</code> syntax, as exemplified below. If we wanted to save the number 6 under the name <code>Six</code>, we would run:</p>
+<h3 number="2.1.1"><span class="header-section-number">2.1.1</span> <em>Assign</em> a value to an <em>object</em></h3>
+<p>In R, everything that we create or import is saved as an <em>object</em>. An <em>object</em> has a name, with which we can refer to it. When we save something as an <em>object</em>, this is referred to as <em>assigning</em> something to that object. <em>Assigning</em> is done using the <code>&lt;-</code> syntax, as exemplified below. If we wanted to save the number 4 under the name <code>Four</code>, we would run:</p>
 <pre class="r"><code>Four &lt;- 4</code></pre>
-<p>After running this code, we see <code>Four</code> has appeared in the environment window. This confirms that we have successfully <code>assigned</code> a value to an <code>object</code>.</p>
+<p>After running this code, we see <code>Four</code> has appeared in the environment window. This confirms that we have successfully <em>assigned</em> a value to an <em>object</em>.</p>
 </div>
 <div id="calling-a-built-in-function-with-one-argument" class="section level3" number="2.1.2">
-<h3 number="2.1.2"><span class="header-section-number">2.1.2</span> <code>Calling</code> a built-in <code>function</code> with one <code>argument</code></h3>
-<p>Most commands in R involve <code>functions</code>. A <code>function</code> is an in-built piece of code that performs a specific task. This saves us from having to write the code required for the task ourselves. When a <code>function</code> is used in R, this is referred to as <code>calling</code> the <code>function</code>. Usually, a <code>function</code> is <code>called</code> with one or more inputs - these are called <code>arguments</code>.</p>
-<p>Let us take the <code>round</code>()<code>function as an example.  This function rounds a supplied value.  For example, we</code>call<code>the</code>round()function<code>on the value 3.14.  The value 3.14 is an</code>argument<code>in our</code>call`:</p>
+<h3 number="2.1.2"><span class="header-section-number">2.1.2</span> <em>Calling</em> a built-in <em>function</em> with one <em>argument</em></h3>
+<p>Most commands in R involve <em>functions</em>. A <em>function</em> is an in-built piece of code that performs a specific task. This saves us from having to write the code required for the task ourselves. When a <em>function</em> is used in R, this is referred to as <em>calling</em> the <em>function</em>. Usually, a <em>function</em> is <em>called</em> with one or more inputs - these are called <em>arguments</em>.</p>
+<p>Let us take the <code>round</code>() function as an example. This <em>function</em> rounds a supplied value.<br />
+For example, we <em>call</em> the <code>round()</code> function on the value 3.14. The value 3.14 is an <em>argument</em> in our <em>call</em>:</p>
 <pre class="r"><code>round(3.14)</code></pre>
 <p>R then returns in the console:</p>
 <pre><code>## [1] 3</code></pre>
-<p>An argument can also be an object, as you will see in the challenge at the end of this section.</p>
+<p>An <em>argument</em> can also be an <em>object</em>, as you will see in the challenge at the end of this section.</p>
 </div>
 <div id="including-an-argument-with-an-option-in-a-function-call" class="section level3" number="2.1.3">
-<h3 number="2.1.3"><span class="header-section-number">2.1.3</span> Including an <code>argument</code> with an <code>option</code> in a <code>function</code> call</h3>
-<p>Often the behaviour of a <code>function</code> can be manipulated using <code>arguments</code> which take <code>options</code>. These <code>options</code> have defaults, which are assumed if we do not specify an alternative.</p>
-<p>For example, the <code>round()</code> function takes the <code>digits</code> argument, for which the default is <code>digits = 0</code>. That is why so far, <code>round()</code> has returned values with 0 digits behind the decimal.</p>
-<p>We can specify an alternative <code>option</code> for the <code>digits</code> <code>argument</code>, for example for a single digit behind the decimal:</p>
+<h3 number="2.1.3"><span class="header-section-number">2.1.3</span> Including an <em>argument</em> with an <em>option</em> in a <em>function</em> call</h3>
+<p>Often the behaviour of a <em>function</em> can be manipulated using <em>arguments</em> which take <em>options</em>. These <em>options</em> have defaults, which are assumed if we do not specify an alternative.</p>
+<p>For example, the <code>round()</code> function takes the <code>digits</code> <em>argument</em>, for which the default is <code>digits = 0</code>. That is why so far, <code>round()</code> has returned values with 0 digits behind the decimal.</p>
+<p>We can specify an alternative <em>option</em> for the <code>digits</code> <em>argument</em>, for example for a single digit behind the decimal:</p>
 <pre class="r"><code>round(3.14, digits = 1)</code></pre>
 <pre><code>## [1] 3.1</code></pre>
 <details>
 <summary>
-<p><strong>Challenge</strong>: assign the value 6.667 to an object named <code>number</code>. Then, call the <code>round()</code> function on the object <code>number</code>. Ensure that <code>round()</code> returns two digits behind the decimal. Find the solution in the drop-down.</p>
+<p><strong>Challenge</strong>: <em>assign</em> the value 6.667 to an <em>object</em> named <code>number</code>. Then, <em>call</em> the <code>round()</code> <em>function</em> on the <em>object</em> <code>number</code>. Ensure that <code>round()</code> returns two digits behind the decimal. Find the solution in the drop-down.</p>
 </summary>
 <p><br></p>
 <pre class="r"><code>number &lt;- 6.667
@@ -365,22 +366,22 @@ round(number, digits = 2)</code></pre>
 </details>
 </div>
 <div id="vectors-using-the-c-function" class="section level3" number="2.1.4">
-<h3 number="2.1.4"><span class="header-section-number">2.1.4</span> <code>Vectors</code> using the <code>c()</code> <code>function</code></h3>
-<p>So far, we have worked with <code>objects</code> that contained a single value. Often we are working with multiple data points. In R, multiple data points can be saved inside one <code>object</code> as a <code>vector</code>. A <code>vector</code> is a collection of data points of the <em>same type</em> (e.g. numbers of words). <code>Vectors</code> are formed by calling the <code>c()</code> function, with data provided between the brackets, separated by commas. For example:</p>
+<h3 number="2.1.4"><span class="header-section-number">2.1.4</span> <em>Vectors</em> using the <code>c()</code> <em>function</em></h3>
+<p>So far, we have worked with <em>objects</em> that contained a single value. Often we are working with multiple data points. In R, multiple data points can be saved inside one <em>object</em> as a <em>vector</em>. A <em>vector</em> is a collection of data points of the <em>same type</em> (e.g. numbers of words). <em>Vectors</em> are formed by calling the <code>c()</code> function, with data provided between the brackets, separated by commas. For example:</p>
 <pre class="r"><code>numbers &lt;- c(1,2,3,4,5,6)</code></pre>
-<p><code>Vectors</code> can also contain words, which we call <code>strings</code> in R. Ensure that <code>strings</code> are always wrapped in quotes:</p>
+<p><em>Vectors</em> can also contain words, which we call <em>strings</em> in R. Ensure that <em>strings</em> are always wrapped in quotes:</p>
 <pre class="r"><code>colours &lt;- c(&quot;red&quot;, &quot;blue&quot;, &quot;green&quot;)</code></pre>
 <p>Later in this workshop we will learn how to import data without needing to manually type data into <code>c()</code>.</p>
 </div>
 <div id="writing-comments-to-enhance-script-readability" class="section level3" number="2.1.5">
-<h3 number="2.1.5"><span class="header-section-number">2.1.5</span> Writing <code>comments</code> to enhance script readability</h3>
-<p>As we progress through this workshop, our script will fill up with many lines of code. To enhance readability for ourselves and for colleagues who may use our script at a later date, we include comments.</p>
-<p>Any text in R that is preceded by a <code>#</code> is ignored by R and treated as a comment. For example, if we were to comment when creating our vector <code>numbers</code>:</p>
+<h3 number="2.1.5"><span class="header-section-number">2.1.5</span> Writing <em>comments</em> to enhance script readability</h3>
+<p>As we progress through this workshop, our script will fill up with many lines of code. To enhance readability for ourselves and for colleagues who may use our script at a later date, we include <em>comments</em>.</p>
+<p>Any text in R that is preceded by a <code>#</code> is ignored by R and treated as a <em>comment</em>. For example, if we were to <em>comment</em> when creating our vector <code>numbers</code>:</p>
 <pre class="r"><code># create a vector of the numbers 1 to 6
 numbers &lt;- c(1,2,3,4,5,6)</code></pre>
 <details>
 <summary>
-<p><strong>Challenge</strong>: assign the city names London, Manchester and Newcastle to an object named <code>cities</code>. Include a comment to increase the interpretability of your code. Find the solution in the drop-down.</p>
+<p><strong>Challenge</strong>: <em>assign</em> the city names London, Manchester and Newcastle to an <em>object</em> named <code>cities</code>. Include a <em>comment</em> to increase the interpretability of your code. Find the solution in the drop-down.</p>
 </summary>
 <p><br></p>
 <pre class="r"><code># a vector of city names
@@ -389,18 +390,22 @@ cities &lt;- c(&quot;London&quot;, &quot;Manchester&quot;, &quot;Newcastle&quot;
 </div>
 <div id="installing-and-loading-packages" class="section level3" number="2.1.6">
 <h3 number="2.1.6"><span class="header-section-number">2.1.6</span> Installing and loading packages</h3>
-<p>So far, we have used the built-in functions <code>round()</code> and <code>c()</code>. R has many useful functions, some of which do not come built-in. Rather than releasing individual functions, collections of functions are released together in packages. Therefore, to use an external function, we need to install and load the appropriate package.</p>
-<p>Working with packages is analogous to using a new light bulb: 1. First, we install the package in R using the <code>install.packages()</code> function. This is analogous to screwing a new light bulb into the socket - we only need to do this <strong>once</strong>.<br />
-2. Then, every time we open RStudio and want to use the package, we need to load it using the <code>library()</code> function. This is analogous to using a light bulb - every time we enter the room, we need to turn on the light again.</p>
-<p>Let us take the <code>readr</code> package as an example. In the next section, we will use a function from this package. First, we install the package. You can run the following line from the console rather than the script, as we do not want the package to install again every time we run the script:</p>
+<p>So far, we have used the built-in <em>functions</em> <code>round()</code> and <code>c()</code>. R has many useful <em>functions</em>, some of which do not come built-in. Rather than releasing individual <em>functions</em>, collections of <em>functions</em> are released together in <em>packages</em>. Therefore, to use an external <em>function</em>, we need to install and load the appropriate <em>package</em>.</p>
+<p>Working with <em>packages</em> is analogous to using a new light bulb:</p>
+<ol style="list-style-type: decimal">
+<li>First, we install the package in R using the <code>install.packages()</code> function. This is analogous to screwing a new light bulb into the socket - we only need to do this <strong>once</strong>.<br />
+</li>
+<li>Then, every time we open RStudio and want to use the package, we need to load it using the <code>library()</code> function. This is analogous to using a light bulb - every time we enter the room, we need to turn on the light again.</li>
+</ol>
+<p>Let us take the <code>readr</code> <em>package</em> as an example. In the next section, we will use a <em>function</em> from this <em>package</em>. First, we install the <em>package</em>. You can run the following line from the <em>console</em> rather than the <em>script</em>, as we do not want the <em>package</em> to install again every time we run the <em>script</em>:</p>
 <pre class="r"><code># install the readr package
 install.packages(&quot;readr&quot;)</code></pre>
-<p>Then we load the package. It is good practice to load all packages at the top of our script. This way, it is easy for another user to identify whether they need to install any packages before running our script. Therefore, paste the following code at or near the top of your script:</p>
+<p>Then we load the <em>package</em>. It is good practice to load all <em>packages</em> at the top of our <em>script</em>. This way, it is easy for another user to identify whether they need to install any <em>packages</em> before running your <em>script</em>. Therefore, paste the following code at or near the top of your script:</p>
 <pre class="r"><code># loading a package
 library(&quot;readr&quot;)</code></pre>
 <pre><code>## Warning: package &#39;readr&#39; was built under R version 4.0.5</code></pre>
 <p>You may receive a warning similar to the one above. This warning is usually not something to worry about.</p>
-<p>As we progress through the workshop, we will encounter other packages. You will get a chance to further practice installing and loading then.</p>
+<p>As we progress through the workshop, we will encounter other <em>packages</em>. You will get a chance to further practice installing and loading <em>packages</em> then.</p>
 </div>
 </div>
 </div>
@@ -409,27 +414,27 @@ library(&quot;readr&quot;)</code></pre>
 <blockquote>
 <p>Questions:<br />
 1. How is data from a .csv file imported into R?<br />
-2. What is the difference between a <code>tibble</code> and a <code>data frame</code>?<br />
-3. How is a summary view of a <code>tibble</code> viewed in R?</p>
+2. What is the difference between a <em>tibble</em> and a <em>data frame</em>?<br />
+3. How is a summary view of a <em>tibble</em> viewed in R?</p>
 <p>Objectives:<br />
-1. Use <code>read_csv()</code> to import data from a .csv file as a <code>tibble</code>.<br />
-2. Be aware of differences between a <code>tibble</code> and a <code>data frame</code>.<br />
-3. Use <code>view()</code>, <code>head()</code>, and <code>summary()</code> to inspect a <code>tibble</code>.</p>
+1. Use <code>read_csv()</code> to import data from a .csv file as a <em>tibble</em>.<br />
+2. Be aware of differences between a <em>tibble</em> and a <em>data frame</em>.<br />
+3. Use <code>view()</code>, <code>head()</code>, and <code>summary()</code> to inspect a <em>tibble</em>.</p>
 </blockquote>
 <div id="importing-.csv-data-into-rstudio" class="section level2" number="3.1">
 <h2 number="3.1"><span class="header-section-number">3.1</span> Importing <code>.csv</code> data into RStudio</h2>
-<p>In the previous section we learned how to type data into RStudio using the <code>c()</code> function. More commonly, we directly import data from a <code>.csv</code> spreadsheet. We will use the <code>read_csv()</code> function from the <code>readr</code> package, which we loaded in the previous section.</p>
+<p>In the previous section we learned how to type data into RStudio using the <code>c()</code> <em>function</em>. More commonly, we directly import data from a <code>.csv</code> spreadsheet. We will use the <code>read_csv()</code> <em>function</em> from the <code>readr</code> <em>package</em>, which we loaded in the previous section.</p>
 <p>We will use a subset from the NHANES data, which is a public health survey in the US. This data should be located inside the <code>data</code> folder of your working directory. We import the data as follows:</p>
 <pre class="r"><code>healthData &lt;- read_csv(&quot;data/NHANES.csv&quot;)</code></pre>
-<p>We can see that <code>healthData</code> has appeared in the environment panel. This <code>object</code> is a <code>tibble</code>, which you can think of as the RStudio equivalent of a spreadsheet. The main difference is that in <code>tibbles</code>, each column is a <code>vector</code>. Recall that within a <code>vector</code>, data must be of the same type. Therefore, individual columns in a <code>tibble</code> are always of one data type.</p>
+<p>We can see that <code>healthData</code> has appeared in the <em>environment</em> panel. This <em>object</em> is a <em>tibble</em>, which you can think of as the RStudio equivalent of a spreadsheet. The main difference is that in <em>tibbles</em>, each column is a <em>vector</em>. Recall that within a <em>vector</em>, data must be of the same type. Therefore, individual columns in a <em>tibble</em> are always of one data type.</p>
 </div>
 <div id="a-note-on-tibble-vs-data-frame" class="section level2" number="3.2">
-<h2 number="3.2"><span class="header-section-number">3.2</span> A note on <code>tibble</code> vs <code>data frame</code></h2>
-<p>In the previous section we created the <code>tibble</code> <code>healthData</code>. As you come to using RStudio independently, you are likely to come across the <code>data frame</code>. The <code>tibble</code> and the <code>data frame</code> are very similar - in fact, <code>tibble</code> is a type of <code>data frame</code>. In this workshop we limit ourselves to <code>tibble</code>, as its an updated version of the <code>data frame</code>. However, in many online tutorials, <code>data frame</code> is used as the tutorials are a few years old. To find out more about the difference between <code>tibble</code> and <code>data frame</code>, see <a href="https://www.jumpingrivers.com/blog/the-trouble-with-tibbles/">this blog</a>.</p>
+<h2 number="3.2"><span class="header-section-number">3.2</span> A note on <em>tibble</em> vs <em>data frame</em></h2>
+<p>In the previous section we created the <em>tibble</em> <code>healthData</code>. As you come to using RStudio independently, you are likely to come across the <em>data frame</em>. The <em>tibble</em> and the <em>data frame</em> are very similar - in fact, <em>tibble</em> is a type of <em>data frame</em>. In this workshop we limit ourselves to <em>tibble</em>, as its an updated version of the <em>data frame</em>. However, in many online tutorials, <em>data frame</em> is used as the tutorials are a few years old. To find out more about the difference between <em>tibble</em> and <em>data frame</em>, see <a href="https://www.jumpingrivers.com/blog/the-trouble-with-tibbles/">this blog</a>.</p>
 </div>
 <div id="viewing-a-tibble" class="section level2" number="3.3">
-<h2 number="3.3"><span class="header-section-number">3.3</span> Viewing a <code>tibble</code></h2>
-<p>We will cover four ways to quickly inspect the <code>tibble</code> that we have just created. Firstly, we can view <code>healthData</code> as a whole, analogous to the view that Excel would provide us with. We can do this using the <code>View()</code> function (note the capital <code>V</code>). The code below will open a new tab in RStudio, allowing us to scroll through the data:</p>
+<h2 number="3.3"><span class="header-section-number">3.3</span> Viewing a <em>tibble</em></h2>
+<p>We will cover four ways to quickly inspect the <em>tibble</em> that we have just created. Firstly, we can view <code>healthData</code> as a whole, analogous to the view that Excel would provide us with. We can do this using the <code>View()</code> function (note the capital <code>V</code>). The code below will open a new tab in RStudio, allowing us to scroll through the data:</p>
 <pre class="r"><code>View(healthData)</code></pre>
 <p>Alternatively, we can ask RStudio to display the first six rows of <code>healthData</code> using the <code>head()</code> function:</p>
 <pre class="r"><code>head(healthData)</code></pre>
@@ -448,7 +453,7 @@ library(&quot;readr&quot;)</code></pre>
 <li>Have columns been imported as the correct types? Below the column names, we see data types. In our case, <code>&lt;dbl&gt;</code> and <code>&lt;chr&gt;</code>, which stand for double and character, respectively. A double column that has been imported as a character column, for example, could give us trouble in downstream analyses.</li>
 <li>Do the first few rows of data look as we expect them to look?</li>
 </ul>
-<p>We may also want to check that the <code>tibble</code> has the same number of rows and columns as we expect. We can do so using the functions <code>nrow()</code> and <code>ncol()</code>, respectively:</p>
+<p>We may also want to check that the <em>tibble</em> has the same number of rows and columns as we expect. We can do so using the <em>functions</em> <code>nrow()</code> and <code>ncol()</code>, respectively:</p>
 <pre class="r"><code>nrow(healthData)</code></pre>
 <pre><code>## [1] 10000</code></pre>
 <pre class="r"><code>ncol(healthData)</code></pre>
@@ -475,7 +480,7 @@ library(&quot;readr&quot;)</code></pre>
 <p>In addition, the number of <code>NA&#39;s</code> are displayed. An empty cell in RStudio is denoted by <code>NA</code>. For example, our <code>Weight</code> column has 431 <code>NA&#39;s</code>, i.e. 431 missing values. If we were not expecting missing values in our data, we would need to investigate where these <code>NA&#39;s</code> came from.</p>
 <details>
 <summary>
-<p><strong>Challenge</strong>: Import the csv file <code>iris.csv</code> as a <code>tibble</code> named <code>flowerData</code>. This file contains data on the length and width of sepals and petals of three species of iris. Then, find out the following about the <code>tibble</code>:</p>
+<p><strong>Challenge</strong>: Import the csv file <code>iris.csv</code> as a <em>tibble</em> named <code>flowerData</code>. This file contains data on the length and width of sepals and petals of three species of iris. Then, find out the following about the <em>tibble</em>:</p>
 <ul>
 <li>
 <p>What are the column names?</p>
@@ -530,28 +535,28 @@ library(&quot;readr&quot;)</code></pre>
 <h1 number="4"><span class="header-section-number">4</span> Data wrangling</h1>
 <blockquote>
 <p>Questions:<br />
-1. How can rows from a <code>tibble</code> be selected?<br />
-2. How can columns from a <code>tibble</code> be selected?<br />
+1. How can rows from a <em>tibble</em> be selected?<br />
+2. How can columns from a <em>tibble</em> be selected?<br />
 3. How can multiple data wrangling steps be combined into one command?<br />
 4. How can new columns be created based on existing columns?<br />
 5. What is a factor variable in R? [<em>if there is time</em>]<br />
 6. How are string variables converted to factor variables? [<em>if there is time</em>]<br />
 7. How can group-specific summary statistics be obtained?<br />
-8. How can a <code>tibble</code> be saved as a .csv file?</p>
+8. How can a <em>tibble</em> be saved as a .csv file?</p>
 <p>Objectives:<br />
-1. Use <code>filter()</code> to select rows from a <code>tibble</code>.<br />
-2. Use <code>select()</code> to select columns from a <code>tibble</code>.<br />
+1. Use <code>filter()</code> to select rows from a <em>tibble</em>.<br />
+2. Use <code>select()</code> to select columns from a <em>tibble</em>.<br />
 3. Use the pipe operator, <code>%&gt;%</code>, to link commands together.<br />
 4. Use <code>mutate()</code> to create new columns based on existing columns.<br />
 5. Describe the difference between a character variable and a factor variable. [<em>if there is time</em>]<br />
 6. Use <code>as_factor()</code> to convert a character variable to a factor variable. [<em>if there is time</em>]<br />
 7. Use <code>drop_na()</code>, <code>group_by()</code>, <code>summarise()</code>, <code>n()</code>, <code>mean()</code> and <code>sd()</code> to obtain group-specific summary statistics.<br />
-8. Use <code>write_csv()</code> to save a <code>tibble</code> as a .csv file.</p>
+8. Use <code>write_csv()</code> to save a <em>tibble</em> as a .csv file.</p>
 </blockquote>
-<p>Now that our data has been loaded in RStudio as a <code>tibble</code>, we proceed to the stage of “data wrangling”: manipulating the data such that it is ready for downstream analyses.</p>
+<p>Now that our data has been loaded in RStudio as a <em>tibble</em>, we proceed to the stage of “data wrangling”: manipulating the data such that it is ready for downstream analyses.</p>
 <div id="selecting-rows-and-columns" class="section level2" number="4.1">
 <h2 number="4.1"><span class="header-section-number">4.1</span> Selecting rows and columns</h2>
-<p>We may be interested in particular rows and/or columns of our data in downstream analyses. We can select rows using the <code>filter()</code> function and columns using the <code>select()</code> function. Both of these functions are part of the <code>dplyr</code> package. We will first ensure that these functions are loaded in RStudio. Then we will learn how to use them to filter rows and columns.</p>
+<p>We may be interested in particular rows and/or columns of our data in downstream analyses. We can select rows using the <code>filter()</code> function and columns using the <code>select()</code> function. Both of these <em>functions</em> are part of the <code>dplyr</code> package. We will first ensure that these <em>functions</em> are loaded in RStudio. Then we will learn how to use them to filter rows and columns.</p>
 <details>
 <summary>
 <p><strong>Challenge</strong>: Install and load the <code>dplyr</code> package, such that you can use <code>filter()</code> and <code>select()</code> in this workshop.</p>
@@ -561,7 +566,7 @@ library(&quot;readr&quot;)</code></pre>
 <pre class="r"><code>install.packages(&quot;dplyr&quot;) # install dplyr, only needs to be done once</code></pre>
 <pre class="r"><code>library(dplyr) # load dplyr, needs to be done every time RStudio is started up</code></pre>
 </details>
-<p>To select particular rows, we use the <code>filter()</code> function. This function takes our <code>tibble</code> of interest (<code>healthData</code>) and a criterion for filtering. For example, to select rows with participants of the female sex from <code>healthData</code>, then the criterion is <code>Sex == &quot;female&quot;</code> (note the use of the double <code>=</code>):</p>
+<p>To select particular rows, we use the <code>filter()</code> function. This function takes our <em>tibble</em> of interest (<code>healthData</code>) and a criterion for filtering. For example, to select rows with participants of the female sex from <code>healthData</code>, then the criterion is <code>Sex == &quot;female&quot;</code> (note the use of the double <code>=</code>):</p>
 <pre class="r"><code>filter(healthData, Sex == &quot;female&quot;)</code></pre>
 <pre><code>## # A tibble: 4,963 x 5
 ##       ID Sex      Age Height Weight
@@ -638,7 +643,7 @@ noWeightFemale &lt;- filter(noWeight, Sex == &quot;female&quot;) </code></pre>
 <pre class="r"><code>noWeightFemale &lt;- select(healthData, -c(Weight)) %&gt;%
   filter(Sex == &quot;female&quot;)</code></pre>
 <p>Notice that in the <code>filter()</code> step, we no longer specify the data. This is because the pipe operator passes on the data from the <code>select()</code> step.</p>
-<p>It is common to provude the <code>tibble</code> by itself in the first command, such that the chain becomes:</p>
+<p>It is common to provide the <em>tibble</em> by itself in the first command, such that the chain becomes:</p>
 <pre class="r"><code>noWeightFemale &lt;- healthData %&gt;%
   select(-c(Weight)) %&gt;%
   filter(Sex == &quot;female&quot;)</code></pre>
@@ -663,7 +668,7 @@ noWeightFemale &lt;- filter(noWeight, Sex == &quot;female&quot;) </code></pre>
 </div>
 <div id="creating-new-columns-using-mutate" class="section level2" number="4.3">
 <h2 number="4.3"><span class="header-section-number">4.3</span> Creating new columns using <code>mutate()</code></h2>
-<p>Often we want to add new columns to our <code>tibble</code>, based on existing columns. For example, we may want to add a <code>BMI</code> column to our <code>healthData</code> object, based on the <code>Height</code> and <code>Weight</code> columns. The BMI is calculated by dividing <code>Weight</code> by <code>Height</code> squared. Since <code>Height</code> in <code>healthData</code> is in cm, we divide <code>Height</code> by 100. We create the <code>BMI</code> column using <code>mutate()</code>:</p>
+<p>Often we want to add new columns to our <em>tibble</em>, based on existing columns. For example, we may want to add a <code>BMI</code> column to our <code>healthData</code> object, based on the <code>Height</code> and <code>Weight</code> columns. The BMI is calculated by dividing <code>Weight</code> by <code>Height</code> squared. Since <code>Height</code> in <code>healthData</code> is in cm, we divide <code>Height</code> by 100. We create the <code>BMI</code> column using <code>mutate()</code>:</p>
 <pre class="r"><code>healthDataBMI &lt;- healthData %&gt;%
   mutate(BMI = Weight/(Height/100)^2)</code></pre>
 <p>Using <code>head()</code> we can see our new column:</p>
@@ -680,7 +685,7 @@ noWeightFemale &lt;- filter(noWeight, Sex == &quot;female&quot;) </code></pre>
 </div>
 <div id="using-as_factor-for-categorical-variables" class="section level2" number="4.4">
 <h2 number="4.4"><span class="header-section-number">4.4</span> Using <code>as_factor()</code> for categorical variables</h2>
-<p>When we import categorical variables as part of a <code>tibble</code>, they appear as a <code>character</code> column. See for example the <code>Sex</code> column in healthData:</p>
+<p>When we import categorical variables as part of a <em>tibble</em>, they appear as a <code>character</code> column. See for example the <code>Sex</code> column in healthData:</p>
 <pre class="r"><code>head(healthData)</code></pre>
 <pre><code>## # A tibble: 6 x 5
 ##      ID Sex      Age Height Weight
@@ -712,7 +717,7 @@ healthDataFactor &lt;- healthData %&gt;%
 ## 4 64041 male       9   151.   62.9
 ## 5 69722 male       7   116.   21.4
 ## 6 59289 male      30   165.   50.1</code></pre>
-<p>We can check that our variable is free of typos by checking the levels (i.e. categories) inside our variable using the <code>pull()</code> and <code>levels()</code> functions:</p>
+<p>We can check that our variable is free of typos by checking the levels (i.e. categories) inside our variable using the <code>pull()</code> and <code>levels()</code> <em>functions</em>:</p>
 <pre class="r"><code>healthDataFactor %&gt;%
   pull(Sex) %&gt;%
   levels()</code></pre>
@@ -746,7 +751,7 @@ flowerDataFactor %&gt;%
 </div>
 <div id="obtaining-group-specific-summary-statistics" class="section level2" number="4.5">
 <h2 number="4.5"><span class="header-section-number">4.5</span> Obtaining group-specific summary statistics</h2>
-<p>Earlier in this workshop we used <code>summary()</code> to obtain summary statistics for each column in our <code>tibble</code>. Alternatively, we may want to obtain group-specific summary statistics. For example, we may want summary statistics for <code>Height</code>, grouped by <code>Sex</code>, from our <code>healthData</code>.</p>
+<p>Earlier in this workshop we used <code>summary()</code> to obtain summary statistics for each column in our <em>tibble</em>. Alternatively, we may want to obtain group-specific summary statistics. For example, we may want summary statistics for <code>Height</code>, grouped by <code>Sex</code>, from our <code>healthData</code>.</p>
 <p>In this example we will ask RStudio to return the mean, standard deviation and number of observations for <code>Height</code>, grouped by <code>Sex</code>. First, we group the data by <code>Sex</code> using <code>group_by()</code>. We then calculate summary statistics using <code>summarise()</code>. Inside <code>summarise()</code> we specify the values that we want. We request the number of observations per group using <code>n()</code>, the mean height using <code>mean()</code> and the standard deviation of height using <code>sd()</code>. Each of these values is given a name, which we specify ahead of the <code>=</code> signs.</p>
 <pre class="r"><code>healthData %&gt;%
   group_by(Sex) %&gt;%
@@ -758,7 +763,7 @@ flowerDataFactor %&gt;%
 ##   &lt;chr&gt;  &lt;int&gt; &lt;dbl&gt; &lt;dbl&gt;
 ## 1 female  4963    NA    NA
 ## 2 male    5037    NA    NA</code></pre>
-<p>While <code>n()</code> resulted in an output, <code>mean()</code> and <code>sd()</code> resulted in NAs. These functions return NA when there is at least one NA in the column of interest (i.e. an empty cell). We can circumvent this by dropping the NAs from <code>Height</code> using <code>drop_na()</code> from the <code>tidyr</code> package. Make sure that you install the <code>tidyr</code> package before running the code below.</p>
+<p>While <code>n()</code> resulted in an output, <code>mean()</code> and <code>sd()</code> resulted in NAs. These <em>functions</em> return NA when there is at least one NA in the column of interest (i.e. an empty cell). We can circumvent this by dropping the NAs from <code>Height</code> using <code>drop_na()</code> from the <code>tidyr</code> package. Make sure that you install the <code>tidyr</code> package before running the code below.</p>
 <pre class="r"><code>library(tidyr) #load package for drop_na()
 
 healthData %&gt;%
@@ -775,9 +780,9 @@ healthData %&gt;%
 <p>Note that we now have less observations (lower number under <code>n</code>), since we have dropped the empty rows.</p>
 </div>
 <div id="exporting-a-tibble-as-a-.csv-file" class="section level2" number="4.6">
-<h2 number="4.6"><span class="header-section-number">4.6</span> Exporting a <code>tibble</code> as a <code>.csv</code> file</h2>
-<p>Once data wrangling is completed, we may want to export our <code>tibble</code> as a <code>.csv</code> file. This allows us to easily share the data with others. For example, we may want to export our summary table from the last subsection.</p>
-<p>To do this, we create an object for the sumamry table. Then we export the <code>tibble</code> using the <code>write_csv()</code> function from the <code>readr</code> package. We provide a name for the file inside <code>write_csv()</code> within quotes. By default, the file is saved in our working directory.</p>
+<h2 number="4.6"><span class="header-section-number">4.6</span> Exporting a <em>tibble</em> as a <code>.csv</code> file</h2>
+<p>Once data wrangling is completed, we may want to export our <em>tibble</em> as a <code>.csv</code> file. This allows us to easily share the data with others. For example, we may want to export our summary table from the last subsection.</p>
+<p>To do this, we create an object for the sumamry table. Then we export the <em>tibble</em> using the <code>write_csv()</code> function from the <code>readr</code> package. We provide a name for the file inside <code>write_csv()</code> within quotes. By default, the file is saved in our working directory.</p>
 <pre class="r"><code>summaryHeight &lt;- healthData %&gt;% #give the summary table a name
   drop_na(Height) %&gt;% 
   group_by(Sex) %&gt;%
@@ -789,7 +794,7 @@ write_csv(summaryHeight, &quot;summaryHeight.csv&quot;)</code></pre>
 <p>After running this code, check in your working directory that the file has indeed been created.</p>
 <details>
 <summary>
-<p><strong>Challenge</strong>: Create a <code>tibble</code> with the number of observations, mean and standard deviation of sepal width, grouped by variety. Name this object <code>summarySepalWidth</code> and save it as a <code>.csv</code> file in your working directory. Find the solution in the drop-down.</p>
+<p><strong>Challenge</strong>: Create a <em>tibble</em> with the number of observations, mean and standard deviation of sepal width, grouped by variety. Name this object <code>summarySepalWidth</code> and save it as a <code>.csv</code> file in your working directory. Find the solution in the drop-down.</p>
 </summary>
 <p><br></p>
 <pre class="r"><code>summarySepalWidth &lt;- flowerData %&gt;% 
@@ -819,7 +824,7 @@ write_csv(summarySepalWidth, &quot;summarySepalWidth.csv&quot;)</code></pre>
 4. Use the <code>patchwork</code> package to group multiple <code>ggplot()</code> graphs together.<br />
 5. Use <code>ggsave()</code> to export a ggplot plot.</p>
 </blockquote>
-<p>Once our data is in an appropriate format, we can proceed to visualisation. The <code>ggplot2</code> package provides functions with which data can be plotted. Here we will introduce this package.</p>
+<p>Once our data is in an appropriate format, we can proceed to visualisation. The <code>ggplot2</code> package provides <em>functions</em> with which data can be plotted. Here we will introduce this package.</p>
 <div id="the-general-format-of-the-ggplot-command" class="section level2" number="5.1">
 <h2 number="5.1"><span class="header-section-number">5.1</span> The general format of the <code>ggplot()</code> command</h2>
 <p>Every visualisation using <code>ggplot2</code> includes the <code>ggplot()</code> function. The general format of the command is:</p>
@@ -832,7 +837,7 @@ write_csv(summarySepalWidth, &quot;summarySepalWidth.csv&quot;)</code></pre>
 <li>Aesthetic mapping, i.e. what variables to include in the plot and how they should be treated (denoted by <code>aes(&lt;MAPPINGS&gt;)</code>);</li>
 <li>A plot-specific function, denoting what type of graphic we want (e.g. a scatterplot; denoted by <code>&lt;GEOM_FUNCTION&gt;()</code>).</li>
 </ol>
-<p>Notice that <code>ggplot()</code> and <code>&lt;GEOM_FUNCTION&gt;()</code> are connected through a <code>+</code>. In general, a <code>+</code> is used to connect <code>ggplot2</code> functions that together build one plot.</p>
+<p>Notice that <code>ggplot()</code> and <code>&lt;GEOM_FUNCTION&gt;()</code> are connected through a <code>+</code>. In general, a <code>+</code> is used to connect <code>ggplot2</code> <em>functions</em> that together build one plot.</p>
 </div>
 <div id="creating-ggplot-plots" class="section level2" number="5.2">
 <h2 number="5.2"><span class="header-section-number">5.2</span> Creating <code>ggplot()</code> plots</h2>
