@@ -354,7 +354,7 @@ healthData <- read_csv("data/NHANES.csv")
 
 We can see that `healthData` has appeared in the *environment* panel. This
 *object* is a *tibble*, which you can think of as the RStudio equivalent
-of a spreadsheet. The main difference is that in *tibbles*, each column
+of a spreadsheet. The main difference is that in a *tibble*, each column
 is a *vector*. Recall that within a *vector*, data must be of the same
 type. Therefore, individual columns in a *tibble* are always of one data
 type.
@@ -392,11 +392,11 @@ head(healthData)
 
 This output is useful for a few checks:
 
--   Have the column names imported properly?
+-   Have the column names been imported properly?
 -   Have columns been imported as the correct types? Below the column
     names, we see data types. In our case, `<dbl>` and `<chr>`, which
-    stand for double and character, respectively. A double column that
-    has been imported as a character column, for example, could give us
+    stand for *double* and *character*, respectively. A *double* column that
+    has been imported as a *character* column, for example, could give us
     trouble in downstream analyses.
 -   Do the first few rows of data look as we expect them to look?
 
@@ -489,9 +489,8 @@ summary(flowerData) # mean of sepal length is 5.843 and sepal width has no NAs
 > 3. How can multiple data wrangling steps be combined into one
 > command?\
 > 4. How can new columns be created based on existing columns?\
-> 5. What is a factor variable in R? [*if there is time*]\
-> 6. How are string variables converted to factor variables? [*if there
-> is time*]\
+> 5. What is a factor variable in R?\
+> 6. How are string variables converted to factor variables?\
 > 7. How can group-specific summary statistics be obtained?\
 > 8. How can a *tibble* be saved as a .csv file?
 >
@@ -501,9 +500,9 @@ summary(flowerData) # mean of sepal length is 5.843 and sepal width has no NAs
 > 3. Use the pipe operator, `%>%`, to link commands together.\
 > 4. Use `mutate()` to create new columns based on existing columns.\
 > 5. Describe the difference between a character variable and a factor
-> variable. [*if there is time*]\
+> variable.\
 > 6. Use `as_factor()` to convert a character variable to a factor
-> variable. [*if there is time*]\
+> variable.\
 > 7. Use `drop_na()`, `group_by()`, `summarise()`, `n()`, `mean()` and
 > `sd()` to obtain group-specific summary statistics.\
 > 8. Use `write_csv()` to save a *tibble* as a .csv file.
@@ -809,10 +808,10 @@ healthData %>%
             sd = sd(Height))
 ```
 
-While `n()` resulted in an output, `mean()` and `sd()` resulted in NAs.
-These *functions* return NA when there is at least one NA in the column of
+While `n()` resulted in an output, `mean()` and `sd()` resulted in `NA`s.
+These *functions* return `NA` when there is at least one `NA` in the column of
 interest (i.e. an empty cell). We can circumvent this by dropping the
-NAs from `Height` using `drop_na()` from the `tidyr` package. Make sure
+`NA`s from `Height` using `drop_na()` from the `tidyr` package. Make sure
 that you install the `tidyr` package before running the code below.
 
 ```{r summarise height by Sex without NAs, warning = FALSE}
@@ -836,7 +835,7 @@ a `.csv` file. This allows us to easily share the data with others. For
 example, we may want to export our summary table from the last
 subsection.
 
-To do this, we create an object for the sumamry table. Then we export
+To do this, we create an object for the summary table. Then we export
 the *tibble* using the `write_csv()` function from the `readr` package.
 We provide a name for the file inside `write_csv()` within quotes. By
 default, the file is saved in our working directory.
@@ -879,7 +878,7 @@ write_csv(summarySepalWidth, "summarySepalWidth.csv")
 ```
 
 Notice that no `drop_na()` is not required, since `sepal.width` is free
-of NAs.
+of `NA`s.
 
 </details>
 

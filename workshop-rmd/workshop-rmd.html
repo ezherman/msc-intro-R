@@ -426,7 +426,7 @@ library(&quot;readr&quot;)</code></pre>
 <p>In the previous section we learned how to type data into RStudio using the <code>c()</code> <em>function</em>. More commonly, we directly import data from a <code>.csv</code> spreadsheet. We will use the <code>read_csv()</code> <em>function</em> from the <code>readr</code> <em>package</em>, which we loaded in the previous section.</p>
 <p>We will use a subset from the NHANES data, which is a public health survey in the US. This data should be located inside the <code>data</code> folder of your working directory. We import the data as follows:</p>
 <pre class="r"><code>healthData &lt;- read_csv(&quot;data/NHANES.csv&quot;)</code></pre>
-<p>We can see that <code>healthData</code> has appeared in the <em>environment</em> panel. This <em>object</em> is a <em>tibble</em>, which you can think of as the RStudio equivalent of a spreadsheet. The main difference is that in <em>tibbles</em>, each column is a <em>vector</em>. Recall that within a <em>vector</em>, data must be of the same type. Therefore, individual columns in a <em>tibble</em> are always of one data type.</p>
+<p>We can see that <code>healthData</code> has appeared in the <em>environment</em> panel. This <em>object</em> is a <em>tibble</em>, which you can think of as the RStudio equivalent of a spreadsheet. The main difference is that in a <em>tibble</em>, each column is a <em>vector</em>. Recall that within a <em>vector</em>, data must be of the same type. Therefore, individual columns in a <em>tibble</em> are always of one data type.</p>
 </div>
 <div id="a-note-on-tibble-vs-data-frame" class="section level2" number="3.2">
 <h2 number="3.2"><span class="header-section-number">3.2</span> A note on <em>tibble</em> vs <em>data frame</em></h2>
@@ -449,8 +449,8 @@ library(&quot;readr&quot;)</code></pre>
 ## 6 59289 male      30   165.   50.1</code></pre>
 <p>This output is useful for a few checks:</p>
 <ul>
-<li>Have the column names imported properly?</li>
-<li>Have columns been imported as the correct types? Below the column names, we see data types. In our case, <code>&lt;dbl&gt;</code> and <code>&lt;chr&gt;</code>, which stand for double and character, respectively. A double column that has been imported as a character column, for example, could give us trouble in downstream analyses.</li>
+<li>Have the column names been imported properly?</li>
+<li>Have columns been imported as the correct types? Below the column names, we see data types. In our case, <code>&lt;dbl&gt;</code> and <code>&lt;chr&gt;</code>, which stand for <em>double</em> and <em>character</em>, respectively. A <em>double</em> column that has been imported as a <em>character</em> column, for example, could give us trouble in downstream analyses.</li>
 <li>Do the first few rows of data look as we expect them to look?</li>
 </ul>
 <p>We may also want to check that the <em>tibble</em> has the same number of rows and columns as we expect. We can do so using the <em>functions</em> <code>nrow()</code> and <code>ncol()</code>, respectively:</p>
@@ -539,8 +539,8 @@ library(&quot;readr&quot;)</code></pre>
 2. How can columns from a <em>tibble</em> be selected?<br />
 3. How can multiple data wrangling steps be combined into one command?<br />
 4. How can new columns be created based on existing columns?<br />
-5. What is a factor variable in R? [<em>if there is time</em>]<br />
-6. How are string variables converted to factor variables? [<em>if there is time</em>]<br />
+5. What is a factor variable in R?<br />
+6. How are string variables converted to factor variables?<br />
 7. How can group-specific summary statistics be obtained?<br />
 8. How can a <em>tibble</em> be saved as a .csv file?</p>
 <p>Objectives:<br />
@@ -548,8 +548,8 @@ library(&quot;readr&quot;)</code></pre>
 2. Use <code>select()</code> to select columns from a <em>tibble</em>.<br />
 3. Use the pipe operator, <code>%&gt;%</code>, to link commands together.<br />
 4. Use <code>mutate()</code> to create new columns based on existing columns.<br />
-5. Describe the difference between a character variable and a factor variable. [<em>if there is time</em>]<br />
-6. Use <code>as_factor()</code> to convert a character variable to a factor variable. [<em>if there is time</em>]<br />
+5. Describe the difference between a character variable and a factor variable.<br />
+6. Use <code>as_factor()</code> to convert a character variable to a factor variable.<br />
 7. Use <code>drop_na()</code>, <code>group_by()</code>, <code>summarise()</code>, <code>n()</code>, <code>mean()</code> and <code>sd()</code> to obtain group-specific summary statistics.<br />
 8. Use <code>write_csv()</code> to save a <em>tibble</em> as a .csv file.</p>
 </blockquote>
@@ -763,7 +763,7 @@ flowerDataFactor %&gt;%
 ##   &lt;chr&gt;  &lt;int&gt; &lt;dbl&gt; &lt;dbl&gt;
 ## 1 female  4963    NA    NA
 ## 2 male    5037    NA    NA</code></pre>
-<p>While <code>n()</code> resulted in an output, <code>mean()</code> and <code>sd()</code> resulted in NAs. These <em>functions</em> return NA when there is at least one NA in the column of interest (i.e. an empty cell). We can circumvent this by dropping the NAs from <code>Height</code> using <code>drop_na()</code> from the <code>tidyr</code> package. Make sure that you install the <code>tidyr</code> package before running the code below.</p>
+<p>While <code>n()</code> resulted in an output, <code>mean()</code> and <code>sd()</code> resulted in <code>NA</code>s. These <em>functions</em> return <code>NA</code> when there is at least one <code>NA</code> in the column of interest (i.e. an empty cell). We can circumvent this by dropping the <code>NA</code>s from <code>Height</code> using <code>drop_na()</code> from the <code>tidyr</code> package. Make sure that you install the <code>tidyr</code> package before running the code below.</p>
 <pre class="r"><code>library(tidyr) #load package for drop_na()
 
 healthData %&gt;%
@@ -782,7 +782,7 @@ healthData %&gt;%
 <div id="exporting-a-tibble-as-a-.csv-file" class="section level2" number="4.6">
 <h2 number="4.6"><span class="header-section-number">4.6</span> Exporting a <em>tibble</em> as a <code>.csv</code> file</h2>
 <p>Once data wrangling is completed, we may want to export our <em>tibble</em> as a <code>.csv</code> file. This allows us to easily share the data with others. For example, we may want to export our summary table from the last subsection.</p>
-<p>To do this, we create an object for the sumamry table. Then we export the <em>tibble</em> using the <code>write_csv()</code> function from the <code>readr</code> package. We provide a name for the file inside <code>write_csv()</code> within quotes. By default, the file is saved in our working directory.</p>
+<p>To do this, we create an object for the summary table. Then we export the <em>tibble</em> using the <code>write_csv()</code> function from the <code>readr</code> package. We provide a name for the file inside <code>write_csv()</code> within quotes. By default, the file is saved in our working directory.</p>
 <pre class="r"><code>summaryHeight &lt;- healthData %&gt;% #give the summary table a name
   drop_na(Height) %&gt;% 
   group_by(Sex) %&gt;%
@@ -804,7 +804,7 @@ write_csv(summaryHeight, &quot;summaryHeight.csv&quot;)</code></pre>
             sd = sd(sepal.width))
 
 write_csv(summarySepalWidth, &quot;summarySepalWidth.csv&quot;)</code></pre>
-<p>Notice that no <code>drop_na()</code> is not required, since <code>sepal.width</code> is free of NAs.</p>
+<p>Notice that no <code>drop_na()</code> is not required, since <code>sepal.width</code> is free of <code>NA</code>s.</p>
 </details>
 </div>
 </div>
