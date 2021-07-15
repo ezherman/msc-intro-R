@@ -148,7 +148,7 @@ In R, everything that we create or import is saved as an *object*. An
 *object* has a name, with which we can refer to it. When we save
 something as an *object*, this is referred to as *assigning* something
 to that object. *Assigning* is done using the `<-` syntax, as
-exemplified below. If we wanted to save the number 4 under the name
+shown below. If we wanted to save the number 4 under the name
 `Four`, we would run:
 
 ```{r assign value to object example}
@@ -267,7 +267,7 @@ numbers <- c(1,2,3,4,5,6)
 
 **Challenge**: *assign* the city names London, Manchester and Newcastle to
 an *object* named `cities`. Include a *comment* to increase the
-interpretability of your code. Find the solution in the drop-down.
+clarity of your code. Find the solution in the drop-down.
 
 </summary>
 
@@ -298,7 +298,8 @@ to load it using the `library()` function. This is analogous to using a
 light bulb - every time we enter the room, we need to turn on the light
 again.
 
-Let us take the `readr` *package* as an example. In the next section, we
+Let us take the `readr` *package* as an example. This package contains a set
+of functions for importing data into R. In the next section, we
 will use a *function* from this *package*. First, we install the *package*.
 You can run the following line from the *console* rather than the *script*,
 as we do not want the *package* to install again every time we run the
@@ -754,8 +755,8 @@ healthDataFactorRelevel %>%
   levels()
 ```
 
-Reordering factor levels will come in handy later on when we learn how
-to plot.
+Reordering factor levels will come in handy when you need to rearrange your 
+graphs of data.
 
 <details>
 
@@ -980,7 +981,7 @@ ggplot(flowerData, aes(y = sepal.length, x = variety)) +
 `ggplot2` offers a lot more beyond selecting variables in the
 `<MAPPING>` and selecting a plot type through the `<GEOM_FUNCTION()>`.
 Often the best way to learn how to perform a specific operation with
-`ggplot2` is to consult Google. In this section we will exemplify this
+`ggplot2` is to consult Google. In this section we will show this
 through the addition of a title to our plot.
 
 Let's try to add a title to our plot of `Height` vs. `Weight`. Since we
