@@ -31,6 +31,14 @@ RStudio workshop of the Maths Skills Centre. This workshop introduces the
 RStudio environment, writing code in a script, importing and viewing
 data, data wrangling and data visualisation. 
 
+# Setup
+You can follow the instructions 
+[here](https://datacarpentry.org/r-socialsci/setup.html) 
+to install or update R and RStudio. This workshop was assembled using R version 
+`r paste(R.Version()$major, ".", R.Version()$minor, sep = "")` 
+and RStudio version `r rstudioapi::versionInfo()$version`. 
+
+
 # Overview of RStudio
 
 > Questions:\
