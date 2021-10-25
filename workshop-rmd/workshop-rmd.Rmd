@@ -97,11 +97,12 @@ What is the purpose of these panels?
 When working with RStudio, for example for an analysis or even this
 workshop, it is good practice to have all relevant files in one folder.
 This makes it easier to locate files and to share our work with
-colleagues. This folder is called our **working directory**.
+colleagues. This folder is called our **working directory**. 
 
 A convenient way to set and save a working directory is through the
-RStudio *projects* functionality. Here we will set up an RStudio project
-for this workshop:
+RStudio *projects* functionality. Here we create a `.Rproj` file, which
+marks our RStudio project. The folder in which the `.Rproj` file is saved
+will be our working directory. To set up an RStudio project:
 
 -   Under the *File* menu in the top left of RStudio, press
     *New Project*, then *New Directory*, then *New Project*.
