@@ -57,7 +57,7 @@ and RStudio version `r rstudioapi::versionInfo()$version`.
 RStudio has four panels. When RStudio is opened for the first time, only
 three are visible:
 
-```{r, echo=FALSE, fig.cap="*When RStudio is first started, three panels are visible*."}
+```{r, echo=FALSE, fig.cap="*When RStudio is first started, three panels are visible*.", fig.alt="A screenshot of Rstudio showing eleven menus at the top left. One panel covers the left half with text about the R software. The right is divided into two panels with text saying that the environment is empty in the top panel and a display of the current file directory in the bottom window."}
 knitr::include_graphics("../img/three-panel-RStudio.png")
 ```
 
