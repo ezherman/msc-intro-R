@@ -114,10 +114,11 @@ will be our working directory. To set up an RStudio project:
 
 RStudio should now have refreshed, showing us our project environment.
 Open a new script, as we did in the previous section, such that the
-four-panel view is restored. Then press on the *Save* icon to the right
-of the *New File* button. Give the file a convenient name, such as
-`intro_R_workshop`. It will then appear in the bottom right of RStudio as
-`intro_R_workshop.R`.
+four-panel view is restored. Then save the script by pressing the 
+Save icon (the floppy disk) to the right of the New File button. 
+Give the file a convenient name, such as
+`intro_R_code`. It will then appear in the bottom right of RStudio as
+`intro_R_code.R`.
 
 ## Saving data files in our working directory
 
@@ -172,8 +173,7 @@ window. This confirms that we have successfully *assigned* a value to an
 ### *Calling* a built-in *function* with one *argument*
 
 Most commands in R involve *functions*. A *function* is an in-built
-piece of code that performs a specific task. This saves us from having
-to write the code required for the task ourselves. When a *function* is
+piece of code that performs a specific task. When a *function* is
 used in R, this is referred to as *calling* the *function*. Usually, a
 *function* is *called* with one or more inputs - these are called
 *arguments*.
@@ -238,7 +238,7 @@ round(number, digits = 2)
 So far, we have worked with *objects* that contained a single value.
 Often we are working with multiple data points. In R, multiple data
 points can be saved inside one *object* as a *vector*. A *vector* is a
-collection of data points of the *same type* (e.g. numbers of words).
+collection of data points of the *same type* (e.g. numbers or words).
 *Vectors* are formed by calling the `c()` function, with data provided
 between the brackets, separated by commas. For example:
 
@@ -838,7 +838,7 @@ installed and loaded before proceeding.
 To create a scatterplot of `Height` vs `Weight` in our `healthData`, we:
 
 1.  Use the `ggplot()` function;
-2.  Include `healthData` as out `<DATA>`;
+2.  Include `healthData` as our `<DATA>`;
 3.  Specify the mappings `y = Height` and `x = Weight` inside `aes()`;
 4.  Use the scatterplot function at `<GEOM_FUNCTION>`, which is
     `geom_point()`.
@@ -898,7 +898,7 @@ knitr::include_graphics("../img/google.png")
 &nbsp;
 
 
-Following the tutorial on "sthda.com", which is common source for R
+Following the tutorial on "sthda.com", which is a common source for R
 tutorials, brings us to an index which includes a link to information on
 titles in `ggplot2`:
 
@@ -919,7 +919,7 @@ knitr::include_graphics("../img/sthda_2.png")
 &nbsp;
 
 
-Trying this with out plot gives:
+Trying this with our plot gives:
 
 ```{r ggplot height weight scatter with title, warning = FALSE}
 ggplot(healthData, aes(y = Height, x = Weight)) +
