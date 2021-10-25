@@ -126,8 +126,9 @@ it allows us to have all relevant files in one folder. We will download
 the data files for this workshop and save them inside our project
 directory:
 
-1. Download the data by clicking [here](https://github.com/ezherman/msc-intro-R/raw/main/data.zip).
-2. Unzip the folder, and save the data folder in the `intro_R_workshop` folder created earlier.
+1. Create a folder named `data` in your working directory by pressing on 'New Folder' in the *Files* panel (bottom right panel).
+2. Save the example data (`NHANES.csv`) from [here](https://raw.githubusercontent.com/ezherman/msc-intro-R/main/data/NHANES.csv) into the `data` folder.
+3. Save the exercise data (`iris.csv`) from [here](https://raw.githubusercontent.com/ezherman/msc-intro-R/main/data/iris.csv) into the `data` folder.
 
 Now the data is accessible from our working directory in RStudio.
 
