@@ -57,20 +57,20 @@ and RStudio version `r rstudioapi::versionInfo()$version`.
 RStudio has four panels. When RStudio is opened for the first time, only
 three are visible:
 
-```{r, echo=FALSE, fig.cap="*When RStudio is first started, three panels are visible*.", fig.alt="A screenshot of Rstudio showing eleven menus at the top left. One panel covers the left half with text about the R software. The right is divided into two panels with text saying that the environment is empty in the top panel and a display of the current file directory in the bottom window."}
+```{r, echo=FALSE, fig.cap="*When RStudio is first started, three panels are visible*.", fig.alt="A screenshot of Rstudio showing eleven menus at the top left. One panel covers the left half with text about the R software. The right is divided into two panels with text saying that the environment is empty in the top panel and a display of the current file directory in the bottom panel."}
 knitr::include_graphics("../img/three-panel-RStudio.png")
 ```
 
 The fourth panel appears after we open a new *script*. Do so by pressing
 on the icons highlighted below:
 
-```{r, echo=FALSE, fig.cap='*Open a script by pressing the "New File" button, followed by "R Script"*.'}
+```{r, echo=FALSE, fig.cap='*Open a script by pressing the "New File" button, followed by "R Script"*.', fig.alt="Two zoomed in screenshots of the top left menus in RStudio. The first screenshot shows a black rectangle highlighting an icon which is a white square with a plus inside a green circle. The second screenshot shows a black rectangle highlighting a menu item that reads R Script followed by the associated keyboard shortcut, Ctrl + Shift + N."}
 knitr::include_graphics("../img/open-script.png")
 ```
 
 Now you should see four panels, as shown below:
 
-```{r, echo=FALSE, fig.cap="*After opening a new script, RStudio has four panels*."}
+```{r, echo=FALSE, fig.cap="*After opening a new script, RStudio has four panels*.", fig.alt="A screenshot of Rstudio showing four panels. The left half of the screen is divided into two panels. The top left panel shows an empty R script. The bottom left panel shows text about the R software. The right is divided into two panels. The top right panbel has text saying that the environment is empty. The bottom right panel shows the current file directory."}
 knitr::include_graphics("../img/four-panel-RStudio.png")
 ```
 
@@ -852,7 +852,7 @@ To create a scatterplot of `Height` vs `Weight` in our `healthData`, we:
 
 The code and output therefore become:
 
-```{r ggplot height weight scatter, warning = FALSE}
+```{r ggplot height weight scatter, warning = FALSE, fig.alt="A scatterplot with Height on the y-axis and Weight on the x-axis. The data show Height increasing sharply with Weight, followed by a leveling off of the increase."}
 ggplot(healthData, aes(y = Height, x = Weight)) +
     geom_point()
 ```
@@ -877,7 +877,7 @@ drop-down.
 
 <br>
 
-```{r boxplot sepal length}
+```{r boxplot sepal length, fig.alt="A boxplot with sepal length on the y-axis and Variety on the x-axis. The boxplots appear, from left to right, in the order: Setosa, Versicolor, Virginica. The median sepal length increases across the three boxplots, from left to right."}
 ggplot(flowerData, aes(y = sepal.length, x = variety)) +
     geom_boxplot()
 ```
@@ -898,7 +898,7 @@ efficiently is a skill which you will develop as you use RStudio. We may
 for example search "ggplot r add title". The following pages are
 included in the result, which all look like tutorials:
 
-```{r, echo=FALSE, fig.cap="*Searching on Google often reveals tutorials*."}
+```{r, echo=FALSE, fig.cap="*Searching on Google often reveals tutorials*.", fig.alt="A screenshot of a Google search using the term 'ggplot r add title'. Four results are shown, all of which link to tutorials."}
 knitr::include_graphics("../img/google.png")
 ```
 
@@ -909,7 +909,7 @@ Following the tutorial on "sthda.com", which is a common source for R
 tutorials, brings us to an index which includes a link to information on
 titles in `ggplot2`:
 
-```{r, echo=FALSE, fig.cap="*An indexed tutorial on sthda.com, including a section on titles*."}
+```{r, echo=FALSE, fig.cap="*An indexed tutorial on sthda.com, including a section on titles*.", fig.alt="A screenshot of the index of a tutorial on ggplot2 titles on sthda.com. The index item 'Change the main title and axis labels' is highlighted in a red box."}
 knitr::include_graphics("../img/sthda_1.png")
 ```
 
@@ -919,7 +919,7 @@ knitr::include_graphics("../img/sthda_1.png")
 Following this link shows that the tutorial advises using
 `+ labs(title = "…")` to add a title:
 
-```{r, echo=FALSE, fig.cap="*The section on titles on sthda.com*."}
+```{r, echo=FALSE, fig.cap="*The section on titles on sthda.com*.", fig.alt="A screenshot of the section of the tutorial on sthda.com about ggplot2 titles. Code is shown which in the tutorial is used to add a title to a ggplot graph."}
 knitr::include_graphics("../img/sthda_2.png")
 ```
 
@@ -928,7 +928,7 @@ knitr::include_graphics("../img/sthda_2.png")
 
 Trying this with our plot gives:
 
-```{r ggplot height weight scatter with title, warning = FALSE}
+```{r ggplot height weight scatter with title, warning = FALSE, fig.alt="A scatterplot with Height on the y-axis and Weight on the x-axis. The following title is included: Height vs. Weight in the NHANES data."}
 ggplot(healthData, aes(y = Height, x = Weight)) +
   geom_point() +
   labs(title = "Height vs. Weight in the NHANES data")
@@ -948,7 +948,7 @@ plot. Find the solution in the drop-down.
 
 <br>
 
-```{r violin plot sepal length}
+```{r violin plot sepal length, fig.alt="A violin plot with sepal length on the y-axis and Variety on the x-axis. The violin plots appear, from left to right, in the order: Setosa, Versicolor, Virginica. The violin plot for Setosa has a wide central region and narrow regions towards the ends. The violin pots for Versicolor and Virginica are less wide in the centre."}
 ggplot(flowerData, aes(y = sepal.length, x = variety)) +
     geom_violin()
 ```
@@ -1076,7 +1076,7 @@ Reordering factor levels is handy when you need to rearrange your
 graphs of data. For example, a boxplot of Height by Sex using `healthDataFactor`
 has "male" as the left-most boxplot:
 
-```{r boxplot healthDataFactor, warning=FALSE}
+```{r boxplot healthDataFactor, warning=FALSE, fig.alt="A boxplot with Height on the y-axis and Sex on the x-axis. From left to right, the boxplots are in the following order: male, female."}
 ggplot(healthDataFactor, aes(y = Height, x = Sex)) +
     geom_boxplot()
 ```
@@ -1084,7 +1084,7 @@ ggplot(healthDataFactor, aes(y = Height, x = Sex)) +
 In contrast, the same code on `healthDataFactorRelevel` returns a graph 
 with "female" as the left-most boxplot:
 
-```{r boxplot healthDataFactorRelevel, warning=FALSE}
+```{r boxplot healthDataFactorRelevel, warning=FALSE, fig.alt="A boxplot with Height on the y-axis and Sex on the x-axis. From left to right, the boxplots are in the following order: female, male."}
 ggplot(healthDataFactorRelevel, aes(y = Height, x = Sex)) +
     geom_boxplot()
 ```
@@ -1143,7 +1143,7 @@ p2 <- ggplot(healthData, aes(y = Height, x = Age)) +
 Both plots can be shown in one plotting region by running the object
 names, separated by a `+`:
 
-```{r patchwork healthData, warning = FALSE}
+```{r patchwork healthData, warning = FALSE, fig.alt="A composite figure consisting of two scatterplots. The left graph has Height on the y-axis and Weight on the x-axis. The right graph has Height on the y-axis and Age on the x-axis. Both graphs show an initial sharp increase in the y-axis as the x-axis values increase, followed by a leveling off of the increase."}
 p1 + p2
 ```
 
@@ -1170,7 +1170,7 @@ p2 <- ggplot(flowerData, aes(y = sepal.length, x = variety)) +
 p1 + p2
 ```
 
-```{r save sepal length plots, eval = FALSE}
+```{r save sepal length plots, eval = FALSE, fig.alt="A composite figure consisting of two graphs. The left graph is a boxplot with sepal length on the y-axis and variety on the x-axis. The right graph is a violin plot, also with sepal length on the y-axis and variety on the x-axis."}
 ggsave("sepalLengthPlots.pdf")
 ```
 
