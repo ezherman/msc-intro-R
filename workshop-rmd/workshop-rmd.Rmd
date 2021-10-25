@@ -107,17 +107,17 @@ will be our working directory. To set up an RStudio project:
 -   Under the *File* menu in the top left of RStudio, press
     *New Project*, then *New Directory*, then *New Project*.
 -   Provide a *Directory name* - this will be the name of the newly
-    created folder. For example, you could name it `msc-intro-R`.
+    created folder. For example, you could name it `intro_R_workshop`.
 -   Under *Create project as subdirectory of*, select a convenient
     location for this new folder. For example, this could be your
-    desktop or your `Documents` folder.
+    `Documents` folder.
 
 RStudio should now have refreshed, showing us our project environment.
 Open a new script, as we did in the previous section, such that the
 four-panel view is restored. Then press on the *Save* icon to the right
 of the *New File* button. Give the file a convenient name, such as
-`msc-intro-R`. It will then appear in the bottom right of RStudio as
-`msc-intro-R.R`.
+`intro_R_workshop`. It will then appear in the bottom right of RStudio as
+`intro_R_workshop.R`.
 
 ## Saving data files in our working directory
 
@@ -127,7 +127,7 @@ the data files for this workshop and save them inside our project
 directory:
 
 1. Download the data by clicking [here](https://github.com/ezherman/msc-intro-R/raw/main/data.zip).
-2. Unzip the folder, and save the data folder in the `msc-intro-R` folder created earlier.
+2. Unzip the folder, and save the data folder in the `intro_R_workshop` folder created earlier.
 
 Now the data is accessible from our working directory in RStudio.
 
