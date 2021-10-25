@@ -160,11 +160,18 @@ In R, everything that we create or import is saved as an *object*. An
 something as an *object*, this is referred to as *assigning* something
 to that object. *Assigning* is done using the `<-` syntax, as
 shown below. If we wanted to save the number 4 under the name
-`Four`, we would run:
+`Four`, we would type in our script:
 
 ```{r assign value to object example}
 Four <- 4
 ```
+
+There are two ways to run this code:
+
+* With our cursor on the same line as the code, or with the code highlighted, 
+press the "Run" button in the top right of the script panel. 
+* With our cursor on the same line as the code, or with the code highlighted,
+use the keyboard shortcut `Ctrl` + `Enter` (`Cmd` + `Return` on Mac).
 
 After running this code, we see `Four` has appeared in the environment
 window. This confirms that we have successfully *assigned* a value to an
