@@ -327,7 +327,7 @@ Therefore, paste the following code at or near the top of your script:
 
 ```{r load readr}
 # loading a package
-library("readr")
+library(readr)
 ```
 
 You may receive a warning similar to the one above. This warning is
@@ -500,23 +500,17 @@ summary(flowerData) # mean of sepal length is 5.843 and sepal width has no NAs
 > 3. How can multiple data wrangling steps be combined into one
 > command?\
 > 4. How can new columns be created based on existing columns?\
-> 5. What is a factor variable in R?\
-> 6. How are string variables converted to factor variables?\
-> 7. How can group-specific summary statistics be obtained?\
-> 8. How can a *tibble* be saved as a .csv file?
+> 5. How can group-specific summary statistics be obtained?\
+> 6. How can a *tibble* be saved as a .csv file?
 >
 > Objectives:\
 > 1. Use `filter()` to select rows from a *tibble*.\
 > 2. Use `select()` to select columns from a *tibble*.\
 > 3. Use the pipe operator, `%>%`, to link commands together.\
 > 4. Use `mutate()` to create new columns based on existing columns.\
-> 5. Describe the difference between a character variable and a factor
-> variable.\
-> 6. Use `as_factor()` to convert a character variable to a factor
-> variable.\
-> 7. Use `drop_na()`, `group_by()`, `summarise()`, `n()`, `mean()` and
+> 5. Use `drop_na()`, `group_by()`, `summarise()`, `n()`, `mean()` and
 > `sd()` to obtain group-specific summary statistics.\
-> 8. Use `write_csv()` to save a *tibble* as a .csv file.
+> 6. Use `write_csv()` to save a *tibble* as a .csv file.
 
 Now that our data has been loaded in RStudio as a *tibble*, we proceed
 to the stage of "data wrangling": manipulating the data such that it is
@@ -694,106 +688,6 @@ Using `head()` we can see our new column:
 head(healthDataBMI)
 ```
 
-## Using `as_factor()` for categorical variables
-
-When we import categorical variables as part of a *tibble*, they appear
-as a `character` column. See for example the `Sex` column in healthData:
-
-```{r head healthData 2}
-head(healthData)
-```
-
-A `character` column in RStudio is a column with words (also known as
-"strings"). For downstream analyses, it is often useful to convert a
-categorical `character` column into a `factor` column. This has the
-following advantages:
-
--   A character column is prone to typos which can go unseen. In a
-    factor column, there is a limited set of categories (known as
-    levels), such that typos can be spotted easily.
--   A character column does not specify an order for the categories,
-    which can complicate downstream analyses. In a factor column, the
-    levels can be ordered in a specific way, such that plots and models
-    treat the column as we would like them to (e.g. plot the 12 months
-    of the year in the correct order, rather than alphabetically).
-
-We can convert a character column into a factor using the `as_factor()`
-function from the `forcats` package. We do this inside `mutate()`.
-Ensure that you have the `forcats` package installed before you run the
-code below.
-
-```{r sex factor healthData, warning = FALSE}
-library(forcats) # load the required package
-
-healthDataFactor <- healthData %>%
-  mutate(Sex = as_factor(Sex))
-```
-
-Using `head()`, we can see that `Sex` has become a factor. See the
-`<fct>` under `Sex`:
-
-```{r head check healthDataFactor}
-head(healthDataFactor)
-```
-
-We can check that our variable is free of typos by checking the levels
-(i.e. categories) inside our variable using the `pull()` and `levels()`
-*functions*:
-
-```{r levels healthDataFactor}
-healthDataFactor %>%
-  pull(Sex) %>%
-  levels()
-```
-
-This shows us that our factor variable is free of typos, since we have
-only two levels with spelling as expected.
-
-We can change the order of the levels using `fct_relevel()` inside
-`mutate()`:
-
-```{r relevel healthDataFactor}
-healthDataFactorRelevel <- healthDataFactor %>%
-  mutate(Sex = fct_relevel(Sex, "female", "male"))
-```
-
-We then see that the levels have been reordered:
-
-```{r levels healthDataFactorRelevel}
-healthDataFactorRelevel %>%
-  pull(Sex) %>%
-  levels()
-```
-
-Reordering factor levels will come in handy when you need to rearrange your 
-graphs of data.
-
-<details>
-
-<summary>
-
-**Challenge**: Create an object named `flowerDataFactor`, with the
-`variety` column as a factor. Ensure that the levels are ordered as
-"Versicolor", "Virginica", "Setosa". Find the solution in the drop-down.
-
-</summary>
-
-<br>
-
-```{r flowerDataFactor}
-flowerDataFactor <- flowerData %>%
-  mutate(variety = as_factor(variety)) %>%
-  mutate(variety = fct_relevel(variety,
-                               "Versicolor", "Virginica", "Setosa"))
-
-#check that reordering the factor levels worked
-flowerDataFactor %>%
-  pull(variety) %>%
-  levels()
-```
-
-</details>
-
 ## Obtaining group-specific summary statistics
 
 Earlier in this workshop we used `summary()` to obtain summary
@@ -899,17 +793,14 @@ of `NA`s.
 > 1. What is the general format of a `ggplot()` command?\
 > 2. How can this format be adapted for scatterplots and boxplots?\
 > 3. How is Google used to find additional `ggplot2` commands?\
-> 4. How are multiple ggplot graphs grouped into one plotting region?\
-> 5. How are ggplot objects exported from R?
+> 4. How are ggplot objects exported from R?
 >
 > Objectives:\
 > 1. Describe the core components of a `ggplot()` command.\
 > 2. Create scatterplots and boxplots using the `ggplot2` package.\
 > 3. Adjust `ggplot2` objects, for example by adding a title, with the
 > help of Google.\
-> 4. Use the `patchwork` package to group multiple `ggplot()` graphs
-> together.\
-> 5. Use `ggsave()` to export a ggplot plot.
+> 4. Use `ggsave()` to export a ggplot plot.
 
 Once our data is in an appropriate format, we can proceed to
 visualisation. The `ggplot2` package provides *functions* with which data
@@ -1057,6 +948,166 @@ ggplot(flowerData, aes(y = sepal.length, x = variety)) +
 
 </details>
 
+## Exporting plots using `ggsave()`
+
+If you are writing a report or manuscript outside of RStudio, you will
+llikely need to export figures. This can be done using `ggsave()`. Three
+things to note about this function are:
+
+-   By default, `ggsave()` saves the last plot created.
+
+-   `ggsave()` requires a file name, such as `"healthDataPlot.png"`. The
+    plot is saved under this filename in the project working directory.
+
+-   `ggsave()` uses the file extension given in the file name. For
+    example, `"healthDataPlot.png"` will produce a `.png` file, while
+    `"healthDataPlot.pdf"` will produce a `.pdf` file.
+
+For example, to save our `Height` vs `Weight` plot as a `.png` file, we run:
+
+```{r save hieght vs weight part 1, eval = FALSE}
+ggplot(healthData, aes(y = Height, x = Weight)) +
+  geom_point() +
+  labs(title = "Height vs. Weight in the NHANES data")
+```
+
+```{r save height vs weight part 2, warning = FALSE, message = FALSE}
+ggsave("heightVsWeightPlot.png")
+```
+
+We should then have the file `"heightVsWeightPlot.png"` in our project
+working directory.
+
+# Optional material
+
+> Questions:\
+> 1. How are string variables converted to factor variables?\
+> 2. How are groups along the x-axis reordered in a ggplot graph?\
+> 3. How are multiple ggplot graphs grouped into one plotting region?
+>
+> Objectives:\
+> 1. Use `as_factor()` to convert a character variable to a factor
+> variable.\
+> 2. Use `fct_relevel()` to reorder groups along the x-axis of a ggplot graph.\
+> 3. Use the `patchwork` package to group multiple `ggplot()` graphs
+> together.
+
+## Using `as_factor()` for categorical variables
+
+When we import categorical variables as part of a *tibble*, they appear
+as a `character` column. See for example the `Sex` column in healthData:
+
+```{r head healthData 2}
+head(healthData)
+```
+
+A `character` column in RStudio is a column with words (also known as
+"strings"). For downstream analyses, it is often useful to convert a
+categorical `character` column into a `factor` column. This has the
+following advantages:
+
+-   A character column is prone to typos which can go unseen. In a
+    factor column, there is a limited set of categories (known as
+    levels), such that typos can be spotted easily.
+-   A character column does not specify an order for the categories,
+    which can complicate downstream analyses. In a factor column, the
+    levels can be ordered in a specific way, such that plots and models
+    treat the column as we would like them to (e.g. plot the 12 months
+    of the year in the correct order, rather than alphabetically).
+
+We can convert a character column into a factor using the `as_factor()`
+function from the `forcats` package. We do this inside `mutate()`.
+Ensure that you have the `forcats` package installed before you run the
+code below.
+
+```{r sex factor healthData, warning = FALSE}
+library(forcats) # load the required package
+
+healthDataFactor <- healthData %>%
+  mutate(Sex = as_factor(Sex))
+```
+
+Using `head()`, we can see that `Sex` has become a factor. See the
+`<fct>` under `Sex`:
+
+```{r head check healthDataFactor}
+head(healthDataFactor)
+```
+
+We can check that our variable is free of typos by checking the levels
+(i.e. categories) inside our variable using the `pull()` and `levels()`
+*functions*:
+
+```{r levels healthDataFactor}
+healthDataFactor %>%
+  pull(Sex) %>%
+  levels()
+```
+
+This shows us that our factor variable is free of typos, since we have
+only two levels with spelling as expected.
+
+## Using `fct_relevel()` to reorder groups in a factor variable
+
+We can change the order of the levels using `fct_relevel()` inside
+`mutate()`:
+
+```{r relevel healthDataFactor}
+healthDataFactorRelevel <- healthDataFactor %>%
+  mutate(Sex = fct_relevel(Sex, "female", "male"))
+```
+
+We then see that the levels have been reordered:
+
+```{r levels healthDataFactorRelevel}
+healthDataFactorRelevel %>%
+  pull(Sex) %>%
+  levels()
+```
+
+Reordering factor levels is handy when you need to rearrange your 
+graphs of data. For example, a boxplot of Height by Sex using `healthDataFactor`
+has "male" as the left-most boxplot:
+
+```{r boxplot healthDataFactor, warning=FALSE}
+ggplot(healthDataFactor, aes(y = Height, x = Sex)) +
+    geom_boxplot()
+```
+
+In contrast, the same code on `healthDataFactorRelevel` returns a graph 
+with "female" as the left-most boxplot:
+
+```{r boxplot healthDataFactorRelevel, warning=FALSE}
+ggplot(healthDataFactorRelevel, aes(y = Height, x = Sex)) +
+    geom_boxplot()
+```
+
+<details>
+
+<summary>
+
+**Challenge**: Create an object named `flowerDataFactor`, with the
+`variety` column as a factor. Ensure that the levels are ordered as
+"Versicolor", "Virginica", "Setosa". Find the solution in the drop-down.
+
+</summary>
+
+<br>
+
+```{r flowerDataFactor}
+flowerDataFactor <- flowerData %>%
+  mutate(variety = as_factor(variety)) %>%
+  mutate(variety = fct_relevel(variety,
+                               "Versicolor", "Virginica", "Setosa"))
+
+#check that reordering the factor levels worked
+flowerDataFactor %>%
+  pull(variety) %>%
+  levels()
+```
+
+</details>
+
 ## Grouping multiple plots into one region using the `patchwork` package
 
 Often we want to visualise data in more than one way. In this case, it
@@ -1089,35 +1140,6 @@ names, separated by a `+`:
 p1 + p2
 ```
 
-## Exporting plots using `ggsave()`
-
-If you are writing a report or manuscript outside of RStudio, you will
-llikely need to export figures. This can be done using `ggsave()`. Three
-things to note about this function are:
-
--   By default, `ggsave()` saves the last plot created.
-
--   `ggsave()` requires a file name, such as `"healthDataPlot.png"`. The
-    plot is saved under this filename in the project working directory.
-
--   `ggsave()` uses the file extension given in the file name. For
-    example, `"healthDataPlot.png"` will produce a `.png` file, while
-    `"healthDataPlot.pdf"` will produce a `.pdf` file.
-
-For example, to save our figure that combined `Height` vs `Weight` and
-`Height` vs `Age`, as a `.png` file, we run:
-
-```{r save patchwork healthData part 1, eval = FALSE}
-p1 + p2
-```
-
-```{r save patchwork healthData part 2, warning = FALSE, message = FALSE}
-ggsave("healthDataPlot.png")
-```
-
-We should then have the file `"healthDataPlot.png"` in our project
-working directory.
-
 <details>
 
 <summary>
@@ -1131,7 +1153,7 @@ working directory. Find the solution in the drop-down.
 
 <br>
 
-```{r patchwork and save sepal length plots, message = FALSE}
+```{r patchwork sepal length plots, message = FALSE}
 p1 <- ggplot(flowerData, aes(y = sepal.length, x = variety)) +
   geom_boxplot()
 
@@ -1139,8 +1161,11 @@ p2 <- ggplot(flowerData, aes(y = sepal.length, x = variety)) +
   geom_violin()
 
 p1 + p2
+```
 
+```{r save sepal length plots, eval = FALSE}
 ggsave("sepalLengthPlots.pdf")
 ```
+
 
 </details>
