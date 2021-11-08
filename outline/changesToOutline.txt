@@ -1,7 +1,0 @@
-google title
-
-tibble = data.frame
-
-factor potentially if there is time
-
-1 EXAMPLE OF PACKAGE INSTALL & LOAD AT THE START, THEN SCROLL UP FOR LATER (incl error message)
