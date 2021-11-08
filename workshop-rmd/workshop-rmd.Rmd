@@ -960,12 +960,12 @@ things to note about this function are:
 
 -   By default, `ggsave()` saves the last plot created.
 
--   `ggsave()` requires a file name, such as `"healthDataPlot.png"`. The
+-   `ggsave()` requires a file name, such as `"heightVsWeightPlot.png"`. The
     plot is saved under this filename in the project working directory.
 
 -   `ggsave()` uses the file extension given in the file name. For
-    example, `"healthDataPlot.png"` will produce a `.png` file, while
-    `"healthDataPlot.pdf"` will produce a `.pdf` file.
+    example, `"heightVsWeightPlot.png"` will produce a `.png` file, while
+    `"heightVsWeightPlot.pdf"` will produce a `.pdf` file.
 
 For example, to save our `Height` vs `Weight` plot as a `.png` file, we run:
 

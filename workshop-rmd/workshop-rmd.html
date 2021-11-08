@@ -848,8 +848,8 @@ write_csv(summarySepalWidth, &quot;summarySepalWidth.csv&quot;)</code></pre>
 <p>If you are writing a report or manuscript outside of RStudio, you will llikely need to export figures. This can be done using <code>ggsave()</code>. Three things to note about this function are:</p>
 <ul>
 <li><p>By default, <code>ggsave()</code> saves the last plot created.</p></li>
-<li><p><code>ggsave()</code> requires a file name, such as <code>&quot;healthDataPlot.png&quot;</code>. The plot is saved under this filename in the project working directory.</p></li>
-<li><p><code>ggsave()</code> uses the file extension given in the file name. For example, <code>&quot;healthDataPlot.png&quot;</code> will produce a <code>.png</code> file, while <code>&quot;healthDataPlot.pdf&quot;</code> will produce a <code>.pdf</code> file.</p></li>
+<li><p><code>ggsave()</code> requires a file name, such as <code>&quot;heightVsWeightPlot.png&quot;</code>. The plot is saved under this filename in the project working directory.</p></li>
+<li><p><code>ggsave()</code> uses the file extension given in the file name. For example, <code>&quot;heightVsWeightPlot.png&quot;</code> will produce a <code>.png</code> file, while <code>&quot;heightVsWeightPlot.pdf&quot;</code> will produce a <code>.pdf</code> file.</p></li>
 </ul>
 <p>For example, to save our <code>Height</code> vs <code>Weight</code> plot as a <code>.png</code> file, we run:</p>
 <pre class="r"><code>ggplot(healthData, aes(y = Height, x = Weight)) +
