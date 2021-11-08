@@ -337,9 +337,6 @@ Therefore, paste the following code at or near the top of your script:
 library(readr)
 ```
 
-You may receive a warning similar to the one above. This warning is
-usually not something to worry about.
-
 As we progress through the workshop, we will encounter other *packages*.
 You will get a chance to further practice installing and loading *packages* then.
 
