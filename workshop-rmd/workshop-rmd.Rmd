@@ -128,10 +128,11 @@ the data files for this workshop and save them inside our project
 directory:
 
 1. Create a folder named `data` in your working directory by pressing on 'New Folder' in the *Files* panel (bottom right panel).
-2. Save the example data (`NHANES.csv`) from [here](https://raw.githubusercontent.com/ezherman/msc-intro-R/main/data/NHANES.csv) into the `data` folder.
-3. Save the exercise data (`iris.csv`) from [here](https://raw.githubusercontent.com/ezherman/msc-intro-R/main/data/iris.csv) into the `data` folder.
+2. Similarly, create a folder named `results` in your working directory.
+3. Save the example data (`NHANES.csv`) from [here](https://raw.githubusercontent.com/ezherman/msc-intro-R/main/data/NHANES.csv) into the `data` folder.
+4. Save the exercise data (`iris.csv`) from [here](https://raw.githubusercontent.com/ezherman/msc-intro-R/main/data/iris.csv) into the `data` folder.
 
-Now the data is accessible from our working directory in RStudio.
+Now the data is accessible from the `data` folder in our working directory in RStudio.
 
 # Writing code in a script
 
@@ -747,20 +748,27 @@ subsection.
 To do this, we create an object for the summary table. Then we export
 the *tibble* using the `write_csv()` function from the `readr` package.
 We provide a name for the file inside `write_csv()` within quotes. By
-default, the file is saved in our working directory.
+default, the file is saved in our `results`` directory.
 
-```{r export health_data summary table, warning = FALSE}
+```{r export health_data summary table part 1, warning = FALSE}
 height_summary <- health_data %>% #give the summary table a name
   drop_na(Height) %>% 
   group_by(Sex) %>%
   summarise(n = n(),
             mean = mean(Height),
             sd = sd(Height))
-
-write_csv(height_summary, "height_summary.csv")
 ```
 
-After running this code, check in your working directory that the file
+```{r export health_data part 2, eval = FALSE}
+write_csv(height_summary, "results/height_summary.csv")
+```
+
+```{r export health_data for developer, include = FALSE}
+write_csv(height_summary, "../results/height_summary.csv")
+```
+
+
+After running this code, check in your `results`` directory that the file
 has indeed been created.
 
 <details>
@@ -776,14 +784,20 @@ directory. Find the solution in the drop-down.
 
 <br>
 
-```{r sepal_width_summary}
+```{r sepal_width_summary part 1}
 sepal_width_summary <- flower_data %>% 
   group_by(variety) %>%
   summarise(n = n(),
             mean = mean(sepal.width),
             sd = sd(sepal.width))
+```
 
-write_csv(sepal_width_summary, "sepal_width_summary.csv")
+```{r sepal_width_summary part 2, eval = FALSE}
+write_csv(sepal_width_summary, "results/sepal_width_summary.csv")
+```
+
+```{r sepal_width_summary part 2 for developer, include = FALSE}
+write_csv(sepal_width_summary, "../results/sepal_width_summary.csv")
 ```
 
 Notice that no `drop_na()` is not required, since `sepal.width` is free
@@ -940,7 +954,7 @@ things to note about this function are:
 -   By default, `ggsave()` saves the last plot created.
 
 -   `ggsave()` requires a file name, such as `"height_weight_plot.png"`. The
-    plot is saved under this filename in the project working directory.
+    plot is saved under this filename in the specified directory.
 
 -   `ggsave()` uses the file extension given in the file name. For
     example, `"height_weight_plot.png"` will produce a `.png` file, while
@@ -954,12 +968,16 @@ ggplot(health_data, aes(y = Height, x = Weight)) +
   labs(title = "Height vs. Weight in the NHANES data")
 ```
 
-```{r save height vs weight part 2, warning = FALSE, message = FALSE}
-ggsave("height_weight_plot.png")
+```{r save height vs weight part 2, eval = FALSE}
+ggsave("results/height_weight_plot.png")
 ```
 
-We should then have the file `"height_weight_plot.png"` in our project
-working directory.
+```{r save height vs weight part 2 for developer, include = FALSE}
+ggsave("../results/height_weight_plot.png")
+```
+
+We should then have the file `"height_weight_plot.png"` in our `results` 
+directory.
 
 <details>
 
@@ -980,11 +998,15 @@ ggplot(flower_data, aes(y = sepal.length, x = variety)) +
     geom_violin()
 ```
 
-```{r ggsave violin plot}
+```{r ggsave violin plot, eval = FALSE}
 # To export to pdf, we use the .pdf file extension
-ggsave("sepal_length_by_variety_violin_plot.pdf")
+ggsave("results/sepal_length_by_variety_violin_plot.pdf")
 ```
 
+```{r ggsave violin plot for developer, include = FALSE}
+# To export to pdf, we use the .pdf file extension
+ggsave("../results/sepal_length_by_variety_violin_plot.pdf")
+```
 
 </details>
 
@@ -1156,8 +1178,8 @@ p1 + p2
 
 **Challenge**: Save the boxplot and the violin plot of `sepal.length` as
 objects, named `p1` and `p2`. Plot these graphs in one plotting region
-using `patchwork`. Then, save this as a `.pdf` file in your project
-working directory. Find the solution in the drop-down.
+using `patchwork`. Then, save this as a `.pdf` file in your results
+folder. Find the solution in the drop-down.
 
 </summary>
 
@@ -1173,9 +1195,12 @@ p2 <- ggplot(flower_data, aes(y = sepal.length, x = variety)) +
 p1 + p2
 ```
 
-```{r save sepal length plots, eval = TRUE, fig.alt="A composite figure consisting of two graphs. The left graph is a boxplot with sepal length on the y-axis and variety on the x-axis. The right graph is a violin plot, also with sepal length on the y-axis and variety on the x-axis."}
-ggsave("sepal_length_plots.pdf")
+```{r save sepal length plots, eval = FALSE, fig.alt="A composite figure consisting of two graphs. The left graph is a boxplot with sepal length on the y-axis and variety on the x-axis. The right graph is a violin plot, also with sepal length on the y-axis and variety on the x-axis."}
+ggsave("results/sepal_length_plots.pdf")
 ```
 
+```{r save sepal length plots for developer, include = FALSE, fig.alt="A composite figure consisting of two graphs. The left graph is a boxplot with sepal length on the y-axis and variety on the x-axis. The right graph is a violin plot, also with sepal length on the y-axis and variety on the x-axis."}
+ggsave("../results/sepal_length_plots.pdf")
+```
 
 </details>
