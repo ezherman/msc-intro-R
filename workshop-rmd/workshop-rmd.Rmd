@@ -19,11 +19,11 @@ library(patchwork)
 ```
 
 ```{r import NHANES data for developer, include = FALSE}
-healthData <- readr::read_csv("../data/NHANES.csv")
+health_data <- readr::read_csv("../data/NHANES.csv")
 ```
 
 ```{r import iris data for developer, include = FALSE}
-flowerData <- readr::read_csv("../data/iris.csv")
+flower_data <- readr::read_csv("../data/iris.csv")
 ```
 
 This document contains all the materials covered in the Introduction to
@@ -160,10 +160,10 @@ In R, everything that we create or import is saved as an *object*. An
 something as an *object*, this is referred to as *assigning* something
 to that object. *Assigning* is done using the `<-` syntax, as
 shown below. If we wanted to save the number 4 under the name
-`Four`, we would type in our script:
+`four`, we would type in our script:
 
 ```{r assign value to object example}
-Four <- 4
+four <- 4
 ```
 
 There are two ways to run this code:
@@ -173,7 +173,7 @@ press the "Run" button in the top right of the script panel.
 * With our cursor on the same line as the code, or with the code highlighted,
 use the keyboard shortcut `Ctrl` + `Enter` (`Cmd` + `Return` on Mac).
 
-After running this code, we see `Four` has appeared in the environment
+After running this code, we see `four` has appeared in the environment
 window. This confirms that we have successfully *assigned* a value to an
 *object*.
 
@@ -364,10 +364,10 @@ survey in the US. This data should be located inside the `data` folder
 of your working directory. We import the data as follows:
 
 ```{r import NHANES data for learners, eval = FALSE}
-healthData <- read_csv("data/NHANES.csv")
+health_data <- read_csv("data/NHANES.csv")
 ```
 
-We can see that `healthData` has appeared in the *environment* panel. This
+We can see that `health_data` has appeared in the *environment* panel. This
 *object* is a *tibble*, which you can think of as the RStudio equivalent
 of a spreadsheet. The main difference is that in a *tibble*, each column
 is a *vector*. Recall that within a *vector*, data must be of the same
@@ -376,7 +376,7 @@ type.
 
 ## A note on *tibble* vs *data frame*
 
-In the previous section we created the *tibble* `healthData`. As you
+In the previous section we created the *tibble* `health_data`. As you
 come to using RStudio independently, you are likely to come across the
 *data frame*. The *tibble* and the *data frame* are very similar - in
 fact, *tibble* is a type of *data frame*. In this workshop we limit
@@ -389,20 +389,20 @@ blog](https://www.jumpingrivers.com/blog/the-trouble-with-tibbles/).
 ## Viewing a *tibble*
 
 We will cover four ways to quickly inspect the *tibble* that we have
-just created. Firstly, we can view `healthData` as a whole, analogous to
+just created. Firstly, we can view `health_data` as a whole, analogous to
 the view that Excel would provide us with. We can do this using the
 `View()` function (note the capital `V`). The code below will open a new
 tab in RStudio, allowing us to scroll through the data:
 
-```{r view healthData, eval=FALSE}
-View(healthData)
+```{r view health_data, eval=FALSE}
+View(health_data)
 ```
 
 Alternatively, we can ask RStudio to display the first six rows of
-`healthData` using the `head()` function:
+`health_data` using the `head()` function:
 
-```{r head healthData}
-head(healthData)
+```{r head health_data}
+head(health_data)
 ```
 
 This output is useful for a few checks:
@@ -419,16 +419,16 @@ We may also want to check that the *tibble* has the same number of rows
 and columns as we expect. We can do so using the *functions* `nrow()` and
 `ncol()`, respectively:
 
-```{r nrow and ncol healthData}
-nrow(healthData)
-ncol(healthData)
+```{r nrow and ncol health_data}
+nrow(health_data)
+ncol(health_data)
 ```
 
 Finally, we may want to have a look at the spread of our continuous
 data. We can obtain a view of this using the `summary()` function:
 
-```{r summary healthData}
-summary(healthData)
+```{r summary health_data}
+summary(health_data)
 ```
 
 This output shows us for each column with continuous data the smallest
@@ -445,7 +445,7 @@ in our data, we would need to investigate where these `NA's` came from.
 <summary>
 
 **Challenge**: Import the csv file `iris.csv` as a *tibble* named
-`flowerData`. This file contains data on the length and width of sepals
+`flower_data`. This file contains data on the length and width of sepals
 and petals of three species of iris. Then, find out the following about
 the *tibble*:
 
@@ -484,14 +484,14 @@ Find the solution in the drop-down.
 <br>
 
 ```{r import iris for learners, eval = FALSE}
-flowerData <- read_csv("data/iris.csv") # import the data
+flower_data <- read_csv("data/iris.csv") # import the data
 ```
 
 ```{r iris import results}
-head(flowerData) # find the column names in head() output
-nrow(flowerData) # number of rows
-ncol(flowerData) # number of columns
-summary(flowerData) # mean of sepal length is 5.843 and sepal width has no NAs
+head(flower_data) # find the column names in head() output
+nrow(flower_data) # number of rows
+ncol(flower_data) # number of columns
+summary(flower_data) # mean of sepal length is 5.843 and sepal width has no NAs
 ```
 
 </details>
@@ -555,20 +555,20 @@ library(dplyr) # load dplyr, needs to be done every time RStudio is started up
 </details>
 
 To select particular rows, we use the `filter()` function. This function
-takes our *tibble* of interest (`healthData`) and a criterion for
+takes our *tibble* of interest (`health_data`) and a criterion for
 filtering. For example, to select rows with participants of the female
-sex from `healthData`, then the criterion is `Sex == "female"` (note the
+sex from `health_data`, then the criterion is `Sex == "female"` (note the
 use of the double `=`):
 
 ```{r filter female data}
-filter(healthData, Sex == "female")
+filter(health_data, Sex == "female")
 ```
 
 We could also filter based on a column with continuous data. For
 example, if we wanted to retain the data on participants below 170 cm:
 
 ```{r filter height data}
-filter(healthData, Height < 170)
+filter(health_data, Height < 170)
 ```
 
 The function for selecting columns is `select()`. The names of the
@@ -576,39 +576,39 @@ columns that we want to keep are included inside `select()` as a vector.
 For example, to retain the `ID` and `Height` columns:
 
 ```{r select ID and Height data}
-select(healthData, c(ID, Height))
+select(health_data, c(ID, Height))
 ```
 
 We could also specify columns to exclude using `-c()`. For example, to
 exclude the `Weight` column:
 
 ```{r select all but Weight data}
-select(healthData, -c(Weight))
+select(health_data, -c(Weight))
 ```
 
 Note that the output from each of these commands can be saved as an
-object. For example, to save `healthData` with the `Weight` column
+object. For example, to save `health_data` with the `Weight` column
 excluded:
 
-```{r save noWeight, eval = FALSE}
-noWeight <- select(healthData, -c(Weight))
+```{r save health_data_no_weight, eval = FALSE}
+health_data_no_weight <- select(health_data, -c(Weight))
 ```
 
 ## Linking data wrangling commands using `%>%`
 
 Often when data is wrangled, multiple steps need to be combined. For
-example, we might want to exclude the `Weight` column from `healthData`
+example, we might want to exclude the `Weight` column from `health_data`
 and only retain data on participants of the female `Sex`. The long way
 to do this would be to create a new object at each step of the data
 wrangling:
 
 ```{r long way select and filter, eval = FALSE}
-noWeight <- select(healthData, -c(Weight))
-noWeightFemale <- filter(noWeight, Sex == "female") 
+health_data_no_weight <- select(health_data, -c(Weight))
+health_data_no_weight_only_female <- filter(health_data_no_weight, Sex == "female") 
 ```
 
-Note that in the `filter()` step, we specify `noWeight` as the data,
-rather than `healthData`. So here we `select()` for columns and then
+Note that in the `filter()` step, we specify `health_data_no_weight` as the data,
+rather than `health_data`. So here we `select()` for columns and then
 `filter()` for rows on the reduced data from `select()`.
 
 This operation would be easier if we could link the `select()` and
@@ -617,8 +617,8 @@ This operation would be easier if we could link the `select()` and
 "then". In the example below, we select all but the `Weight` column,
 **then** we filter for participants of the female `Sex`:
 
-```{r select then filter healthData}
-noWeightFemale <- select(healthData, -c(Weight)) %>%
+```{r select then filter health_data}
+health_data_no_weight_only_female <- select(health_data, -c(Weight)) %>%
   filter(Sex == "female")
 ```
 
@@ -629,8 +629,8 @@ step.
 It is common to provide the *tibble* by itself in the first command,
 such that the chain becomes:
 
-```{r select then filter healthData 2}
-noWeightFemale <- healthData %>%
+```{r select then filter health_data 2}
+health_data_no_weight_only_female <- health_data %>%
   select(-c(Weight)) %>%
   filter(Sex == "female")
 ```
@@ -639,8 +639,8 @@ noWeightFemale <- healthData %>%
 
 <summary>
 
-**Challenge**: Create an object named `setosaSepal`, a subset of
-`flowerData`, with:
+**Challenge**: Create an object named `flower_data_setosa_sepal`, a subset of
+`flower_data`, with:
 
 <ul>
 
@@ -665,7 +665,7 @@ Find the solution in the drop-down.
 <br>
 
 ```{r make smallSetosa}
-setosaSepal <- flowerData %>%
+flower_data_setosa_sepal <- flower_data %>%
   filter(variety == "Setosa") %>%
   select(c(sepal.length, sepal.width))
 ```
@@ -676,20 +676,20 @@ setosaSepal <- flowerData %>%
 
 Often we want to add new columns to our *tibble*, based on existing
 columns. For example, we may want to add a `BMI` column to our
-`healthData` object, based on the `Height` and `Weight` columns. The BMI
+`health_data` object, based on the `Height` and `Weight` columns. The BMI
 is calculated by dividing `Weight` by `Height` squared. Since `Height`
-in `healthData` is in cm, we divide `Height` by 100. We create the `BMI`
+in `health_data` is in cm, we divide `Height` by 100. We create the `BMI`
 column using `mutate()`:
 
-```{r create healthDataBMI}
-healthDataBMI <- healthData %>%
+```{r create health_data_BMI}
+health_data_BMI <- health_data %>%
   mutate(BMI = Weight/(Height/100)^2)
 ```
 
 Using `head()` we can see our new column:
 
-```{r head healthDataBMI}
-head(healthDataBMI)
+```{r head health_data_BMI}
+head(health_data_BMI)
 ```
 
 ## Obtaining group-specific summary statistics
@@ -698,7 +698,7 @@ Earlier in this workshop we used `summary()` to obtain summary
 statistics for each column in our *tibble*. Alternatively, we may want
 to obtain group-specific summary statistics. For example, we may want
 summary statistics for `Height`, grouped by `Sex`, from our
-`healthData`.
+`health_data`.
 
 In this example we will ask RStudio to return the mean, standard
 deviation and number of observations for `Height`, grouped by `Sex`.
@@ -710,7 +710,7 @@ of height using `sd()`. Each of these values is given a name, which we
 specify ahead of the `=` signs.
 
 ```{r summarise height by Sex with NAs}
-healthData %>%
+health_data %>%
   group_by(Sex) %>%
   summarise(n = n(),
             mean = mean(Height),
@@ -726,7 +726,7 @@ that you install the `tidyr` package before running the code below.
 ```{r summarise height by Sex without NAs, warning = FALSE}
 library(tidyr) #load package for drop_na()
 
-healthData %>%
+health_data %>%
   drop_na(Height) %>% #remove NAs in Height
   group_by(Sex) %>%
   summarise(n = n(),
@@ -749,15 +749,15 @@ the *tibble* using the `write_csv()` function from the `readr` package.
 We provide a name for the file inside `write_csv()` within quotes. By
 default, the file is saved in our working directory.
 
-```{r export healthData summary table, warning = FALSE}
-summaryHeight <- healthData %>% #give the summary table a name
+```{r export health_data summary table, warning = FALSE}
+height_summary <- health_data %>% #give the summary table a name
   drop_na(Height) %>% 
   group_by(Sex) %>%
   summarise(n = n(),
             mean = mean(Height),
             sd = sd(Height))
 
-write_csv(summaryHeight, "summaryHeight.csv")
+write_csv(height_summary, "height_summary.csv")
 ```
 
 After running this code, check in your working directory that the file
@@ -769,21 +769,21 @@ has indeed been created.
 
 **Challenge**: Create a *tibble* with the number of observations, mean
 and standard deviation of sepal width, grouped by variety. Name this
-object `summarySepalWidth` and save it as a `.csv` file in your working
+object `sepal_width_summary` and save it as a `.csv` file in your working
 directory. Find the solution in the drop-down.
 
 </summary>
 
 <br>
 
-```{r summarySepalWidth}
-summarySepalWidth <- flowerData %>% 
+```{r sepal_width_summary}
+sepal_width_summary <- flower_data %>% 
   group_by(variety) %>%
   summarise(n = n(),
             mean = mean(sepal.width),
             sd = sd(sepal.width))
 
-write_csv(summarySepalWidth, "summarySepalWidth.csv")
+write_csv(sepal_width_summary, "sepal_width_summary.csv")
 ```
 
 Notice that no `drop_na()` is not required, since `sepal.width` is free
@@ -839,10 +839,10 @@ Here we will adapt the general format presented above to create
 scatterplots and boxplots. Make sure you have the `ggplot2` package
 installed and loaded before proceeding.
 
-To create a scatterplot of `Height` vs `Weight` in our `healthData`, we:
+To create a scatterplot of `Height` vs `Weight` in our `health_data`, we:
 
 1.  Use the `ggplot()` function;
-2.  Include `healthData` as our `<DATA>`;
+2.  Include `health_data` as our `<DATA>`;
 3.  Specify the mappings `y = Height` and `x = Weight` inside `aes()`;
 4.  Use the scatterplot function at `<GEOM_FUNCTION>`, which is
     `geom_point()`.
@@ -850,7 +850,7 @@ To create a scatterplot of `Height` vs `Weight` in our `healthData`, we:
 The code and output therefore become:
 
 ```{r ggplot height weight scatter, warning = FALSE, fig.alt="A scatterplot with Height on the y-axis and Weight on the x-axis. The data show Height increasing sharply with Weight, followed by a leveling off of the increase."}
-ggplot(healthData, aes(y = Height, x = Weight)) +
+ggplot(health_data, aes(y = Height, x = Weight)) +
     geom_point()
 ```
 
@@ -866,7 +866,7 @@ In the challenge below you can try to create a boxplot. Rather than
 <summary>
 
 **Challenge**: Create a boxplot of `sepal.length` across `variety` from
-the `flowerData`. Think closely about which variables should be denoted
+the `flower_data`. Think closely about which variables should be denoted
 as `y` and `x` as the mappings inside `aes()`. Find the solution in the
 drop-down.
 
@@ -875,7 +875,7 @@ drop-down.
 <br>
 
 ```{r boxplot sepal length, fig.alt="A boxplot with sepal length on the y-axis and Variety on the x-axis. The boxplots appear, from left to right, in the order: Setosa, Versicolor, Virginica. The median sepal length increases across the three boxplots, from left to right."}
-ggplot(flowerData, aes(y = sepal.length, x = variety)) +
+ggplot(flower_data, aes(y = sepal.length, x = variety)) +
     geom_boxplot()
 ```
 
@@ -926,7 +926,7 @@ knitr::include_graphics("../img/sthda_2.png")
 Trying this with our plot gives:
 
 ```{r ggplot height weight scatter with title, warning = FALSE, fig.alt="A scatterplot with Height on the y-axis and Weight on the x-axis. The following title is included: Height vs. Weight in the NHANES data."}
-ggplot(healthData, aes(y = Height, x = Weight)) +
+ggplot(health_data, aes(y = Height, x = Weight)) +
   geom_point() +
   labs(title = "Height vs. Weight in the NHANES data")
 ```
@@ -939,26 +939,26 @@ things to note about this function are:
 
 -   By default, `ggsave()` saves the last plot created.
 
--   `ggsave()` requires a file name, such as `"heightVsWeightPlot.png"`. The
+-   `ggsave()` requires a file name, such as `"height_weight_plot.png"`. The
     plot is saved under this filename in the project working directory.
 
 -   `ggsave()` uses the file extension given in the file name. For
-    example, `"heightVsWeightPlot.png"` will produce a `.png` file, while
-    `"heightVsWeightPlot.pdf"` will produce a `.pdf` file.
+    example, `"height_weight_plot.png"` will produce a `.png` file, while
+    `"height_weight_plot.pdf"` will produce a `.pdf` file.
 
 For example, to save our `Height` vs `Weight` plot as a `.png` file, we run:
 
 ```{r save hieght vs weight part 1, eval = FALSE}
-ggplot(healthData, aes(y = Height, x = Weight)) +
+ggplot(health_data, aes(y = Height, x = Weight)) +
   geom_point() +
   labs(title = "Height vs. Weight in the NHANES data")
 ```
 
 ```{r save height vs weight part 2, warning = FALSE, message = FALSE}
-ggsave("heightVsWeightPlot.png")
+ggsave("height_weight_plot.png")
 ```
 
-We should then have the file `"heightVsWeightPlot.png"` in our project
+We should then have the file `"height_weight_plot.png"` in our project
 working directory.
 
 <details>
@@ -968,7 +968,7 @@ working directory.
 **Challenge**: Boxplots are often being replaced by violin plots, as
 these show the distribution of the data more clearly. Use Google to find
 the command for a violin plot. Then, adapt your code for the boxplot of
-`sepal.length` across `variety` from the `flowerData` to create a violin
+`sepal.length` across `variety` from the `flower_data` to create a violin
 plot. Finally, save this plot as a `.pdf` file. Find the solution in the drop-down.
 
 </summary>
@@ -976,7 +976,7 @@ plot. Finally, save this plot as a `.pdf` file. Find the solution in the drop-do
 <br>
 
 ```{r violin plot sepal length, fig.alt="A violin plot with sepal length on the y-axis and Variety on the x-axis. The violin plots appear, from left to right, in the order: Setosa, Versicolor, Virginica. The violin plot for Setosa has a wide central region and narrow regions towards the ends. The violin pots for Versicolor and Virginica are less wide in the centre."}
-ggplot(flowerData, aes(y = sepal.length, x = variety)) +
+ggplot(flower_data, aes(y = sepal.length, x = variety)) +
     geom_violin()
 ```
 
@@ -1005,10 +1005,10 @@ ggsave("sepal_length_by_variety_violin_plot.pdf")
 ## Using `as_factor()` for categorical variables
 
 When we import categorical variables as part of a *tibble*, they appear
-as a `character` column. See for example the `Sex` column in healthData:
+as a `character` column. See for example the `Sex` column in health_data:
 
-```{r head healthData 2}
-head(healthData)
+```{r head health_data 2}
+head(health_data)
 ```
 
 A `character` column in RStudio is a column with words (also known as
@@ -1030,26 +1030,26 @@ function from the `forcats` package. We do this inside `mutate()`.
 Ensure that you have the `forcats` package installed before you run the
 code below.
 
-```{r sex factor healthData, warning = FALSE}
+```{r sex factor health_data, warning = FALSE}
 library(forcats) # load the required package
 
-healthDataFactor <- healthData %>%
+health_data_factor <- health_data %>%
   mutate(Sex = as_factor(Sex))
 ```
 
 Using `head()`, we can see that `Sex` has become a factor. See the
 `<fct>` under `Sex`:
 
-```{r head check healthDataFactor}
-head(healthDataFactor)
+```{r head check health_data_factor}
+head(health_data_factor)
 ```
 
 We can check that our variable is free of typos by checking the levels
 (i.e. categories) inside our variable using the `pull()` and `levels()`
 *functions*:
 
-```{r levels healthDataFactor}
-healthDataFactor %>%
+```{r levels health_data_factor}
+health_data_factor %>%
   pull(Sex) %>%
   levels()
 ```
@@ -1062,33 +1062,33 @@ only two levels with spelling as expected.
 We can change the order of the levels using `fct_relevel()` inside
 `mutate()`:
 
-```{r relevel healthDataFactor}
-healthDataFactorRelevel <- healthDataFactor %>%
+```{r relevel health_data_factor}
+health_data_factor_relevel <- health_data_factor %>%
   mutate(Sex = fct_relevel(Sex, "female", "male"))
 ```
 
 We then see that the levels have been reordered:
 
-```{r levels healthDataFactorRelevel}
-healthDataFactorRelevel %>%
+```{r levels health_data_factor_relevel}
+health_data_factor_relevel %>%
   pull(Sex) %>%
   levels()
 ```
 
 Reordering factor levels is handy when you need to rearrange your 
-graphs of data. For example, a boxplot of Height by Sex using `healthDataFactor`
+graphs of data. For example, a boxplot of Height by Sex using `health_data_factor`
 has "male" as the left-most boxplot:
 
-```{r boxplot healthDataFactor, warning=FALSE, fig.alt="A boxplot with Height on the y-axis and Sex on the x-axis. From left to right, the boxplots are in the following order: male, female."}
-ggplot(healthDataFactor, aes(y = Height, x = Sex)) +
+```{r boxplot health_data_factor, warning=FALSE, fig.alt="A boxplot with Height on the y-axis and Sex on the x-axis. From left to right, the boxplots are in the following order: male, female."}
+ggplot(health_data_factor, aes(y = Height, x = Sex)) +
     geom_boxplot()
 ```
 
-In contrast, the same code on `healthDataFactorRelevel` returns a graph 
+In contrast, the same code on `health_data_factor_relevel` returns a graph 
 with "female" as the left-most boxplot:
 
-```{r boxplot healthDataFactorRelevel, warning=FALSE, fig.alt="A boxplot with Height on the y-axis and Sex on the x-axis. From left to right, the boxplots are in the following order: female, male."}
-ggplot(healthDataFactorRelevel, aes(y = Height, x = Sex)) +
+```{r boxplot health_data_factor_relevel, warning=FALSE, fig.alt="A boxplot with Height on the y-axis and Sex on the x-axis. From left to right, the boxplots are in the following order: female, male."}
+ggplot(health_data_factor_relevel, aes(y = Height, x = Sex)) +
     geom_boxplot()
 ```
 
@@ -1096,7 +1096,7 @@ ggplot(healthDataFactorRelevel, aes(y = Height, x = Sex)) +
 
 <summary>
 
-**Challenge**: Create an object named `flowerDataFactor`, with the
+**Challenge**: Create an object named `flower_data_factor`, with the
 `variety` column as a factor. Ensure that the levels are ordered as
 "Versicolor", "Virginica", "Setosa". Find the solution in the drop-down.
 
@@ -1104,14 +1104,14 @@ ggplot(healthDataFactorRelevel, aes(y = Height, x = Sex)) +
 
 <br>
 
-```{r flowerDataFactor}
-flowerDataFactor <- flowerData %>%
+```{r flower_data_factor}
+flower_data_factor <- flower_data %>%
   mutate(variety = as_factor(variety)) %>%
   mutate(variety = fct_relevel(variety,
                                "Versicolor", "Virginica", "Setosa"))
 
 #check that reordering the factor levels worked
-flowerDataFactor %>%
+flower_data_factor %>%
   pull(variety) %>%
   levels()
 ```
@@ -1131,7 +1131,7 @@ example, to save our `Height` vs `Weight` plot under the name `p1`, we
 run:
 
 ```{r ggplot height weight scatter saved as object, warning = FALSE}
-p1 <- ggplot(healthData, aes(y = Height, x = Weight)) +
+p1 <- ggplot(health_data, aes(y = Height, x = Weight)) +
   geom_point() 
 ```
 
@@ -1139,14 +1139,14 @@ Let's save a second plot under the name `p2`, this time a scatterplot of
 `Height` across `Age`:
 
 ```{r ggplot height age scatter saved as object, warning = FALSE}
-p2 <- ggplot(healthData, aes(y = Height, x = Age)) +
+p2 <- ggplot(health_data, aes(y = Height, x = Age)) +
   geom_point() 
 ```
 
 Both plots can be shown in one plotting region by running the object
 names, separated by a `+`:
 
-```{r patchwork healthData, warning = FALSE, fig.alt="A composite figure consisting of two scatterplots. The left graph has Height on the y-axis and Weight on the x-axis. The right graph has Height on the y-axis and Age on the x-axis. Both graphs show an initial sharp increase in the y-axis as the x-axis values increase, followed by a leveling off of the increase."}
+```{r patchwork health_data, warning = FALSE, fig.alt="A composite figure consisting of two scatterplots. The left graph has Height on the y-axis and Weight on the x-axis. The right graph has Height on the y-axis and Age on the x-axis. Both graphs show an initial sharp increase in the y-axis as the x-axis values increase, followed by a leveling off of the increase."}
 p1 + p2
 ```
 
@@ -1164,17 +1164,17 @@ working directory. Find the solution in the drop-down.
 <br>
 
 ```{r patchwork sepal length plots, message = FALSE}
-p1 <- ggplot(flowerData, aes(y = sepal.length, x = variety)) +
+p1 <- ggplot(flower_data, aes(y = sepal.length, x = variety)) +
   geom_boxplot()
 
-p2 <- ggplot(flowerData, aes(y = sepal.length, x = variety)) +
+p2 <- ggplot(flower_data, aes(y = sepal.length, x = variety)) +
   geom_violin()
 
 p1 + p2
 ```
 
-```{r save sepal length plots, eval = FALSE, fig.alt="A composite figure consisting of two graphs. The left graph is a boxplot with sepal length on the y-axis and variety on the x-axis. The right graph is a violin plot, also with sepal length on the y-axis and variety on the x-axis."}
-ggsave("sepalLengthPlots.pdf")
+```{r save sepal length plots, eval = TRUE, fig.alt="A composite figure consisting of two graphs. The left graph is a boxplot with sepal length on the y-axis and variety on the x-axis. The right graph is a violin plot, also with sepal length on the y-axis and variety on the x-axis."}
+ggsave("sepal_length_plots.pdf")
 ```
 
 
