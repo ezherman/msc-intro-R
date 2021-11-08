@@ -1003,7 +1003,7 @@ ggplot(flower_data, aes(y = sepal.length, x = variety)) +
 ggsave("results/sepal_length_by_variety_violin_plot.pdf")
 ```
 
-```{r ggsave violin plot for developer, include = FALSE}
+```{r ggsave violin plot for developer, eval = FALSE}
 # To export to pdf, we use the .pdf file extension
 ggsave("../results/sepal_length_by_variety_violin_plot.pdf")
 ```
@@ -1199,7 +1199,7 @@ p1 + p2
 ggsave("results/sepal_length_plots.pdf")
 ```
 
-```{r save sepal length plots for developer, include = FALSE, fig.alt="A composite figure consisting of two graphs. The left graph is a boxplot with sepal length on the y-axis and variety on the x-axis. The right graph is a violin plot, also with sepal length on the y-axis and variety on the x-axis."}
+```{r save sepal length plots for developer, eval = FALSE, fig.alt="A composite figure consisting of two graphs. The left graph is a boxplot with sepal length on the y-axis and variety on the x-axis. The right graph is a violin plot, also with sepal length on the y-axis and variety on the x-axis."}
 ggsave("../results/sepal_length_plots.pdf")
 ```
 
