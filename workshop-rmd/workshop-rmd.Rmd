@@ -931,27 +931,6 @@ ggplot(healthData, aes(y = Height, x = Weight)) +
   labs(title = "Height vs. Weight in the NHANES data")
 ```
 
-<details>
-
-<summary>
-
-**Challenge**: Boxplots are often being replaced by violin plots, as
-these show the distribution of the data more clearly. Use Google to find
-the command for a violin plot. Then, adapt your code for the boxplot of
-`sepal.length` across `variety` from the `flowerData` to create a violin
-plot. Find the solution in the drop-down.
-
-</summary>
-
-<br>
-
-```{r violin plot sepal length, fig.alt="A violin plot with sepal length on the y-axis and Variety on the x-axis. The violin plots appear, from left to right, in the order: Setosa, Versicolor, Virginica. The violin plot for Setosa has a wide central region and narrow regions towards the ends. The violin pots for Versicolor and Virginica are less wide in the centre."}
-ggplot(flowerData, aes(y = sepal.length, x = variety)) +
-    geom_violin()
-```
-
-</details>
-
 ## Exporting plots using `ggsave()`
 
 If you are writing a report or manuscript outside of RStudio, you will
@@ -981,6 +960,33 @@ ggsave("heightVsWeightPlot.png")
 
 We should then have the file `"heightVsWeightPlot.png"` in our project
 working directory.
+
+<details>
+
+<summary>
+
+**Challenge**: Boxplots are often being replaced by violin plots, as
+these show the distribution of the data more clearly. Use Google to find
+the command for a violin plot. Then, adapt your code for the boxplot of
+`sepal.length` across `variety` from the `flowerData` to create a violin
+plot. Finally, save this plot as a `.pdf` file. Find the solution in the drop-down.
+
+</summary>
+
+<br>
+
+```{r violin plot sepal length, fig.alt="A violin plot with sepal length on the y-axis and Variety on the x-axis. The violin plots appear, from left to right, in the order: Setosa, Versicolor, Virginica. The violin plot for Setosa has a wide central region and narrow regions towards the ends. The violin pots for Versicolor and Virginica are less wide in the centre."}
+ggplot(flowerData, aes(y = sepal.length, x = variety)) +
+    geom_violin()
+```
+
+```{r ggsave violin plot}
+# To export to pdf, we use the .pdf file extension
+ggsave("sepal_length_by_variety_violin_plot.pdf")
+```
+
+
+</details>
 
 # Optional material
 
