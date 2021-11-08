@@ -185,7 +185,7 @@ used in R, this is referred to as *calling* the *function*. Usually, a
 *function* is *called* with one or more inputs - these are called
 *arguments*.
 
-Let us take the `round`() function as an example.
+Let us take the `round()` function as an example.
 This *function* rounds a supplied value.  
 For example, we *call* the `round()` function on the value 3.14.
 The value 3.14 is an *argument* in our *call*:
