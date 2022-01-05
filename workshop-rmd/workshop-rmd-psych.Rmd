@@ -1233,7 +1233,7 @@ be interested in determining whether `sepal.length` differs between the
     criteria, i.e. only the rows related to `Setosa` and `Versicolor`
     varieties;
 
-```{r subset data by variety}
+```{r subset data by variety part 1}
 
 setosa_versicolor_data <- filter(flower_data, variety != "Virginica")
 ```
@@ -1243,7 +1243,7 @@ setosa_versicolor_data <- filter(flower_data, variety != "Virginica")
     each `variety`. This will allows us to determine whether the
     separate samples are approximately normally distributed,
 
-```{r subset data by variety}
+```{r subset data by variety part 2}
 
 setosa_data <- filter(setosa_versicolor_data, variety == "Setosa") %>% select(sepal.length) %>% unlist
 
@@ -1289,7 +1289,7 @@ normality.
 4.  We may be interested in getting some summary data before any
     statistical testing
 
-```{r}
+```{r sumamry data setosa versicolor}
 
 setosa_versicolor_data %>% group_by(variety) %>% summarise(M = mean(sepal.length),
             SD = sd(sepal.length),
@@ -1308,8 +1308,7 @@ significant.
     the t-test using the function \`leveneTest\` from the package
     \`car\`
 
-```{r Levene's test'}
-install.packages("car")
+```{r Levenes test}
 library(car)
 
 # Levene's test with one independent variable
@@ -1320,7 +1319,7 @@ leveneTest(sepal.length ~ variety, data = setosa_versicolor_data)
 
 The general format of the command is:
 
-```{r t.test general format, eval = FALSE}
+```{r t-test general format, eval = FALSE}
 t.test(x, y = NULL,
        alternative = c("two.sided", "less", "greater"),
        mu = 0, paired = FALSE, var.equal = FALSE,
@@ -1389,7 +1388,7 @@ the `setosa variety`, *t*(86.54) = -10.52, *p* \< .001.
 
 This is the format you should use:
 
-```{r}
+```{r cor-test challenge format, eval = FALSE}
 
 cor.test(x, y, alternative = c("two.sided", "less", "greater"), method = c("pearson", "kendall", "spearman"), exact = NULL, conf.level = 0.95, continuity = FALSE)
 
