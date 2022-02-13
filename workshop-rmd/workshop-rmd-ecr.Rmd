@@ -1023,7 +1023,8 @@ ggsave("../results/sepal_length_by_variety_violin_plot.pdf")
 
 # Data analysis in R
 
-In order to run the stats install the libraries ggpubr and rstatix
+In order to follow this section, install the libraries 
+`ggpubr`, `rstatix` and `corrr`:
 
 ```{r, eval = FALSE}
 install.packages("ggpubr")
@@ -1031,25 +1032,25 @@ install.packages("rstatix")
 install.packages("corrr")
 ```
 
-And now load them
+And now load them:
 
 ```{r}
-# loading a package
+# loading the packages
 library(ggpubr)
 library(rstatix)
 library(corrr)
 ```
 
-Questions:\
-1. What is the general format of a t-test in R?\
-2. What is the general format of a correlation in R?\
-3. How to test the assumptions of the t-test and correlations in R?\
-4. How to use `ggplot2` to aid model interpretation?\
-
-Objectives:\
-1. Describe the core components of a t-test and correlation;\
-2. Create boxplots and qqplots to test the assumptions of the
-statistical models; 3. Adjust `ggplot2` objects.\
+> Questions:\
+> 1. What is the general format of a t-test in R?\
+> 2. What is the general format of a correlation in R?\
+> 3. How to test the assumptions of the t-test and correlations in R?\
+> 4. How to use `ggplot2` to aid model interpretation?\
+> 
+> Objectives:\
+> 1. Describe the core components of a t-test and correlation;\
+> 2. Create boxplots and qqplots to test the assumptions of the statistical models; 
+> 3. Adjust `ggplot2` objects.\
 
 Additionally to being able to do data wrangling and plotting, you may
 also want to run some statistical analysis. Here we aim to give an
@@ -1062,7 +1063,8 @@ be interested in determining whether `sepal.length` differs between the
 `Setosa` and `Versicolor` varieties. This will entail a few steps:
 
 1.  First, we may be interested in getting some summary statistics
-    before any statistical testing
+    before any statistical testing. Here we use `get_summary_stats()`
+    rather than `summarise()` as we did earlier in the workshop.
 
 ```{r summary statistics}
 
@@ -1205,7 +1207,7 @@ assumption of homogeneity of variance was not met, we will need to set
 `var.equal` to false. Final, given that we are running an independent
 t-test, we need to set `paired` to false.
 
-```{r t.test general format, eval = FALSE}
+```{r t.test general format}
 t.test <- setosa_versicolor_data %>%
   t_test(sepal.length ~ variety, var.equal = FALSE, paired = FALSE)
 
@@ -1320,15 +1322,14 @@ virginica %>% dplyr::select_if(is.numeric) %>% correlate(use = "pairwise.complet
 ### Report
 
 There's a significant and moderate correlation (r = .46) between
-`sepal length` and `sepal width` for the variety of Iris Virginica.
+`sepal_length` and `sepal_width` for the variety of Iris Virginica.
 
 <details>
 
 <summary>
 
 **Challenge**: Run a Pearson's correlations between `Age` and `Weight`
-using the
-`health data; then visualise the association using a scatterplot.`
+using the `health_data`. Then visualise the association using a scatterplot.
 
 </summary>
 

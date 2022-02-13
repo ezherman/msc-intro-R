@@ -864,12 +864,12 @@ ggsave(&quot;../results/sepal_length_by_variety_violin_plot.pdf&quot;)</code></p
 </div>
 <div id="data-analysis-in-r" class="section level1" number="7">
 <h1><span class="header-section-number">7</span> Data analysis in R</h1>
-<p>In order to run the stats install the libraries ggpubr and rstatix</p>
+<p>In order to follow this section, install the libraries <code>ggpubr</code>, <code>rstatix</code> and <code>corrr</code>:</p>
 <pre class="r"><code>install.packages(&quot;ggpubr&quot;)
 install.packages(&quot;rstatix&quot;)
 install.packages(&quot;corrr&quot;)</code></pre>
-<p>And now load them</p>
-<pre class="r"><code># loading a package
+<p>And now load them:</p>
+<pre class="r"><code># loading the packages
 library(ggpubr)
 library(rstatix)</code></pre>
 <pre><code>## 
@@ -878,6 +878,7 @@ library(rstatix)</code></pre>
 ## 
 ##     filter</code></pre>
 <pre class="r"><code>library(corrr)</code></pre>
+<blockquote>
 <p>Questions:<br />
 1. What is the general format of a t-test in R?<br />
 2. What is the general format of a correlation in R?<br />
@@ -888,12 +889,13 @@ library(rstatix)</code></pre>
 1. Describe the core components of a t-test and correlation;<br />
 2. Create boxplots and qqplots to test the assumptions of the statistical models; 3. Adjust <code>ggplot2</code> objects.<br />
 </p>
+</blockquote>
 <p>Additionally to being able to do data wrangling and plotting, you may also want to run some statistical analysis. Here we aim to give an example of some of the tests that you may be interested in running.</p>
 <div id="independent-t-test" class="section level2" number="7.1">
 <h2><span class="header-section-number">7.1</span> Independent t-test</h2>
 <p>In the case of the <code>flower_data</code> that we have been working with, we may be interested in determining whether <code>sepal.length</code> differs between the <code>Setosa</code> and <code>Versicolor</code> varieties. This will entail a few steps:</p>
 <ol style="list-style-type: decimal">
-<li>First, we may be interested in getting some summary statistics before any statistical testing</li>
+<li>First, we may be interested in getting some summary statistics before any statistical testing. Here we use <code>get_summary_stats()</code> rather than <code>summarise()</code> as we did earlier in the workshop.</li>
 </ol>
 <pre class="r"><code>flower_data %&gt;% group_by(variety) %&gt;%
   get_summary_stats(sepal.length, type = &quot;mean_sd&quot;)</code></pre>
@@ -989,6 +991,10 @@ bxp</code></pre>
   t_test(sepal.length ~ variety, var.equal = FALSE, paired = FALSE)
 
 t.test</code></pre>
+<pre><code>## # A tibble: 1 x 8
+##   .y.          group1 group2        n1    n2 statistic    df        p
+## * &lt;chr&gt;        &lt;chr&gt;  &lt;chr&gt;      &lt;int&gt; &lt;int&gt;     &lt;dbl&gt; &lt;dbl&gt;    &lt;dbl&gt;
+## 1 sepal.length Setosa Versicolor    50    50     -10.5  86.5 3.75e-17</code></pre>
 <div id="report" class="section level3" number="7.3.1">
 <h3><span class="header-section-number">7.3.1</span> Report</h3>
 <p>Overall, there appears to be a significant difference between <code>setosa</code> and <code>versicolor</code> varieties for <code>sepal.length</code>, with the <code>versicolor</code> variety showing a statistically significant higher <code>sepal.length</code> than the <code>setosa variety</code>, <em>t</em>(86.54) = -10.52, <em>p</em> &lt; .001.</p>
@@ -1060,10 +1066,10 @@ virginica %&gt;% dplyr::select_if(is.numeric) %&gt;% correlate(use = &quot;pairw
 <pre class="r"><code># dplyr::select_if(is.numeric) is used to only select numerical columns</code></pre>
 <div id="report-2" class="section level3" number="7.5.1">
 <h3><span class="header-section-number">7.5.1</span> Report</h3>
-<p>There’s a significant and moderate correlation (r = .46) between <code>sepal length</code> and <code>sepal width</code> for the variety of Iris Virginica.</p>
+<p>There’s a significant and moderate correlation (r = .46) between <code>sepal_length</code> and <code>sepal_width</code> for the variety of Iris Virginica.</p>
 <details>
 <summary>
-<p><strong>Challenge</strong>: Run a Pearson’s correlations between <code>Age</code> and <code>Weight</code> using the <code>health data; then visualise the association using a scatterplot.</code></p>
+<p><strong>Challenge</strong>: Run a Pearson’s correlations between <code>Age</code> and <code>Weight</code> using the <code>health_data</code>. Then visualise the association using a scatterplot.</p>
 </summary>
 <p><br></p>
 <pre class="r"><code># subset dataset for Virginica
