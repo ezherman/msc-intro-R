@@ -16,8 +16,7 @@ editor_options:
 knitr::opts_chunk$set(echo = TRUE)
 library(ggplot2)
 library(patchwork)
-library(ggpubr)
-library(rstatix)
+
 ```
 
 ```{r import NHANES data for developer, include = FALSE}
@@ -1024,6 +1023,23 @@ ggsave("../results/sepal_length_by_variety_violin_plot.pdf")
 
 # Data analysis in R
 
+In order to run the stats install the libraries ggpubr and rstatix
+
+```{r, eval = FALSE}
+install.packages("ggpubr")
+install.packages("rstatix")
+install.packages("corrr")
+```
+
+And now load them
+
+```{r}
+# loading a package
+library(ggpubr)
+library(rstatix)
+library(corrr)
+```
+
 Questions:\
 1. What is the general format of a t-test in R?\
 2. What is the general format of a correlation in R?\
@@ -1039,7 +1055,7 @@ Additionally to being able to do data wrangling and plotting, you may
 also want to run some statistical analysis. Here we aim to give an
 example of some of the tests that you may be interested in running.
 
-## T - tests
+## Independent t-test
 
 In the case of the `flower_data` that we have been working with, we may
 be interested in determining whether `sepal.length` differs between the
@@ -1050,7 +1066,8 @@ be interested in determining whether `sepal.length` differs between the
 
 ```{r summary statistics}
 
-flower_data %>% group_by(variety) %>% get_summary_stats(sepal.length, type = "mean_sd")
+flower_data %>% group_by(variety) %>%
+  get_summary_stats(sepal.length, type = "mean_sd")
 
 ```
 
@@ -1063,32 +1080,42 @@ significant.
 The two-samples independent t-test assume the following characteristics
 about the data:
 
-### **1. Independence of the observations**. Each subject should belong to only one group. There is no relationship between the observations in each group;
+### **Independence of the observations**. Each subject should belong to only one group. There is no relationship between the observations in each group;
 
 The assumption of independence is met since the categories are mutually
 exclusive, each flower belongs to only one variety.
 
-### **2. No significant outliers** in the two groups;
+### **No significant outliers** in the two groups;
 
 Use `filter()` to select rows from `variety` that match our criteria,
 i.e. only the rows related to `Setosa` and `Versicolor` varieties;
 
 ```{r subset data by variety}
 
-setosa_versicolor_data <- flower_data %>% filter(variety != "Virginica")
+setosa_versicolor_data <- flower_data %>%
+  filter(variety != "Virginica")
 
 ```
 
-Create a boxplot using the `ggboxplot()` function from the package
-`ggpubr.` To achieve a boxplot per group allocate the variable `variety`
-to the x axis.
+Create a boxplot using the `ggplot()` function previous introduced.
+
+1.  Include `setosa_versicolor_data` as our `<DATA>;`
+2.  Allocate the variable `variety` to the x axis and sepal.length to
+    the y axis inside `aes();`
+3.  Use the scatterplot function at `<GEOM_FUNCTION>`, which is
+    `geom_boxplot()`;
+4.  Optional: Use the function `geom_dotplot()` to visualise each
+    datapoints;
 
 ```{r}
 
-bxp <-ggboxplot(setosa_versicolor_data, x = "variety", y = "sepal.length", width = 0.5, add = c("mean", "jitter"), 
-  ylab = "Sepal length", xlab = FALSE) 
+bxp <- ggplot(setosa_versicolor_data, aes(x=variety, y=sepal.length)) + 
+  geom_boxplot()+
+  geom_dotplot(binaxis='y', stackdir='center',
+                 position=position_dodge(1))
 
 bxp
+
 ```
 
 The boxplot shows no clear evidence of outliers, yet if you are new to
@@ -1105,7 +1132,7 @@ flower_data %>%
 
 There were no extreme outliers.
 
-### **3. Normality:** the data for each group should be approximately normally distributed;
+### **Normality:** the data for each group should be approximately normally distributed;
 
 There are multiple ways of checking for normality. Here we will focus on
 two methods: Shapiro-Wilk test and qqplots. The important thing to know
@@ -1116,6 +1143,16 @@ Qqplots are advantageous in relation to tests of normality as these tend
 to be highly sensitive to small deviations from normality in large
 sample sizes, so always visually inspect your data.
 
+To create a qqplot of `sepal.length` for each `variety` in our
+`setosa_versicolor_data`, we:
+
+1.  Use the `ggqqplot()` function from the `ggpubr` library;
+
+2.  Include `setosa_versicolor_data` as our `<DATA>`;
+
+3.  Specify the mappings `x = "sepal.length"` and facet.by =
+    "`variety"`;
+
 ```{r}
 ggqqplot(setosa_versicolor_data, x = "sepal.length", facet.by = "variety")
 
@@ -1123,24 +1160,33 @@ ggqqplot(setosa_versicolor_data, x = "sepal.length", facet.by = "variety")
 
 The qqplots reveal no significant deviations from normality.
 
+We can further confirm the normality of our distribution by running a
+test of normality using the `shapiro_test`from the`rstatix` library.
+
 If the data is normally distributed, or approximates a normal
 distribution, the Shapiro-Wilk test should be greater than .05.
 
 ```{r}
-setosa_versicolor_data %>% group_by(variety) %>% shapiro_test(sepal.length)
+setosa_versicolor_data %>%
+  group_by(variety) %>%
+  shapiro_test(sepal.length)
 ```
 
 Since the p-values are greater than .05 for both groups, there is no
 indication that the data is not normally distributed.
 
-### **4. Homogeneity of variances**: the variance of the outcome variable should be similar in each group;
+### **Homogeneity of variances**: the variance of the outcome variable should be similar in each group;
 
-Testing whether both groups show similar variance can be done using the
-Levene's test. The Levene's test should be non-significant (greater than
-.05) if the variances of both groups are similar.
+Similarly to the `shapiro_test`, we can test whether both groups show
+similar variance by using the `levene_test` function from `rstatix`
+library.
+
+The Levene's test should be non-significant (greater than .05) if the
+variances of both groups are similar.
 
 ```{r}
-setosa_versicolor_data %>% levene_test(sepal.length~variety)
+setosa_versicolor_data %>%
+  levene_test(sepal.length~variety)
 ```
 
 The p-value of the Levene's test is significant, suggesting that there
@@ -1148,52 +1194,60 @@ is a significant difference between the variances of the two groups.
 Therefore, we'll use the `Weltch t-test,` which doesn't assume the
 equality of the two variances.
 
-Summary:
+## Fitting an independent t-test()
 
--   The data meets the assumptions of independence, normality and does
-    not show extreme outliers, yet the assumption of homogeneity of
-    variance was not met.
-
-## The general format of the `t.test()` command
-
-The general format of the function is:
+Since the data meets the assumptions of independence, normality and does
+not show extreme outliers we will proceed to run an independent t-test.
+First, we will fit the independent t-test with the `t_test()`command.
+Within the command, the model is denoted by
+`formula = outcome variable ~ explanatory variable`. Second, since the
+assumption of homogeneity of variance was not met, we will need to set
+`var.equal` to false. Final, given that we are running an independent
+t-test, we need to set `paired` to false.
 
 ```{r t.test general format, eval = FALSE}
-stat.test <- setosa_versicolor_data %>%
-  t_test(sepal.length ~ variety, var.equal = FALSE, paired = FALSE, conf.level = 0.95) %>%
-  add_significance()
+t.test <- setosa_versicolor_data %>%
+  t_test(sepal.length ~ variety, var.equal = FALSE, paired = FALSE)
 
-stat.test
+t.test
 ```
 
-1.  The formula has the form **`x ~ group`** where **`x`** is a numeric
-    variable giving the data values and **`group`** is a factor with one
-    or multiple levels giving the corresponding groups. `Group` can be
-    substituted by `1` if in one-sample t-tests, with `mu` representing
-    the parameter used for the null hypothesis.
-
-2.  The `paired` argument will indicate whether or not you want a paired
-    t-test. The default is set to FALSE but can be set to TRUE if you
-    desire to perform a paired t-test.
-
-3.  The `var.equal` argument indicates whether or not to assume equal
-    variances when performing a two-sample t-test. The default assumes
-    unequal variance and applies the Welsh approximation to the degrees
-    of freedom; however, you can set this to TRUE to pool the variance.
-
-4.  The argument `adjust_pvalue()` allows you to adjust the p-values
-    according to your method of choice, for e.g. if you want to do a
-    Bonferroni you can simply add: `adjust_pvalue(method = "bonferroni)`
-
-5.  Finally, the `conf.level` argument determines the confidence level
-    of the reported confidence interval;
-
-    ### Report
+### Report
 
 Overall, there appears to be a significant difference between `setosa`
 and `versicolor` varieties for `sepal.length`, with the `versicolor`
 variety showing a statistically significant higher `sepal.length` than
 the `setosa variety`, *t*(86.54) = -10.52, *p* \< .001.
+
+## One-sample t-test
+
+If we wanted to extend the model we just fitted to one-sample t-test to
+check whether the petal length for the Versicolor variety is different
+than a certain value, we would first have to subset our data. And then
+proceed to fit the model as we have already established that the
+assumptions for a one-sample t-test are met. One-sample t-tests are
+fitted using the same command as before `t_test`, yet the formula is
+denoted by `outcome variable ~ 1, mu = parameter.`
+
+In this example we want to check whether the petal length of the
+Versicolor variety is significantly different from 3 cm.
+
+```{r}
+
+Versicolor <- flower_data %>%
+  filter(variety == "Versicolor")
+
+Versicolor %>%
+  t_test(petal.length ~ 1, mu = 3)
+
+```
+
+### Report
+
+A one-sample t-test was run to determine the petal length of the
+Versicolor variety is different from 3 cm. The one-sample t-test
+revealed that petal length size was statistically significant difference
+from 3 cm, *t*(49) = -62.62, *p* \< .001.
 
 <details>
 
@@ -1201,34 +1255,7 @@ the `setosa variety`, *t*(86.54) = -10.52, *p* \< .001.
 
 **Challenge**: Now that we have established that the samples are
 normality distributed and do not show outliers, check whether the
-`petal.length` of `Iris Setosa` are statistically different from 3 cm.
-
-This is the format you should use:
-
-```{r eval = FALSE}
-
-data %>% t_test(formula,
-  comparisons = NULL,
-  ref.group = NULL,
-  p.adjust.method = "holm",
-  paired = FALSE,
-  var.equal = FALSE,
-  alternative = "two.sided",
-  mu = 0,
-  conf.level = 0.95,
-  detailed = FALSE
-)
-
-```
-
-For the purpose of this example, focus only on the following variables:
-
--   formula is in the form of "x \~ group", yet for one-sample t-tests
-    you use "x \~ 1;
-
--   `mu` - this parameter is used to form your null hypothesis;
-
-We will use the default options for the remaining ones.
+`petal.length` of `Iris Setosa` are statistically different from 5 cm.
 
 </summary>
 
@@ -1236,9 +1263,11 @@ We will use the default options for the remaining ones.
 
 ```{r eval = FALSE}
 
-setosa <- flower_data %>% filter(variety == "Setosa")
+setosa <- flower_data %>%
+  filter(variety == "Setosa")
 
-setosa %>% t_test(petal.length ~ 1, mu = 3)
+setosa %>%
+  t_test(petal.length ~ 1, mu = 5)
 
 ```
 
@@ -1251,72 +1280,42 @@ correlation between `sepal.length` and `sepal.width` for the
 \`Virginica\` variety using the `correlate()` function from the `corrr`
 package.
 
-The general format of the command is:
+First we need to filter the data.
 
-```{r eval = FALSE}
+```{r}
 
-correlate(
-  x,
-  y = NULL,
-  use = "pairwise.complete.obs",
-  method = "pearson",
-  diagonal = NA,
-  quiet = FALSE
-)
+virginica <- flower_data %>%
+      filter(variety == "Virginica")
+    
 ```
 
-For the purpose of this example only the following parameters are of
-interest:
+Then we need to inspect whether there is a linear relationship between
+`sepal.length` and `sepal.width.`
 
-1.  `x` is a numeric vector, matrix or data frame.
-
-2.  y is assigned `NULL` by default, yet it can be a vector, matrix or
-    data frame with compatible dimensions to `x`
-
-3.  use - indicates whihc method should be adopted to deal with missing
-    values. This must be one of the strings `"everything"`, `"all.obs"`,
-    `"complete.obs"`, `"na.or.complete"`, or `"pairwise.complete.obs"`.
-
-4.  method is used to indicate which correlation coefficient (or
-    covariance) is to be computed, e.g. `"pearson"` (default),
-    `"kendall"`, or `"spearman"`.
-
-    To compute the correlation between `sepal.length` and `sepal.width`
-    for Iris `Virginica` we need to first create a dataset with that
-    variety and only then run the Pearson's correlation.
-
-    ```{r}
-
-    virginica <- flower_data %>% filter(variety == "Virginica")
-
-
-    ```
-
-    Then we need to inspect whether there is a linear relationship
-    between `sepal.length` and `sepal.width.`
-
-    ```{r}
-    ggplot(virginica, aes(x=sepal.length, y=sepal.width)) + 
+```{r}
+ggplot(virginica, aes(x=sepal.length, y=sepal.width)) + 
       geom_point()+
       geom_smooth(method=lm)
-    ```
+```
 
-    Given that the relationship appears to be linear, we can now compute
-    a Pearson's correlation.
+Finally, given that the relationship appears to be linear, we can now
+compute a Pearson's correlation with the `correlate()` command from the
+`corrr` library. Within the command, you need to assign the variables of
+interest to x and y, the order does not matter.
 
-    ```{#install.packages("corrr")}
-    library(corrr)
+```{r}
 
-    correlate(virginica$sepal.length, virginica$sepal.width,
-    use = "pairwise.complete.obs", method = "pearson")
+correlate(x = virginica$sepal.length, y = virginica$sepal.width)
 
+```
 
-    #or if you wished to run the correlations between all variables in the dataset you could simply do the following:
+```{r}
+#or if you wished to run the correlations between all variables in the dataset you could simply do the following:
 
-    virginica %>% dplyr::select_if(is.numeric) %>% correlate(use = "pairwise.complete.obs", method = "pearson")
+virginica %>% dplyr::select_if(is.numeric) %>% correlate(use = "pairwise.complete.obs", method = "pearson")
 
-    # dplyr::select_if(is.numeric) is used to only select numerical columns
-    ```
+# dplyr::select_if(is.numeric) is used to only select numerical columns
+```
 
 ### Report
 
@@ -1331,20 +1330,6 @@ There's a significant and moderate correlation (r = .46) between
 using the
 `health data; then visualise the association using a scatterplot.`
 
-This is the format you should use (as previously mentioned):
-
-```{r eval = FALSE}
-correlate(
-  x,
-  y = NULL,
-  use = "pairwise.complete.obs",
-  method = "pearson",
-  diagonal = NA,
-  quiet = FALSE
-)
-
-```
-
 </summary>
 
 <br>
@@ -1353,13 +1338,12 @@ correlate(
 
 # subset dataset for Virginica
 
-correlate(health_data$Age, health_data$Weight, use = "pairwise.complete.obs", method = "pearson")
+correlate(health_data$Age, health_data$Weight)
 
 ggplot(health_data, aes(x=Height, y=Weight)) + geom_point()
 ```
 
 </details>
-
 
 # Optional material
 
@@ -1557,4 +1541,5 @@ ggsave("../results/sepal_length_plots.pdf")
 ```
 
 </details>
+
 
